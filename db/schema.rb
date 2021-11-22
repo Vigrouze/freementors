@@ -36,6 +36,35 @@ ActiveRecord::Schema.define(version: 2021_11_22_165956) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "applies", force: :cascade do |t|
+    t.bigint "mission_id", null: false
+    t.bigint "padawan_id", null: false
+    t.integer "status"
+    t.text "motivation"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mission_id"], name: "index_applies_on_mission_id"
+    t.index ["padawan_id"], name: "index_applies_on_padawan_id"
+  end
+
+  create_table "missions", force: :cascade do |t|
+    t.string "name"
+    t.string "company"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "duration"
+    t.text "description"
+    t.integer "fee"
+    t.boolean "remote"
+    t.integer "status"
+    t.bigint "mentor_id", null: false
+    t.bigint "padawan_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mentor_id"], name: "index_missions_on_mentor_id"
+    t.index ["padawan_id"], name: "index_missions_on_padawan_id"
+  end
+
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
     t.string "searchable_type"
@@ -81,6 +110,11 @@ ActiveRecord::Schema.define(version: 2021_11_22_165956) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+
+  add_foreign_key "applies", "missions"
+  add_foreign_key "applies", "users", column: "padawan_id"
+  add_foreign_key "missions", "users", column: "mentor_id"
+  add_foreign_key "missions", "users", column: "padawan_id"
   add_foreign_key "relationships", "users", column: "mentor_id"
   add_foreign_key "relationships", "users", column: "padawan_id"
 end
