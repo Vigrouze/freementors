@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_22_145542) do
+ActiveRecord::Schema.define(version: 2021_11_22_154319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,24 @@ ActiveRecord::Schema.define(version: 2021_11_22_145542) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "missions", force: :cascade do |t|
+    t.string "name"
+    t.string "company"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "duration"
+    t.text "description"
+    t.integer "fee"
+    t.boolean "remote"
+    t.integer "status"
+    t.bigint "mentor_id", null: false
+    t.bigint "padawan_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mentor_id"], name: "index_missions_on_mentor_id"
+    t.index ["padawan_id"], name: "index_missions_on_padawan_id"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -60,4 +78,6 @@ ActiveRecord::Schema.define(version: 2021_11_22_145542) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "missions", "users", column: "mentor_id"
+  add_foreign_key "missions", "users", column: "padawan_id"
 end
