@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_22_161809) do
+ActiveRecord::Schema.define(version: 2021_11_22_165956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,16 @@ ActiveRecord::Schema.define(version: 2021_11_22_161809) do
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.bigint "padawan_id", null: false
+    t.bigint "mentor_id", null: false
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mentor_id"], name: "index_relationships_on_mentor_id"
+    t.index ["padawan_id"], name: "index_relationships_on_padawan_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -84,13 +94,27 @@ ActiveRecord::Schema.define(version: 2021_11_22_161809) do
     t.datetime "updated_at", precision: 6, null: false
     t.float "latitude"
     t.float "longitude"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address"
+    t.string "language"
+    t.string "description"
+    t.boolean "mentor"
+    t.integer "xp_level"
+    t.string "xp_status"
+    t.string "link_github"
+    t.string "link_malt"
+    t.string "link_slack"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+
   add_foreign_key "applies", "missions"
   add_foreign_key "applies", "users", column: "padawan_id"
   add_foreign_key "missions", "users", column: "mentor_id"
   add_foreign_key "missions", "users", column: "padawan_id"
+  add_foreign_key "relationships", "users", column: "mentor_id"
+  add_foreign_key "relationships", "users", column: "padawan_id"
 end
