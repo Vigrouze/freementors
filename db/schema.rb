@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(version: 2021_11_22_165956) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-
   add_foreign_key "applies", "missions"
   add_foreign_key "applies", "users", column: "padawan_id"
   add_foreign_key "missions", "users", column: "mentor_id"

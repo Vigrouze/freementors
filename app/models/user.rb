@@ -12,4 +12,6 @@ class User < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
   has_many :missions_as_mentor, class_name: "Mission", foreign_key: :mentor_id
   has_many :missions_as_padawan, class_name: "Mission", foreign_key: :padawan_id
+
+  scope :mentor, -> { where(mentor: true) }
 end
