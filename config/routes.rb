@@ -7,6 +7,7 @@ Rails.application.routes.draw do
             path: 'mentors', # url of routes will be /mentors instead of /users
             controller: 'mentors', # controller called will be MentorsController instead of UsersController
             only: [:index] do
-              resources :missions, only: [:index, :show]
+              resources :missions, only: [:index]
             end
+  resources :missions, only: [:show]
 end
