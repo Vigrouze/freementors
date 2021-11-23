@@ -15,6 +15,9 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 
-    <%= yield %>
+    <div class="content-wrapper">
+    <%-# class added to have a footer on all pages -%>
+      <%= yield %>
+    </div>
   </body>
 </html>
