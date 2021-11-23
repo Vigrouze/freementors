@@ -1,0 +1,15 @@
+<h1>Missions#index</h1>
+<p>Find me in app/views/missions/index.html.erb</p>
+
+<% @missions.each do |mission| %>
+  <%= mission.name %>
+  <%= mission.company %>
+  <%= mission.description %>
+  <%= mission.start_date %>
+  <%= mission.end_date %>
+  <%= mission.duration %>
+  <%= mission.mentor.last_name %>
+  <%= mission.fee %>
+  <%= mission.remote %>
+  <%= mission.status %>
+<% end %>

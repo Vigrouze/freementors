@@ -6,7 +6,7 @@ class Mission < ApplicationRecord
 
   validates :name, :company, :start_date, :end_date, :description, :fee, :remote, presence: true
   validates :fee, :status, numericality: { only_integer: true }
-  validate end_date_after_start_date
+  validate :end_date_after_start_date
 
   private
 
