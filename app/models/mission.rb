@@ -17,4 +17,8 @@ class Mission < ApplicationRecord
       errors.add(:end_date, "Must be after the start date.")
     end
   end
+
+  def calculated_duration
+    (end_date - start_date).to_i
+  end
 end

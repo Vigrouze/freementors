@@ -1,11 +1,10 @@
 class MissionsController < ApplicationController
   def index
-    @missions = Mission.all
     @missions = policy_scope(Mission).order(created_at: :desc)
   end
 
   def show
-    @mission = Mission.find(params_id)
+    @mission = Mission.find(params[:id])
   end
 
   def new
@@ -15,7 +14,8 @@ class MissionsController < ApplicationController
   def create
     @mission = Mission.new(missions_params)
     @mission.mentor = current_user
-    @mission.duration = (@mission.end_date - @mission.start_date)
+    # To test
+    @mission.duration = @mission.calculated_duration
     authorize @mission
 
     if @mission.save

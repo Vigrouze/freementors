@@ -10,7 +10,8 @@ class MissionPolicy < ApplicationPolicy
   end
 
   def show?
-    return false
+    return true
+    # only the mentor's padawans can see the full offer
   end
 
   def create?
