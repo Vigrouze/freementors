@@ -2,6 +2,9 @@ class AppliesController < ApplicationController
 
   def create
     @apply = Apply.new(applies_params)
+    @mission = Mission.find(params[:mission_id])
+    @apply.mission = @mission
+    @apply.padawan = current_user
   end
 
   def update
@@ -10,7 +13,7 @@ class AppliesController < ApplicationController
   def approve
     @mission = Mission.find(params[:id])
     @mission.status = "accepted"
-    @mission.save
+    @mission.save!
 
     authorize @mission
     redirect_to mentor_profil_path
@@ -19,7 +22,7 @@ class AppliesController < ApplicationController
   def deny
     @mission = Mission.find(params[:id])
     @mission.status = "denied"
-    @mission.save
+    @mission.save!
 
     authorize @mission
     redirect_to mentor_profil_path
@@ -28,6 +31,6 @@ class AppliesController < ApplicationController
   private
 
   def apply_params
-    params.require(:apply).permit(:status, :motivation, :mission_id, :padawan_id)
+    params.require(:apply).permit(:motivation)
   end
 end
