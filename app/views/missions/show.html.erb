@@ -1,2 +1,17 @@
 <h1>Missions#show</h1>
 <p>Find me in app/views/missions/show.html.erb</p>
+
+<ul>
+    <li><%= @mission.name %></li>
+    <li><%= @mission.company %></li>
+    <li><%= @mission.description %></li>
+    <li><%= @mission.start_date %></li>
+    <li><%= @mission.end_date %></li>
+    <li><%= @mission.duration %></li>
+    <li><%= @mission.mentor.last_name %></li>
+    <li><%= @mission.fee %></li>
+    <li><%= @mission.remote %></li>
+    <li><%= @mission.status %></li>
+</ul>
+
+<%= link_to "All Missions", mentor_missions_path(@mission.mentor.id) %>
