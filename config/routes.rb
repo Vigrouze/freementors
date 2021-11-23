@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   resources :users,
             as: 'mentors', # prefix of routes will be mentor instead of user (ex: mentors_path instead of users_path)
             path: 'mentors', # url of routes will be /mentors instead of /users
-            controller: 'mentor', # controller called will be MentorsController instead of UsersController
+            controller: 'mentors', # controller called will be MentorsController instead of UsersController
             only: [:index]
 end
