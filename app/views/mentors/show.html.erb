@@ -10,7 +10,9 @@
 
 <h3>Missions proposed :</h3>
 <ul>
-  <li>Mission 1 : xxx</li>
+  <% @missions.each_with_index do |mission, index| %>
+    <li>Mission <%= index + 1 %> : <em><%= mission.name %></em></li>
+  <% end %>
 </ul>
 
 <h3>Connection infos :</h3>

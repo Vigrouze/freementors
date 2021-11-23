@@ -8,5 +8,6 @@ class MentorsController < ApplicationController
   def show
     @mentor = User.find(params[:id])
     authorize @mentor
+    @missions = Mission.all
   end
 end
