@@ -8,7 +8,7 @@
 <p>Experiences : <%= @mentor.xp_level%></p>
 <p>Status : <%= @mentor.xp_status%></p>
 
-<h3>Missions proposed (<%= @missions.count %>):</h3>
+<h3><%= ('Mission').pluralize(@missions.count) %> proposed (<%= @missions.count %>):</h3>
 <ul>
   <% @missions.each_with_index do |mission, index| %>
     <%= link_to mission_path(mission) do %>
