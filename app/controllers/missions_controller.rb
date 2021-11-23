@@ -1,6 +1,6 @@
 class MissionsController < ApplicationController
   def index
-    @missions = policy_scope(Mission).order(created_at: :desc)
+    @missions = policy_scope(Mission).order(start_date: :desc)
   end
 
   def show

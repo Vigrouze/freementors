@@ -10,4 +10,5 @@ Rails.application.routes.draw do
               resources :missions, only: [:index]
             end
   resources :missions, only: [:show]
+  # no need to nest the mission show as we access by the mission_id
 end
