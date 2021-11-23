@@ -15,7 +15,7 @@ class MissionsController < ApplicationController
   def create
     @mission = Mission.new(missions_params)
     @mission.mentor = current_user
-    @mission.duration = (end_date - start_date)
+    @mission.duration = (@mission.end_date - @mission.start_date)
     authorize @mission
 
     if @mission.save
