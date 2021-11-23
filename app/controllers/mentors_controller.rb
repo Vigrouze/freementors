@@ -1,5 +1,5 @@
 class MentorsController < ApplicationController
   def index
-    @mentors = User.mentor
+    @mentors = policy_scope(User).mentor
   end
 end
