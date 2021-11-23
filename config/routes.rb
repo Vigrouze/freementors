@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  
-  resources :missions, only: [:index, :show]
+
+  resources :missions, only: [:show] do
+    resources :applies, only: :create
+    # => mission_applies POST /missions/:mission_id/applies(.:format)
+  end
 
   resources :users,
             as: 'mentors', # prefix of routes will be mentor instead of user (ex: mentors_path instead of users_path)
