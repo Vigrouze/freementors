@@ -1,0 +1,9 @@
+<h1>List of all mentors</h1>
+
+<ul>
+  <% @mentors.each do |mentor| %>
+  <li>
+    <%= "#{mentor.first_name} #{mentor.last_name}" %>
+  </li>
+  <% end %>
+</ul>
