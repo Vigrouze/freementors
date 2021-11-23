@@ -6,7 +6,7 @@ class Mission < ApplicationRecord
 
   validates :name, :company, :start_date, :end_date, :description, :fee, :remote, presence: true
   validates :fee, :status, numericality: { only_integer: true }
-  validate end_date_after_start_date
+  validate :end_date_after_start_date
 
   private
 
@@ -16,5 +16,9 @@ class Mission < ApplicationRecord
     if end_date < start_date
       errors.add(:end_date, "Must be after the start date.")
     end
+  end
+
+  def calculated_duration
+    (end_date - start_date).to_i
   end
 end
