@@ -56,6 +56,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
+    acts-as-taggable-on (6.5.0)
+      activerecord (>= 5.0, < 6.1)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (10.2.5.0)
@@ -131,7 +133,7 @@ GEM
     msgpack (1.4.2)
     netrc (0.11.0)
     nio4r (2.5.8)
-    nokogiri (1.12.5-x86_64-darwin)
+    nokogiri (1.12.5-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.12.5-x86_64-darwin)
       racc (~> 1.4)
@@ -267,6 +269,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 6.0)
   autoprefixer-rails (= 10.2.5)
   bootsnap (>= 1.4.2)
   byebug
