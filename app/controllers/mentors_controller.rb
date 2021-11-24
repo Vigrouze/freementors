@@ -1,6 +1,8 @@
 class MentorsController < ApplicationController
  skip_before_action :authenticate_user!, only: [ :index ]
 
+ @skills = ["ruby", "javascript", "CSS", "PHP", "python"]
+
   def index
     @mentors = policy_scope(User).mentor
   end
