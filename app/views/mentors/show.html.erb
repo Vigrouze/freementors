@@ -18,7 +18,9 @@
 </ul>
 
 <h3>Skills</h3>
-<%= @mentor.tag_list %>
+  <% @mentor.tag_list.each do |tag| %>
+    <%= tag %>
+  <% end %>
 
 <h3>Connection infos :</h3>
 <ul>

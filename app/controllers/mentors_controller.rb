@@ -13,9 +13,9 @@ class MentorsController < ApplicationController
 
   def tagged
     if params[:tag].present?
-      @mentors = User.mentor.tagged_with(params[:tag])
+      @mentors = policy_scope(User).mentor.tagged_with(params[:tag])
     else
-      @mentors = User.all
+      @mentors = policy_scope(User).mentor
     end
   end
 end
