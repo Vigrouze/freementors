@@ -38,6 +38,6 @@ class MissionsController < ApplicationController
   private
 
   def missions_params
-    params.require(:mission).permit(:name, :company, :start_date, :end_date, :description, :fee, :remote, :mentor_id)
+    params.require(:mission).permit(:name, :company, :start_date, :end_date, :description, :fee, :remote, :mentor_id, tag_list: [] )
   end
 end
