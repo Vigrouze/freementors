@@ -1,17 +1,19 @@
 <h1>List of all mentors</h1>
-<div class="mentors">
-  <div class="filter">
+<div class="mentors" data-controller="filter">
+  <div class="filter" data-filter-target="items">
     <% User::SKILLS .each do |skill| %>
-      <button> <%= skill %></button>
+      <button data-action= 'click->filter#refresh'> <%= skill %></button>
     <% end %>
   </div>
-  <div class="mentors">
-    <ul>
-      <% @mentors.each do |mentor| %>
-      <li>
-        <%= link_to "#{mentor.first_name} #{mentor.last_name}", mentor_path(mentor) %>
-      </li>
-      <% end %>
-    </ul>
+  <div class="mentors" data-filter-target="items">
+    <div class="mentors-cards">
+      <ul>
+        <% @mentors.each do |mentor| %>
+        <li>
+          <%= link_to "#{mentor.first_name} #{mentor.last_name}", mentor_path(mentor) %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
