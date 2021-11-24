@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 
 
 export default class extends Controller {
-  static targets = ['items'];
+  static targets = ['items', 'title'];
   static values = {
     url: String
   }
@@ -13,6 +13,9 @@ export default class extends Controller {
       .then(response => response.text())
       .then((data) => {
         this.itemsTarget.outerHTML = data;
+        console.log(this.titleTarget)
+        console.log(e.target.innerText)
+        this.titleTarget.innerText = e.target.innerText;
       })
   }
 }

@@ -13,15 +13,17 @@ class User < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
   has_many :missions_as_mentor, class_name: "Mission", foreign_key: :mentor_id
   has_many :missions_as_padawan, class_name: "Mission", foreign_key: :padawan_id
-  after_validation :set_tags
+  after_validation :set_tags # see private function
   scope :mentor, -> { where(mentor: true) }
 
-  SKILLS = { front_end: ["HTML", "CSS", "JavaScript", "React", "Angular", "Vue", "JQuery", "Swift", "SASS", "Elm"],
-             back_end: ["PHP", "Ruby", "Java", "C#", "C++", "Python", "Julia", "Scala", "Perl", "Kotlin"] }
+  # Constant for filter and forms if we need
+  SKILLS = { frontend: ["HTML", "CSS", "JavaScript", "React", "Angular", "Vue", "JQuery", "Swift", "SASS", "Elm"],
+             backend: ["PHP", "Ruby", "Java", "C#", "C++", "Python", "Julia", "Scala", "Perl", "Kotlin"] }
 
 
   private
 
+  # adding frontend & backend automatically, not duplication if already existing
   def set_tags
     tag_list.each do |tag|
       SKILLS.each do |key, value|
