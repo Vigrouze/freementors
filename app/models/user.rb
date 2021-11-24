@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :relationships_as_padawan, class_name: "Relationships", foreign_key: :padawan_id
   has_many :relationships_as_mentor, class_name: "Relationships", foreign_key: :mentor_id
+  acts_as_taggable_on :tags
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

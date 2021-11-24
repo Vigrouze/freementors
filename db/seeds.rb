@@ -32,7 +32,8 @@ alexandre = User.new(
   xp_status: "Junior",
   link_github: "https://github.com/alhd7892",
   link_malt: "xxx",
-  link_slack: "xxx"
+  link_slack: "xxx",
+  tag_list: "Ruby, Front-end, CSS, JS"
 )
 alexandre.save
 
@@ -72,7 +73,8 @@ nicolas = User.new(
   xp_status: "Senior",
   link_github: "https://github.com/ndgdl",
   link_malt: "xxx",
-  link_slack: "xxx"
+  link_slack: "xxx",
+  tag_list: "Ruby, back-end, Python"
 )
 nicolas.save
 
