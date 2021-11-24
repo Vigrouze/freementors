@@ -9,6 +9,7 @@ export default class extends Controller {
 
   refresh(e) {
     const url = `${this.urlValue}?tag=${e.target.innerText}`
+    console.log(url)
     fetch(url, { headers: { 'Accept': 'text/plain' } })
       .then(response => response.text())
       .then((data) => {
