@@ -9,10 +9,9 @@ class RelationshipsController < ApplicationController
     authorize @relationship
     @missions = @mentor.missions_as_mentor
     if @relationship.save
-      flash[:notice] = 'Relation request sent!'
-      redirect_to mentor_path(@mentor)
+      redirect_to mentor_path(@mentor), notice: 'Relation request sent!'
     else
-      render 'mentors/show'
+      redirect_to mentor_path(@mentor), alert: 'You already sent a request, be patient'
     end
   end
 end
