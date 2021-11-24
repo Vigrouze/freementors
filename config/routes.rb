@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   # no need to nest the mission show as we access by the mission_id
   resources :missions, only: [:show] do
-    resources :applies, only: :create
+    resources :applies, only: [:new, :create]
     # => mission_applies POST /missions/:mission_id/applies(.:format)
   end
 end

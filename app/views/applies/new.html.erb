@@ -1,0 +1,11 @@
+<div class="container mt-3">
+  <h1>Application form</h1>
+
+  <%= simple_form_for([@mission, @apply]) do |f| %>
+    <%= f.input :motivation,
+                label: "Explain why would you like to apply to the mission:",
+                placeholder: "Your motivations, qualifications, etc."
+                %>
+    <%= f.submit value: "Apply" %>
+  <% end %>
+</div>

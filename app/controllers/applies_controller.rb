@@ -1,7 +1,15 @@
 class AppliesController < ApplicationController
 
+  def new
+    @apply = Apply.new
+    @mission = Mission.find(params[:mission_id])
+    authorize @apply
+  end
+
   def create
-    @apply = Apply.new(applies_params)
+    @apply = Apply.new(apply_params)
+    authorize @apply
+
     @mission = Mission.find(params[:mission_id])
     @apply.mission = @mission
     @apply.padawan = current_user
