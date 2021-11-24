@@ -5,13 +5,12 @@ class MissionPolicy < ApplicationPolicy
     end
   end
 
-  def index?
-    return true
-  end
+  # def index?
+  #   return true
+  # end
 
   def show?
-    record.mentor == user || record.mentor.padawans.include?(user)
-    # only the mentor or mentor's padawans can see the full offer
+    true
   end
 
   def create?
