@@ -8,9 +8,13 @@
 <p>Experiences : <%= @mentor.xp_level%></p>
 <p>Status : <%= @mentor.xp_status%></p>
 
-<h3>Missions proposed :</h3>
+<h3><%= ('Mission').pluralize(@missions.count) %> proposed (<%= @missions.count %>):</h3>
 <ul>
-  <li>Mission 1 : xxx</li>
+  <% @missions.each_with_index do |mission, index| %>
+    <%= link_to mission_path(mission) do %>
+      <li>Mission <%= index + 1 %> : <em><%= mission.name %></em></li>
+    <% end %>
+  <% end %>
 </ul>
 
 <h3>Connection infos :</h3>
@@ -19,3 +23,7 @@
   <li>Malt : <%= @mentor.link_malt%></li>
   <li>Slack : <%= @mentor.link_slack %></li>
 </ul>
+
+<%= link_to "Connected", "#" %>
+
+<%= link_to "Back to all mentors",mentors_path %>
