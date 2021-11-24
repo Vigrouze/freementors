@@ -1,6 +1,7 @@
 class Relationship < ApplicationRecord
   belongs_to :padawan, class_name: "User", foreign_key: 'padawan_id'
   belongs_to :mentor, class_name: "User", foreign_key: 'mentor_id'
+  validates :padawan, uniqueness: { scope: :mentor, message: "You already connected"}
 
   enum status: { pending: 0, accepted: 1, denied: 2 }
 

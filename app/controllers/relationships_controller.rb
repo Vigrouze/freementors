@@ -2,21 +2,17 @@ class RelationshipsController < ApplicationController
   include ApplicationHelper
 
   def create
-    return if current_user.id == params[:mentor_id]
-    return if relation_request_sent?(User.find(params[:mentor_id]))
-
-    @user = User.find(params[:mentor_id])
-    @relationship = current_user.relation_sent.build(mentor_id: params[:mentor_id])
-      if @relationship.save
-        flash[:sucess] = 'Relation request sent!'
-      else
-        flash[:danger] = 'Relation request failed!'
-      end
-      redirect_back(fallback_location: root_path)
+    @mentor = User.find(params[:mentor_id])
+    @relationship = Relationship.new
+    @relationship.padawan = current_user
+    @relationship.mentor = @mentor
+    authorize @relationship
+    @missions = @mentor.missions_as_mentor
+    if @relationship.save
+      flash[:notice] = 'Relation request sent!'
+      redirect_to mentor_path(@mentor)
+    else
+      render 'mentors/show'
+    end
   end
-
-  def accept_relation
-    @relationship = Relationship.find_by(padawan_id: params[:padawan_id])
-  end
-
 end
