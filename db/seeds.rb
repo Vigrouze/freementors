@@ -74,7 +74,7 @@ nicolas = User.new(
   link_github: "https://github.com/ndgdl",
   link_malt: "xxx",
   link_slack: "xxx",
-  tag_list: "Ruby, back-end, Python"
+  tag_list: "Ruby, back-end"
 )
 nicolas.save
 

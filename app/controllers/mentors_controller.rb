@@ -10,4 +10,12 @@ class MentorsController < ApplicationController
     authorize @mentor
     @missions = @mentor.missions_as_mentor
   end
+
+  def tagged
+    if params[:tag].present?
+      @mentors = User.mentor.tagged_with(params[:tag])
+    else
+      @mentors = User.all
+    end
+  end
 end

@@ -15,4 +15,6 @@ class User < ApplicationRecord
   has_many :missions_as_padawan, class_name: "Mission", foreign_key: :padawan_id
 
   scope :mentor, -> { where(mentor: true) }
+
+  SKILLS = ["HTML", "CSS", "JavaScript", "PHP", "Ruby", "Java", "Swift", "C", "C++", "Python", "Julia", "Scala"]
 end
