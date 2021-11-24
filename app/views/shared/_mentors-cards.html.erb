@@ -1,0 +1,11 @@
+<div class="mentors" data-filter-target="items">
+  <div class="mentors-cards">
+    <ul>
+      <% @mentors.each do |mentor| %>
+      <li>
+        <%= link_to "#{mentor.first_name} #{mentor.last_name}", mentor_path(mentor) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

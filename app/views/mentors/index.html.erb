@@ -1,5 +1,5 @@
 <h1>List of all mentors</h1>
-<div class="mentors" data-controller="filter">
+<div class="mentors" data-controller="filter" data-filter-url-value=<%= mentors_path %>>
   <div class="filter" data-filter-target="items">
     <% User::SKILLS .each do |skill| %>
       <button data-action= 'click->filter#refresh'> <%= skill %></button>
