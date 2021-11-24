@@ -1,7 +1,7 @@
 class MissionsController < ApplicationController
-  def index
-    @missions = policy_scope(Mission).order(start_date: :desc)
-  end
+  # def index
+  #   @missions = policy_scope(Mission).
+  # end
 
   def show
     @mission = Mission.find(params[:id])
