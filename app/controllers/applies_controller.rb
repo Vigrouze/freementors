@@ -13,7 +13,12 @@ class AppliesController < ApplicationController
     @mission = Mission.find(params[:mission_id])
     @apply.mission = @mission
     @apply.padawan = current_user
-    @apply.save
+
+    if @apply.save
+      redirect_to mentor_path(@mission.mentor), notice: "Application sent"
+    else
+      render :new
+    end
   end
 
   def update
