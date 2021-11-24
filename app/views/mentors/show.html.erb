@@ -1,0 +1,29 @@
+<h1>Mentor : <%= @mentor.first_name%> <%= @mentor.last_name%></h1>
+
+<h3>General infos:</h3>
+
+<p>Address : <%= @mentor.address%></p>
+<p>Language : <%= @mentor.language%></p>
+<p>Description : <%= @mentor.description%></p>
+<p>Experiences : <%= @mentor.xp_level%></p>
+<p>Status : <%= @mentor.xp_status%></p>
+
+<h3><%= ('Mission').pluralize(@missions.count) %> proposed (<%= @missions.count %>):</h3>
+<ul>
+  <% @missions.each_with_index do |mission, index| %>
+    <%= link_to mission_path(mission) do %>
+      <li>Mission <%= index + 1 %> : <em><%= mission.name %></em></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<h3>Connection infos :</h3>
+<ul>
+  <li>GitHub : <%= @mentor.link_github%></li>
+  <li>Malt : <%= @mentor.link_malt%></li>
+  <li>Slack : <%= @mentor.link_slack %></li>
+</ul>
+
+<%= link_to "Connected", "#" %>
+
+<%= link_to "Back to all mentors",mentors_path %>

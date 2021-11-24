@@ -10,8 +10,8 @@ class MissionPolicy < ApplicationPolicy
   end
 
   def show?
-    return true
-    # only the mentor's padawans can see the full offer
+    record.mentor == user || record.mentor.padawans.include?(user)
+    # only the mentor or mentor's padawans can see the full offer
   end
 
   def create?
