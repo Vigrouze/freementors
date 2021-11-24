@@ -9,6 +9,12 @@ class MentorsController < ApplicationController
     else
       @mentors = policy_scope(User).mentor
     end
+
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: 'shared/mentors.html', locals: { mentors: @mentors } }
+    end
+
   end
 
   def show

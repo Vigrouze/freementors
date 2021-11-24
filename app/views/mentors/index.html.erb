@@ -1,19 +1,9 @@
 <h1>List of all mentors</h1>
 <div class="mentors" data-controller="filter" data-filter-url-value=<%= mentors_path %>>
-  <div class="filter" data-filter-target="items">
+  <div class="filter">
     <% User::SKILLS .each do |skill| %>
       <button data-action= 'click->filter#refresh'> <%= skill %></button>
     <% end %>
   </div>
-  <div class="mentors" data-filter-target="items">
-    <div class="mentors-cards">
-      <ul>
-        <% @mentors.each do |mentor| %>
-        <li>
-          <%= link_to "#{mentor.first_name} #{mentor.last_name}", mentor_path(mentor) %>
-        </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+  <%= render "shared/mentors", mentors: @mentors  %>
 </div>

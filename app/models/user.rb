@@ -16,5 +16,5 @@ class User < ApplicationRecord
 
   scope :mentor, -> { where(mentor: true) }
 
-  SKILLS = ["HTML", "CSS", "JavaScript", "PHP", "Ruby", "Java", "Swift", "C", "C++", "Python", "Julia", "Scala"]
+  SKILLS = ["HTML", "CSS", "JavaScript", "PHP", "Ruby", "Java", "Swift", "C", "C++", "Python", "Julia", "Scala", "back-end"]
 end
