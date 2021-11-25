@@ -11,3 +11,12 @@
 .btn-ghost:hover {
   opacity: 1;
 }
+
+.btn-yellow {
+  color: #022147;
+  background-color: #fea93a;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: lighter;
+  transition: opacity 0.3s ease;
+}
