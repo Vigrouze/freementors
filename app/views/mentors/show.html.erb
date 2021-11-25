@@ -1,44 +1,45 @@
+    <div class="mentor-show-card d-flex justify-content-center align-items-center px-2 mt-3">
+      <%= image_tag("placeholder-avatar.png", class: "avatar-xl") %>
+
+      <div class="mentor-show-card-infos">
+      <h1><%= @mentor.first_name%> <%= @mentor.last_name%></h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quidem omnis dolores, tempore minima tempora, quo deserunt hic, soluta ipsam eum cum ut velit esse. Libero voluptatibus autem mollitia perferendis? </p>
+      <ul class="list-inline img_attributes-mentor">
+        <li class="list-inline-item"><i class="fab fa-github"></i></li>
+        <li class="list-inline-item"><i class="fab fa-linkedin-in"></i></li>
+        <li class="list-inline-item"><i class="fab fa-slack"></i></li>
+      </ul>
+      </div>
+
+
+      <div class="mentor-show-card-actions d-flex flex-column">
+
+        <% case current_user.relationship_request_status(@mentor) %>
+        <% when "pending" %>
+          <%= link_to mentor_relationships_path(@mentor), method: :post do %>
+            <%= button_tag "Connect",
+                          type: "button",
+                          class: "btn btn-yellow-mentor disabled my-2"
+            %>
+          <% end %>
+        <% when "accepted" %>
+          <p class="text-success text-center"> <span class="fw-bolder">Connected</span> <i class="fas fa-check-circle"></i></p>
+        <% when "denied" %>
+          <p class="text-warning text-center"> <span class="fw-bolder">Not connected</span> <i class="fas fa-check-circle"></i></p>
+        <% else %>
+          <%= link_to mentor_relationships_path(@mentor), method: :post do %>
+            <%= button_tag "Connect",
+                          type: "button",
+                          class: "btn btn-yellow-mentor my-2"
+            %>
+          <% end %>
+        <% end %>
+        <%= button_tag "Send a message", type: "button", class: "btn btn-blue-mentor my-2" %>
+      </div>
+    </div>
+
+
 <div class="container">
-
-  <!-- 1ST CARD DISPLAYED WITH AVATAR -->
-  <div class="mentor-show-card d-flex justify-content-around align-items-center px-2 mt-3">
-    <%= image_tag("placeholder-avatar.png", class: "avatar-xl") %>
-
-    <div class="mentor-show-card-infos">
-    <h1><%= @mentor.first_name%> <%= @mentor.last_name%></h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus quidem omnis dolores, tempore minima tempora, quo deserunt hic, soluta ipsam eum cum ut velit esse. Libero voluptatibus autem mollitia perferendis? </p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><i class="fab fa-github"></i></li>
-      <li class="list-inline-item"><i class="fab fa-linkedin-in"></i></li>
-      <li class="list-inline-item"><i class="fab fa-slack"></i></li>
-    </ul>
-    </div>
-    <div class="mentor-show-card-actions d-flex flex-column">
-
-      <% case current_user.relationship_request_status(@mentor) %>
-      <% when "pending" %>
-        <%= link_to mentor_relationships_path(@mentor), method: :post do %>
-          <%= button_tag "Connect",
-                        type: "button",
-                        class: "btn btn-outline-primary disabled my-2"
-          %>
-        <% end %>
-      <% when "accepted" %>
-        <p class="text-success text-center"> <span class="fw-bolder">Connected</span> <i class="fas fa-check-circle"></i></p>
-      <% when "denied" %>
-        <p class="text-warning text-center"> <span class="fw-bolder">Not connected</span> <i class="fas fa-check-circle"></i></p>
-      <% else %>
-        <%= link_to mentor_relationships_path(@mentor), method: :post do %>
-          <%= button_tag "Connect",
-                        type: "button",
-                        class: "btn btn-outline-primary my-2"
-          %>
-        <% end %>
-      <% end %>
-      <%= button_tag "Send a message", type: "button", class: "btn btn-outline-primary my-2" %>
-    </div>
-  </div>
-
   <!-- CARDS LEFT -->
   <div class="row lower-container mt-3">
     <div class="col-4">

@@ -1,0 +1,70 @@
+
+.mentor-show-card-infos {
+  background-color:  #ebf3fd;
+  margin: 30px;
+  h1 {
+    color: #022147;
+    text-shadow: rgb(164, 164, 164) 1px 1px 3px;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0px;
+  }
+  p {
+    margin-top: 10px;
+    color: #022147;
+  }
+}
+
+
+.mentor-show-card {
+  background-color: #ebf3fd;
+  box-shadow: 0 1.5em 2.5em -.5em rgba(#000000, .2);
+  color: #022147;
+  height: 400px;
+}
+
+.mentor-show-card-skills {
+  background-color: burlywood;
+}
+
+.mentor-show-card-mission {
+  background-color: burlywood;
+}
+
+.mentor-show-card-experiences {
+  background-color: burlywood;
+}
+
+.btn-yellow-mentor {
+  color: #022147;
+  background-color: #fea93a;
+  padding: 8px 24px;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: lighter;
+  transition: opacity 0.3s ease;
+  &:hover {
+    background-color: #ffd8a5;
+  }
+}
+
+.btn-blue-mentor {
+  color: #022147;
+  background-color: #ebf3fd;
+  border-color:#022147;
+  padding: 8px 24px;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: lighter;
+  transition: opacity 0.3s ease;
+  &:hover {
+    background-color: white;
+  }
+}
+
+.img_attributes-mentor {
+  color:#022147;
+  font-size: 20px;
+}
