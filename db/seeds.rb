@@ -10,6 +10,7 @@ require 'open-uri'
 
 puts 'Cleaning DB...'
 
+Relationship.destroy_all
 Mission.destroy_all
 User.destroy_all
 
