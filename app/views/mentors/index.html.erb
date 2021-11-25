@@ -7,6 +7,15 @@
         <button data-action= 'click->filter#refresh'> <%= skill %></button>
         <% end %>
     <% end %>
+
+    <%= form_tag mentors_path, method: 'get' do %>
+      <% User::SKILLS.values.flatten.each do |skill| %>
+        <%= check_box_tag "tags[]", skill, nil, id: "#{skill}" %>
+        <%= label_tag "#{skill}" %>
+      <% end %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+
   </div>
   <%= render "shared/mentors", mentors: @mentors  %>
 </div>

@@ -1,9 +1,8 @@
 class MentorsController < ApplicationController
  skip_before_action :authenticate_user!, only: [ :index ]
 
- @skills = ["ruby", "javascript", "CSS", "PHP", "python"]
-
   def index
+
     if params[:tags].present?
       @mentors = policy_scope(User).mentor.tagged_with(params[:tags])
     else
