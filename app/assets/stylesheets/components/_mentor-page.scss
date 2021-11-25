@@ -25,14 +25,18 @@
 
 .mentor-show-card-skills {
   background-color: burlywood;
+  border-radius: 8px;
 }
 
 .mentor-show-card-mission {
-  background-color: burlywood;
+  background-color: white;
+  box-shadow: 0 1.5em 2.5em -.5em rgba(#000000, .2);
+  border-radius: 8px;
 }
 
 .mentor-show-card-experiences {
   background-color: burlywood;
+  border-radius: 8px;
 }
 
 .btn-yellow-mentor {
@@ -60,11 +64,23 @@
   font-weight: lighter;
   transition: opacity 0.3s ease;
   &:hover {
-    background-color: white;
+    background-color: #022147;
+    color: white
   }
 }
 
 .img_attributes-mentor {
   color:#022147;
   font-size: 20px;
+}
+
+.mission-text {
+  background-color: #022147;
+  color: white;
+  box-shadow: 0 1.5em 2.5em -.5em rgba(#000000, .2);
+  width: 35%;
+  height: 50px;
+  border-radius: 8px;
+  position: relative;
+  top: 25px;
 }
