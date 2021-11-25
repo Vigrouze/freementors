@@ -4,8 +4,8 @@ class MentorsController < ApplicationController
  @skills = ["ruby", "javascript", "CSS", "PHP", "python"]
 
   def index
-    if params[:tag].present?
-      @mentors = policy_scope(User).mentor.tagged_with(params[:tag])
+    if params[:tags].present?
+      @mentors = policy_scope(User).mentor.tagged_with(params[:tags])
     else
       @mentors = policy_scope(User).mentor
     end

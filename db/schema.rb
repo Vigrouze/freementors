@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2021_11_24_104830) do
   create_table "relationships", force: :cascade do |t|
     t.bigint "padawan_id", null: false
     t.bigint "mentor_id", null: false
-    t.integer "status", default: 0
+    t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["mentor_id"], name: "index_relationships_on_mentor_id"
