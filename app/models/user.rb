@@ -32,6 +32,12 @@ class User < ApplicationRecord
     # will return true if a user hasn't applied yet to a mission
   end
 
+  def relationship_request_status(mentor)
+    relation = relationships_as_padawan.find_by(mentor_id: mentor.id)
+
+    relation ? relation.status : ""
+  end
+
   def connected?(mentor)
     relationships_as_padawan.connected.where(mentor_id: mentor.id).any?
   end

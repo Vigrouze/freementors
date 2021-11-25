@@ -14,14 +14,26 @@
     </ul>
     </div>
     <div class="mentor-show-card-actions d-flex flex-column">
-      <% if current_user.connected?(@mentor) %>
-        <% disable_button = " disabled" %>
-      <% end %>
-      <%= link_to mentor_relationships_path(@mentor), method: :post do %>
-        <%= button_tag "Connect",
-                       type: "button",
-                       class: "btn btn-outline-primary my-2#{disable_button}"
-        %>
+
+      <% case current_user.relationship_request_status(@mentor) %>
+      <% when "pending" %>
+        <%= link_to mentor_relationships_path(@mentor), method: :post do %>
+          <%= button_tag "Connect",
+                        type: "button",
+                        class: "btn btn-outline-primary disabled my-2"
+          %>
+        <% end %>
+      <% when "accepted" %>
+        <p class="text-success text-center"> <span class="fw-bolder">Connected</span> <i class="fas fa-check-circle"></i></p>
+      <% when "denied" %>
+        <p class="text-warning text-center"> <span class="fw-bolder">Not connected</span> <i class="fas fa-check-circle"></i></p>
+      <% else %>
+        <%= link_to mentor_relationships_path(@mentor), method: :post do %>
+          <%= button_tag "Connect",
+                        type: "button",
+                        class: "btn btn-outline-primary my-2"
+          %>
+        <% end %>
       <% end %>
       <%= button_tag "Send a message", type: "button", class: "btn btn-outline-primary my-2" %>
     </div>
