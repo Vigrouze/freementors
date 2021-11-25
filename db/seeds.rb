@@ -72,7 +72,8 @@ nicolas = User.new(
   xp_status: "Senior",
   link_github: "https://github.com/ndgdl",
   link_malt: "xxx",
-  link_slack: "xxx"
+  link_slack: "xxx",
+  tag_list: "Ruby, back-end"
 )
 nicolas.save
 
@@ -90,7 +91,8 @@ alex = User.new(
   xp_status: "Senior",
   link_github: "https://github.com/Vigrouze",
   link_malt: "xxx",
-  link_slack: "xxx"
+  link_slack: "xxx",
+  tag_list: "CSS, HTML"
 )
 alex.save
 

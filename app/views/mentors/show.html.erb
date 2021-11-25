@@ -11,11 +11,27 @@
 <h3><%= ('Mission').pluralize(@missions.count) %> proposed (<%= @missions.count %>):</h3>
 <ul>
   <% @missions.each_with_index do |mission, index| %>
-    <%= link_to mission_path(mission) do %>
-      <li>Mission <%= index + 1 %> : <em><%= mission.name %></em></li>
-    <% end %>
+    <li>
+      <p>
+        Mission <%= index + 1 %> (for <%= mission.company %>) : <em><%= mission.name %></em>
+        <%= link_to mission_path(mission) do %>
+          <i class="fas fa-eye"></i>
+        <% end %>
+        <% if current_user.not_yet_applied?(mission) %>
+          <%= link_to new_mission_apply_path(mission) do %>
+            <button type="button" class="btn btn-outline-primary">Apply</button>
+          <% end %>
+        <% end %>
+      </p>
+
+    </li>
   <% end %>
 </ul>
+
+<h3>Skills</h3>
+  <% @mentor.tag_list.each do |tag| %>
+    <%= tag %>
+  <% end %>
 
 <h3>Connection infos :</h3>
 <ul>
@@ -24,6 +40,6 @@
   <li>Slack : <%= @mentor.link_slack %></li>
 </ul>
 
-<%= link_to "Connected", "#" %>
+<%= link_to "Connect", mentor_relationships_path(@mentor), method: :post  %>
 
 <%= link_to "Back to all mentors",mentors_path %>

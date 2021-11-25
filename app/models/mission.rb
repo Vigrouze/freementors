@@ -1,6 +1,7 @@
 class Mission < ApplicationRecord
   belongs_to :mentor, class_name: "User"
   belongs_to :padawan, class_name: "User", optional: true
+  acts_as_taggable_on :tags
 
   enum status: [ :not_started, :on_going, :finished ]
 
