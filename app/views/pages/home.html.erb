@@ -1,13 +1,14 @@
 <!-- BANNER -->
 
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
+<div class="banner">
   <div class="container">
-    <h1>Get <strong>prepared</strong> for your <strong>freelance journey</strong>!</h1>
-    <p>Change your life and learn from experienced freelances. </p>
+    <h1>Get <strong>prepared</strong> for<br>
+    your <strong>freelance journey</strong></h1>
+    <p>Change your life and learn from freelance mentors. </p>
     <%= simple_form_for :search, url: root_path, method: :get do |f| %>
       <div class="search-form-control form-group">
         <input class="form-control string required" type="text" name="search[query]" id="search_query" />
-        <button name="button" type="submit" class="btn btn-ghost">
+        <button name="button" type="submit" class="btn btn-yellow">
           <i class="fas fa-search"></i> Search
         </button>
       </div>
@@ -17,18 +18,80 @@
 
 <!-- HOW IT WORKS -->
 <div class="container">
-  <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-    <div class="feature col">
-      <h2>Featured title</h2>
-      <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-    </div>
-    <div class="feature col">
-      <h2>Featured title</h2>
-      <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-    </div>
-    <div class="feature col">
-      <h2>Featured title</h2>
-      <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+  <div class="row g-4 row-cols-1 row-cols-lg-3 justify-content-center">
+    <div class="feature col patch">
+      <h2>Join your community</h2>
     </div>
   </div>
+</div>
+
+<div class="container">
+  <section class="page-contain">
+      <a href="#" class="data-card">
+        <h3>562</h3>
+        <h4>Mentors</h4>
+        <p>Aenean lacinia bibendum nulla sed consectetur.</p>
+        <span class="link-text">
+          Become Mentor
+          <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
+    </svg>
+        </span>
+      </a>
+      <a href="#" class="data-card">
+        <h3>1 753</h3>
+        <h4>Missions</h4>
+        <p>Etiam porta sem malesuada.</p>
+        <span class="link-text">
+          View Mission Types
+          <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
+    </svg>
+        </span>
+      </a>
+    <a href="#" class="data-card">
+        <h3>4 523</h3>
+        <h4>Padawan Alumnis</h4>
+        <p>Aenean lacinia bibendum nulla sed consectetur.</p>
+        <span class="link-text">
+          Become Padawan
+          <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
+    </svg>
+        </span>
+      </a>
+  </section>
+</div>
+
+<div class="patch_2">
+    <div class="card m-4 feedback_cards" style="max-width: 540px">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <%= image_tag("mentor.jpeg", class: "card-img") %>
+        </div>
+        <div class="col-md-8" style="padding-left: 30px;">
+          <div class="card-body">
+            <h3 class="card-title">MENTOR REVIEW</h3>
+            <p class="card-text">TO BE UPDATED : This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 2 weeks ago</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="card m-4 feedback_cards" style="max-width: 540px">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <%= image_tag("padawan.jpeg", class: "card-img") %>
+        </div>
+        <div class="col-md-8" style="padding-left: 30px;">
+          <div class="card-body">
+            <h3 class="card-title">PADAWAN REVIEW</h3>
+            <p class="card-text">TO BE UPDATED : This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 1 week ago</small></p>
+          </div>
+        </div>
+      </div>
 </div>

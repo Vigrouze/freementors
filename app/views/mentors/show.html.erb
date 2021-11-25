@@ -14,28 +14,36 @@
     </ul>
     </div>
     <div class="mentor-show-card-actions d-flex flex-column">
-      <%= button_tag "Connect", type: "button", class: "btn btn-outline-primary my-2" %>
+      <%= link_to mentor_relationships_path(@mentor), method: :post do %>
+        <%= button_tag "Connect", type: "button", class: "btn btn-outline-primary my-2" %>
+      <% end %>
       <%= button_tag "Send a message", type: "button", class: "btn btn-outline-primary my-2" %>
     </div>
   </div>
 
   <!-- CARDS LEFT -->
-  <div class="lower-container d-flex mt-3">
+  <div class="lower-container mt-3">
     <div class="mentor-show-cards-left d-flex flex-column">
       <div class="mentor-show-card-skills w-25 shadow p-3 mt-3">
         <h3>Skills</h3>
-        <strong class="mt-3">Front-end</strong>
-        <ul>
-          <li>CSS</li>
-          <li>HTML</li>
-          <li>Javascript</li>
-        </ul>
-        <strong>Back-end</strong>
-        <ul>
-          <li>Ruby</li>
-          <li>Rails</li>
-          <li>Python</li>
-        </ul>
+        <% front_end_skills = @mentor.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
+        <% if front_end_skills.any? %>
+          <strong class="mt-3">Front-end</strong>
+          <ul>
+            <% front_end_skills.each do |front_end_skill| %>
+              <li><%= front_end_skill %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <% back_end_skills = @mentor.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
+        <% if back_end_skills.any? %>
+          <strong class="mt-3">Front-end</strong>
+          <ul>
+            <% back_end_skills.each do |back_end_skill| %>
+              <li><%= back_end_skill %></li>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
 
       <div class="mentor-show-card-experiences w-25 shadow p-3 mt-3">
@@ -78,7 +86,11 @@
           </div>
           <div class="mentor-show-card-mission-actions d-flex justify-content-around align-items-center">
             <p>Skills required: Ruby</p>
-            <%= button_tag "Connect", type: "button", class: "btn btn-outline-primary my-2" %>
+          <% if current_user.not_yet_applied?(mission) %>
+            <%= link_to new_mission_apply_path(mission) do %>
+              <button type="button" class="btn btn-outline-primary">Apply</button>
+            <% end %>
+          <% end %>
           </div>
         </div>
       <% end %>
