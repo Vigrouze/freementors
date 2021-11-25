@@ -35,6 +35,6 @@
   <li>Slack : <%= @mentor.link_slack %></li>
 </ul>
 
-<%= link_to "Connected", "#" %>
+<%= link_to "Connect", mentor_relationships_path(@mentor), method: :post  %>
 
 <%= link_to "Back to all mentors",mentors_path %>
