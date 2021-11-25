@@ -1,21 +1,15 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: rgb(2, 35, 71);
-  color:white;
-}
-
-.home .navbar-lewagon{
   background: none;
   background-color: transparent !important;
-  position: fixed;
-  width: 100%;
+  width: 100%;  height: 70px;
 }
-
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
-
 .navbar-lewagon .navbar-brand img {
-  width: 60px;
+  width: 65px;
 }
-// xxx
+.navbar-lewagon.home {
+  position: fixed;
+}
