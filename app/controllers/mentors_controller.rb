@@ -2,11 +2,12 @@ class MentorsController < ApplicationController
  skip_before_action :authenticate_user!, only: [ :index ]
 
   def index
+    @mentors = policy_scope(User).mentor
+    if params[:search] && params[:search][:query].present?
+      @mentors = @mentors.search_by_last_name_and_skills(params[:search][:query])
 
-    if params[:tags].present?
-      @mentors = policy_scope(User).mentor.tagged_with(params[:tags])
-    else
-      @mentors = policy_scope(User).mentor
+    elsif params[:tags].present?
+      @mentors = @mentors.tagged_with(params[:tags])
     end
 
     respond_to do |format|
