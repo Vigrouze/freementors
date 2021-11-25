@@ -3,12 +3,12 @@
     <div class="container container_mentors">
       <% mentors.each do |mentor| %>
         <%= link_to mentor_path(mentor) do %>
-          <div class="card_mentors">
-            <div class="card-header_mentors">
+          <div class="card-mentors">
+            <div class="card-header-mentors">
               <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
             </div>
-            <div class="card-body_mentors">
-              <div class="mentor_tag">
+            <div class="card-body-mentors">
+              <div class="mentor-tag">
                 <% mentor.tag_list.each do |tag| %>
                   <span class="tag tag-teal"><%= tag %></span>
                 <% end %>
@@ -24,13 +24,13 @@
              <div class="list-inline d-flex justify-content-between">
                 <ul>
                  <li class="list-inline-item">
-                    4,75 <i class="fas fa-star img_attributes"></i>
+                    4,75 <i class="fas fa-star img-attributes"></i>
                   </li>
                   <li class="list-inline-item">
-                    4 <i class="fas fa-male img_attributes"></i>
+                    4 <i class="fas fa-male img-attributes"></i>
                   </li>
                   <li class="list-inline-item">
-                    10 <i class="fas fa-briefcase img_attributes"></i>
+                    10 <i class="fas fa-briefcase img-attributes"></i>
                   </li>
                 </ul>
               </div>
