@@ -10,6 +10,7 @@ require 'open-uri'
 
 puts 'Cleaning DB...'
 
+Relationship.destroy_all
 Mission.destroy_all
 User.destroy_all
 
@@ -73,7 +74,7 @@ nicolas = User.new(
   link_github: "https://github.com/ndgdl",
   link_malt: "xxx",
   link_slack: "xxx",
-  tag_list: "Ruby, back-end"
+  tag_list: "Ruby, Java, HTML, CSS"
 )
 nicolas.save
 

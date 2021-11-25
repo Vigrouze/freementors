@@ -3,11 +3,15 @@ class Mission < ApplicationRecord
   belongs_to :padawan, class_name: "User", optional: true
   acts_as_taggable_on :tags
 
+  has_many :applies, dependent: :destroy
+
   enum status: [ :not_started, :on_going, :finished ]
 
   validates :name, :company, :start_date, :end_date, :description, :fee, :remote, presence: true
   validates :fee, :status, numericality: { only_integer: true }
   validate :end_date_after_start_date
+
+  before_save :calculate_duration
 
   private
 
@@ -19,7 +23,7 @@ class Mission < ApplicationRecord
     end
   end
 
-  def calculated_duration
-    (end_date - start_date).to_i
+  def calculate_duration
+    self.duration = (end_date - start_date).to_i
   end
 end
