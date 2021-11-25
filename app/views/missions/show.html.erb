@@ -14,4 +14,4 @@
     <li><%= @mission.status %></li>
 </ul>
 
-<%= link_to "All Missions", mentor_missions_path(@mission.mentor.id) %>
+<%= link_to "Back to mentor page", mentor_path(@mission.mentor) %>
