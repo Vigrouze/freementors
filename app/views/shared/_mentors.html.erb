@@ -1,12 +1,42 @@
 <div class="mentors" data-filter-target="items">
   <h3 data-filter-target="title"></h3>
   <div class="mentors-cards">
-    <ul>
+    <div class="container container_mentors">
       <% mentors.each do |mentor| %>
-      <li>
-        <%= link_to "#{mentor.first_name} #{mentor.last_name}", mentor_path(mentor) %>
-      </li>
+        <%= link_to mentor_path(mentor) do %>
+          <div class="card_mentors">
+            <div class="card-header_mentors">
+              <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
+            </div>
+            <div class="card-body_mentors">
+              <div class="mentor_tag">
+                <% mentor.tag_list.each do |tag| %>
+                  <span class="tag tag-teal"><%= tag %></span>
+                <% end %>
+              </div>
+              <h4>
+                <%= "#{mentor.first_name} #{mentor.last_name}" %>
+              </h4>
+              <p>
+                <%= "#{mentor.description}"%>
+              </p>
+              <% end %>
+            </div>
+             <div class="list-inline d-flex justify-content-between">
+                <ul>
+                 <li class="list-inline-item">
+                    4,75 <i class="fas fa-star img_attributes"></i>
+                  </li>
+                  <li class="list-inline-item">
+                    4 <i class="fas fa-male img_attributes"></i>
+                  </li>
+                  <li class="list-inline-item">
+                    10 <i class="fas fa-briefcase img_attributes"></i>
+                  </li>
+                </ul>
+              </div>
+          </div>
       <% end %>
-    </ul>
+    </div>
   </div>
 </div>
