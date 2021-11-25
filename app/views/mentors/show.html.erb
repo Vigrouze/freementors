@@ -1,7 +1,7 @@
 <div class="container">
 
   <!-- 1ST CARD DISPLAYED WITH AVATAR -->
-  <div class="mentor-show-card shadow d-flex justify-content-around align-items-center px-2 mt-3">
+  <div class="mentor-show-card d-flex justify-content-around align-items-center px-2 mt-3">
     <%= image_tag("placeholder-avatar.png", class: "avatar-xl") %>
 
     <div class="mentor-show-card-infos">
@@ -40,80 +40,85 @@
   </div>
 
   <!-- CARDS LEFT -->
-  <div class="lower-container mt-3">
-    <div class="mentor-show-cards-left d-flex flex-column">
-      <div class="mentor-show-card-skills w-25 shadow p-3 mt-3">
-        <h3>Skills</h3>
-        <% front_end_skills = @mentor.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
-        <% if front_end_skills.any? %>
-          <strong class="mt-3">Front-end</strong>
-          <ul>
-            <% front_end_skills.each do |front_end_skill| %>
-              <li><%= front_end_skill %></li>
-            <% end %>
-          </ul>
-        <% end %>
-        <% back_end_skills = @mentor.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
-        <% if back_end_skills.any? %>
-          <strong class="mt-3">Front-end</strong>
-          <ul>
-            <% back_end_skills.each do |back_end_skill| %>
-              <li><%= back_end_skill %></li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
+  <div class="row lower-container mt-3">
+    <div class="col-4">
+      <div class="mentor-show-cards-left d-flex flex-column">
+        <div class="mentor-show-card-skills p-3 mt-3">
+          <h3>Skills</h3>
+          <% front_end_skills = @mentor.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
+          <% if front_end_skills.any? %>
+            <strong class="mt-3">Front-end</strong>
+            <ul>
+              <% front_end_skills.each do |front_end_skill| %>
+                <li><%= front_end_skill %></li>
+              <% end %>
+            </ul>
+          <% end %>
+          <% back_end_skills = @mentor.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
+          <% if back_end_skills.any? %>
+            <strong class="mt-3">Front-end</strong>
+            <ul>
+              <% back_end_skills.each do |back_end_skill| %>
+                <li><%= back_end_skill %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
 
-      <div class="mentor-show-card-experiences w-25 shadow p-3 mt-3">
-        <h3>Experiences</h3>
-        <h6 class="mt-3">Digital Project Manager</h6>
-        <p><strong>Key People SA Freelance</strong></p>
-        <small>Avr. 2019 à aujourd'hui - 2 ans et 8 mois</small>
-        <p>Paris, Île-de-France, France</p>
-        <hr>
-        <h6>Teacher</h6>
-        <p><strong>Le Wagon Freelance</strong></p>
-        <small>Févr. 2018 – Aujourd’hui - 3 ans 10 mois</small>
-        <p>Paris, Île-de-France, France</p>
-        <hr>
-        <h6>Random job</h6>
-        <p><strong>Random company</strong></p>
-        <small>Random duration</small>
-        <p>Paris, Île-de-France, France</p>
-      </div>
+        <div class="mentor-show-card-experiences p-3 mt-3">
+          <h3>Experiences</h3>
+          <h6 class="mt-3">Digital Project Manager</h6>
+          <p class="m-0"><strong>Key People SA Freelance</strong></p>
+          <p><small>2 ans et 8 mois</small></p>
+          <hr>
+          <h6>Teacher</h6>
+          <p class="m-0"><strong>Le Wagon Freelance</strong></p>
+          <p><small>3 ans 10 mois</small></p>
+          <hr>
+          <h6>Random job</h6>
+          <p class="m-0"><strong>Random company</strong></p>
+          <p><small>Random duration</small></p>
+        </div>
 
+      </div>
     </div>
 
-    <div class="mentor-show-cards-missions">
-      <h3 class="text-center"><%= ('Mission').pluralize(@missions.count) %> proposed (<%= @missions.count %>):</h3>
-      <% @missions.each do |mission| %>
-        <div class="mentor-show-card-mission shadow p-3 mt-3">
-          <div class="mentor-show-card-mission-infos">
-            <ul class="list-inline d-flex justify-content-between">
-              <li class="list-inline-item">
-                <i class="fas fa-building"></i> <%= mission.company %>
-              </li>
-              <li class="list-inline-item">
-                <i class="fas fa-clock"></i></i> <%= mission.duration %>
-              </li>
-              <li class="list-inline-item">
-                <i class="fas fa-euro-sign"></i> <%= mission.fee %>
-              </li>
-            </ul>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, blanditiis? Minima fuga, laboriosam esse beatae inventore voluptas aliquid vero quod culpa accusamus blanditiis id iste nisi accusantium laborum illo non!</p>
-          </div>
-          <div class="mentor-show-card-mission-actions d-flex justify-content-around align-items-center">
-            <p>Skills required: Ruby</p>
-          <% if current_user.not_yet_applied?(mission) %>
-            <%= link_to new_mission_apply_path(mission) do %>
-              <button type="button" class="btn btn-outline-primary">Apply</button>
+    <div class="col-8">
+      <div class="mentor-show-cards-missions">
+        <h3 class="text-center"><%= "#{@missions.count} #{('mission').pluralize(@missions.count)}" %> proposed:</h3>
+        <% @missions.each do |mission| %>
+          <div class="mentor-show-card-mission shadow p-3 mt-3">
+            <div class="mentor-show-card-mission-infos">
+              <ul class="list-inline d-flex justify-content-between">
+                <li class="list-inline-item">
+                  <i class="fas fa-building"></i> <%= mission.company %>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fas fa-clock"></i></i> <%= mission.duration %>
+                </li>
+                <li class="list-inline-item">
+                  <i class="fas fa-euro-sign"></i> <%= mission.fee %>
+                </li>
+              </ul>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, blanditiis? Minima fuga, laboriosam esse beatae inventore voluptas aliquid vero quod culpa accusamus blanditiis id iste nisi accusantium laborum illo non!</p>
+            </div>
+            <div class="mentor-show-card-mission-actions d-flex justify-content-around align-items-center">
+              <p>Skills required: Ruby</p>
+            <% if current_user.not_yet_applied?(mission) %>
+              <%= link_to new_mission_apply_path(mission) do %>
+                <button type="button" class="btn btn-outline-primary">Apply</button>
+              <% end %>
             <% end %>
-          <% end %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 
-<%= link_to "Back to all mentors",mentors_path %>
+  <div class="navigation d-flex justify-content-center">
+    <%= link_to mentors_path do %>
+      <%= button_tag "Back to all mentors", type: "button", class: "btn btn-outline-secondary my-3" %>
+    <% end %>
+  </div>
+</div>
