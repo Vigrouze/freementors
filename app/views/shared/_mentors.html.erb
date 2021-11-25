@@ -9,8 +9,17 @@
             </div>
             <div class="card-body-mentors">
               <div class="mentor-tag">
-                <% mentor.tag_list.each do |tag| %>
-                  <span class="tag tag-teal"><%= tag %></span>
+                <% front_end_skills = mentor.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
+                <% if front_end_skills.any? %>
+                    <% front_end_skills.each do |front_end_skill| %>
+                      <span class="tag tag-teal"><%= front_end_skill %></span>
+                    <% end %>
+                <% end %>
+                <% back_end_skills = mentor.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
+                <% if back_end_skills.any? %>
+                    <% back_end_skills.each do |back_end_skill| %>
+                      <span class="tag tag-purple"><%= back_end_skill %></span>
+                    <% end %>
                 <% end %>
               </div>
               <h4>
