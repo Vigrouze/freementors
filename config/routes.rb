@@ -15,4 +15,6 @@ Rails.application.routes.draw do
     resources :applies, only: [:new, :create]
     # => mission_applies POST /missions/:mission_id/applies(.:format)
   end
+  get '/tagged', to: "mentors#tagged", as: :tagged
+
 end

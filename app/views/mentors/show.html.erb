@@ -28,6 +28,11 @@
   <% end %>
 </ul>
 
+<h3>Skills</h3>
+  <% @mentor.tag_list.each do |tag| %>
+    <%= tag %>
+  <% end %>
+
 <h3>Connection infos :</h3>
 <ul>
   <li>GitHub : <%= @mentor.link_github%></li>
