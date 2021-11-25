@@ -8,5 +8,4 @@ class Relationship < ApplicationRecord
   scope :connected, -> { where(status: :accepted) }
   scope :pending, -> { where(status: :pending) }
   scope :not_connected, -> { where(status: :denied) }
-
 end

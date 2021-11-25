@@ -14,8 +14,14 @@
     </ul>
     </div>
     <div class="mentor-show-card-actions d-flex flex-column">
+      <% if current_user.connected?(@mentor) %>
+        <% disable_button = " disabled" %>
+      <% end %>
       <%= link_to mentor_relationships_path(@mentor), method: :post do %>
-        <%= button_tag "Connect", type: "button", class: "btn btn-outline-primary my-2" %>
+        <%= button_tag "Connect",
+                       type: "button",
+                       class: "btn btn-outline-primary my-2#{disable_button}"
+        %>
       <% end %>
       <%= button_tag "Send a message", type: "button", class: "btn btn-outline-primary my-2" %>
     </div>

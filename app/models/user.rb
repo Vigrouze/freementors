@@ -2,8 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
-  has_many :relationships_as_padawan, class_name: "Relationships", foreign_key: :padawan_id
-  has_many :relationships_as_mentor, class_name: "Relationships", foreign_key: :mentor_id
+  has_many :relationships_as_padawan, class_name: "Relationship", foreign_key: :padawan_id
+  has_many :relationships_as_mentor, class_name: "Relationship", foreign_key: :mentor_id
   acts_as_taggable_on :tags
 
   devise :database_authenticatable, :registerable,
@@ -30,7 +30,10 @@ class User < ApplicationRecord
   def not_yet_applied?(mission)
     applied_missions.where(id: mission.id).empty?
     # will return true if a user hasn't applied yet to a mission
+  end
 
+  def connected?(mentor)
+    relationships_as_padawan.connected.where(mentor_id: mentor.id).any?
   end
 
   private
