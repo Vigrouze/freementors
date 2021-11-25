@@ -87,30 +87,49 @@
       <div class="mentor-show-cards-missions">
         <h3 class="text-center"><%= "#{@missions.count} #{('mission').pluralize(@missions.count)}" %> proposed:</h3>
         <% @missions.each do |mission| %>
-          <div class="mentor-show-card-mission shadow p-3 mt-3">
-            <div class="mentor-show-card-mission-infos">
-              <ul class="list-inline d-flex justify-content-between">
-                <li class="list-inline-item">
-                  <i class="fas fa-building"></i> <%= mission.company %>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fas fa-clock"></i></i> <%= mission.duration %>
-                </li>
-                <li class="list-inline-item">
-                  <i class="fas fa-euro-sign"></i> <%= mission.fee %>
-                </li>
-              </ul>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, blanditiis? Minima fuga, laboriosam esse beatae inventore voluptas aliquid vero quod culpa accusamus blanditiis id iste nisi accusantium laborum illo non!</p>
-            </div>
-            <div class="mentor-show-card-mission-actions d-flex justify-content-around align-items-center">
-              <p>Skills required: Ruby</p>
-            <% if current_user.not_yet_applied?(mission) %>
-              <%= link_to new_mission_apply_path(mission) do %>
-                <button type="button" class="btn btn-outline-primary">Apply</button>
+          <% if current_user.connected?(@mentor) %>
+            <div class="mentor-show-card-mission shadow p-3 mt-3">
+              <div class="mentor-show-card-mission-infos">
+                <ul class="list-inline d-flex justify-content-between">
+                  <li class="list-inline-item">
+                    <i class="fas fa-building"></i> <%= mission.company %>
+                  </li>
+                  <li class="list-inline-item">
+                    <i class="fas fa-clock"></i></i> <%= mission.duration %>
+                  </li>
+                  <li class="list-inline-item">
+                    <i class="fas fa-euro-sign"></i> <%= mission.fee %>
+                  </li>
+                </ul>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, blanditiis? Minima fuga, laboriosam esse beatae inventore voluptas aliquid vero quod culpa accusamus blanditiis id iste nisi accusantium laborum illo non!</p>
+              </div>
+              <div class="mentor-show-card-mission-actions d-flex justify-content-around align-items-center">
+                <p>Skills required: Ruby</p>
+              <% if current_user.not_yet_applied?(mission) %>
+                <%= link_to new_mission_apply_path(mission) do %>
+                  <button type="button" class="btn btn-outline-primary">Apply</button>
+                <% end %>
               <% end %>
-            <% end %>
+              </div>
             </div>
-          </div>
+          <% else %>
+            <div class="mentor-show-card-mission shadow p-3 mt-3">
+              <div class="mentor-show-card-mission-infos">
+                <ul class="list-inline d-flex justify-content-between">
+                  <li class="list-inline-item">
+                    <i class="fas fa-building"></i> <%= mission.company %>
+                  </li>
+                  <li class="list-inline-item">
+                    <i class="fas fa-clock"></i></i> <%= mission.duration %>
+                  </li>
+                </ul>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, blanditiis? Minima fuga, laboriosam esse beatae inventore voluptas aliquid vero quod culpa accusamus blanditiis id iste nisi accusantium laborum illo non!</p>
+              </div>
+              <div class="mentor-show-card-mission-actions d-flex justify-content-around align-items-center">
+                <p>Skills required: Ruby</p>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
