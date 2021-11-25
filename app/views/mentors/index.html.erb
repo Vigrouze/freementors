@@ -4,7 +4,12 @@
 
     <%= form_tag mentors_path, method: 'get' do %>
       <% User::SKILLS.values.flatten.each do |skill| %>
-        <%= check_box_tag "tags[]", skill, (true if params[:tags].include?(skill)), id: "#{skill}", class:"form-check-input check_boxes optional tag-selector", data: {action: 'change->filter#refresh', filter_target: 'checkbox'} %>
+        <% if !params[:tags].nil? && params[:tags].include?(skill) %>
+          <% value = true %>
+        <% else %>
+          <% value = nil %>
+        <% end %>
+        <%= check_box_tag "tags[]", skill, value, id: "#{skill}", class:"form-check-input check_boxes optional tag-selector", data: {action: 'change->filter#refresh', filter_target: 'checkbox'} %>
         <%= label_tag skill, nil, class:'form-check-label collection_check_boxes' %>
       <% end %>
     <% end %>
