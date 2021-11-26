@@ -1,16 +1,25 @@
 <div class="mentors" data-filter-target="mentors">
   <div class="mentors-cards">
-    <div class="container container_mentors">
+    <div class="container-mentors">
       <% mentors.each do |mentor| %>
         <%= link_to mentor_path(mentor) do %>
-          <div class="card_mentors">
-            <div class="card-header_mentors">
+          <div class="card-mentors">
+            <div class="card-header-mentors">
               <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
             </div>
-            <div class="card-body_mentors">
-              <div class="mentor_tag">
-                <% mentor.tag_list.each do |tag| %>
-                  <span class="tag tag-teal"><%= tag %></span>
+            <div class="card-body-mentors">
+              <div class="mentor-tag">
+                <% front_end_skills = mentor.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
+                <% if front_end_skills.any? %>
+                    <% front_end_skills.each do |front_end_skill| %>
+                      <span class="tag tag-teal"><%= front_end_skill %></span>
+                    <% end %>
+                <% end %>
+                <% back_end_skills = mentor.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
+                <% if back_end_skills.any? %>
+                    <% back_end_skills.each do |back_end_skill| %>
+                      <span class="tag tag-purple"><%= back_end_skill %></span>
+                    <% end %>
                 <% end %>
               </div>
               <h4>
@@ -24,13 +33,13 @@
              <div class="list-inline d-flex justify-content-between">
                 <ul>
                  <li class="list-inline-item">
-                    4,75 <i class="fas fa-star img_attributes"></i>
+                    4,75 <i class="fas fa-star img-attributes"></i>
                   </li>
                   <li class="list-inline-item">
-                    4 <i class="fas fa-male img_attributes"></i>
+                    4 <i class="fas fa-male img-attributes"></i>
                   </li>
                   <li class="list-inline-item">
-                    10 <i class="fas fa-briefcase img_attributes"></i>
+                    10 <i class="fas fa-briefcase img-attributes"></i>
                   </li>
                 </ul>
               </div>

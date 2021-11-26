@@ -27,6 +27,17 @@ class User < ApplicationRecord
   has_many :applied_missions, class_name: "Mission", through: :application_requests, source: :mission
   # will return a collection of all the missions where the user applied
 
+  # pgsearch
+  include PgSearch::Model
+  pg_search_scope :search_by_last_name_and_skills,
+    against: [ :last_name ],
+    associated_against: {
+      tags: [:name]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
+
   def not_yet_applied?(mission)
     applied_missions.where(id: mission.id).empty?
     # will return true if a user hasn't applied yet to a mission
