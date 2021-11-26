@@ -196,7 +196,7 @@ mission2 = Mission.new(
   Optimisation du code existant (refacto, bugfixing etc.)",
   fee: 600,
   remote: true,
-  mentor_id: py.id,
+  mentor_id: thibaud.id,
   status: 0
 )
 mission2.save
