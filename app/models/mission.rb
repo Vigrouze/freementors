@@ -5,10 +5,10 @@ class Mission < ApplicationRecord
 
   has_many :applies, dependent: :destroy
 
-  enum status: [ :not_started, :on_going, :finished ]
+  enum status: { not_started: 0, on_going: 1, finished: 2 }
 
   validates :name, :company, :start_date, :end_date, :description, :fee, :remote, presence: true
-  validates :fee, :status, numericality: { only_integer: true }
+  validates :fee, numericality: { only_integer: true }
   validate :end_date_after_start_date
 
   before_save :calculate_duration
