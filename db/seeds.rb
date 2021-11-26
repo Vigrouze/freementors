@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'open-uri'
+require 'faker'
 
 puts 'Cleaning DB...'
 
@@ -145,7 +146,7 @@ puts 'Creating fakkers'
     password: "password",
     password_confirmation: "password",
     address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
-    description: Faker::Lorem,
+    description: Faker::Lorem.paragraphs(number: 1).join,
     mentor: true,
     xp_level: 100,
     xp_status: "Senior",
@@ -158,7 +159,7 @@ puts 'Creating fakkers'
 end
 
 puts 'Seeding done:'
-puts "#{User.where(mentor: true).count} padawans and #{User.where(mentor: false).count} mentors created"
+puts "#{User.where(mentor: false).count} padawans and #{User.where(mentor: true).count} mentors created"
 
 puts 'Sending missions'
 mission1 = Mission.new(
@@ -199,5 +200,23 @@ mission2 = Mission.new(
 )
 mission2.save
 
+puts 'Sending faker missions'
+30.times do
+  start_date = Faker::Date.between(from: '2021-11-23', to: '2022-04-25')
+  faker_mission = Mission.new(
+    name: "Développeur(se) Back-End",
+    company: Faker::Company.name,
+    start_date: start_date,
+    end_date: Faker::Date.between(from: start_date, to: '2022-04-25'),
+    description: Faker::Lorem.paragraphs(number: 1).join,
+    fee: rand(200..1000),
+    remote: true,
+    mentor_id: rand((User.mentor.first.id)..(User.mentor.last.id)),
+    status: rand(0..2)
+  )
+  faker_mission.save
+end
+
 puts 'Seeding done:'
+puts "#{User.all.count} users created"
 puts "#{Mission.all.count} missions created"
