@@ -87,10 +87,10 @@ alex = User.new(
   password: "password",
   password_confirmation: "password",
   address: "246 rue du Faubourg Saint-Martin, 75010 Paris",
-  description: "Senior freelance developper specialized in frontend with years of experience",
-  mentor: true,
-  xp_level: 100,
-  xp_status: "Senior",
+  description: "Young freelance developper, several experiences in frontend, alumni @LeWagonParis",
+  mentor: false,
+  xp_level: 25,
+  xp_status: "Padawan",
   link_github: "https://github.com/Vigrouze",
   link_malt: "xxx",
   link_slack: "xxx",
@@ -111,7 +111,7 @@ py = User.new(
   xp_level: 100,
   xp_status: "Senior",
   link_github: "https://github.com/pyveslg",
-  link_malt: "xxx",
+  link_malt: "https://www.linkedin.com/in/pierre-yvesleguennec/?originalSubdomain=fr",
   link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=U4XK1JBAB",
   tag_list: "CSS, HTML, Javascript"
 )
@@ -130,7 +130,7 @@ thibaud = User.new(
   xp_level: 100,
   xp_status: "Senior",
   link_github: "https://github.com/thmaurel",
-  link_malt: "xxx",
+  link_malt: "https://www.linkedin.com/in/thibaudmaurel/",
   link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=UHSMW24EA",
   tag_list: "Ruby, Python, C"
 )
