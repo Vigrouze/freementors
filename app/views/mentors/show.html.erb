@@ -5,13 +5,13 @@
         <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-xl" %>
       <% end %>
       <div class="mentor-show-card-infos">
-      <h1><%= @mentor.first_name%> <%= @mentor.last_name%></h1>
-      <p><%= @mentor.description %></p>
-      <ul class="list-inline img_attributes-mentor">
-        <li class="list-inline-item"><a href=<%= @mentor.link_github %>><i class="fab fa-github"></i></a></li>
-        <li class="list-inline-item"><a href=<%= @mentor.link_malt %>><i class="fab fa-linkedin-in"></i></a></li>
-        <li class="list-inline-item"><a href=<%= @mentor.link_slack %>><i class="fab fa-slack"></i></a></li>
-      </ul>
+        <h1><%= @mentor.first_name%> <%= @mentor.last_name%></h1>
+        <p><%= @mentor.description %></p>
+        <ul class="list-inline img_attributes-mentor">
+          <li class="list-inline-item"><a href=<%= @mentor.link_github %>><i class="fab fa-github"></i></a></li>
+          <li class="list-inline-item"><a href=<%= @mentor.link_malt %>><i class="fab fa-linkedin-in"></i></a></li>
+          <li class="list-inline-item"><a href=<%= @mentor.link_slack %>><i class="fab fa-slack"></i></a></li>
+        </ul>
       </div>
 
 
