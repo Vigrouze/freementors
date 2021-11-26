@@ -1,6 +1,6 @@
     <div class="mentor-show-card d-flex justify-content-center align-items-center px-2 mt-3">
-     <% if current_user.avatar.attached? %>
-        <%= cl_image_tag current_user.avatar.key, class: "avatar-xl" %>
+     <% if @mentor.avatar.attached? %>
+        <%= cl_image_tag @mentor.avatar.key, class: "avatar-xl" %>
       <% else %>
         <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-xl" %>
       <% end %>
