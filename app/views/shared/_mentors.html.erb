@@ -4,7 +4,11 @@
         <%= link_to mentor_path(mentor) do %>
           <div class="card-mentors">
             <div class="card-header-mentors">
-              <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
+              <% if mentor.avatar.attached? %>
+                <%= cl_image_tag mentor.avatar.key, class: "avatar" %>
+              <% else %>
+                 <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
+              <% end %>
             </div>
             <div class="card-body-mentors">
               <div class="mentor-tag">

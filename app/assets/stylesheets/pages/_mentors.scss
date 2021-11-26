@@ -1,3 +1,21 @@
+.banner_mentors {
+  height: 200px;
+  background-color: #EBF3FD;
+  margin-bottom: 20px;
+  hr {
+    height: 3px !important;
+    border-radius: 8px;
+    color: #fea93a;
+    opacity: 1;
+    width: 25%;
+  }
+}
+
+.img_fusee {
+  height: 450px;
+}
+
+
 .mentors {
   display: flex;
 }
@@ -6,18 +24,28 @@
   display: flex;
   flex-direction: column;
   align-content: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  margin-left: 10px;
+  margin-left: 40px;
   padding: 5px;
-  border: solid 1px grey;
   max-width: 150px;
   position: sticky;
   top: 0;
+  background-color: white;
   h3 {
     text-align: center;
+    color: #022147;
   }
 }
 #title-index {
   text-align: center;
+  color: #022147;
+  text-shadow: 1px 1px 3px #a4a4a4;
+  font-size: 60px;
+}
+
+
+.hr-mentor {
+  color: grey;
+  height: 2px !important;
 }
