@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
   has_many :relationships_as_padawan, class_name: "Relationship", foreign_key: :padawan_id
   has_many :relationships_as_mentor, class_name: "Relationship", foreign_key: :mentor_id
+  has_many :accepted_relationships, -> { where status: :accepted }, class_name: "Relationship", foreign_key: :padawan_id
+  has_many :mentors, class_name: "User", foreign_key: :padawan_id, through: :accepted_relationships
   acts_as_taggable_on :tags
 
   devise :database_authenticatable, :registerable,
