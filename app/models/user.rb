@@ -3,9 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   has_many :relationships_as_padawan, class_name: "Relationship", foreign_key: :padawan_id
+  has_many :not_connected_relationships_as_padawan, -> { where.not status: :accepted }, class_name: "Relationship", foreign_key: :padawan_id
+
   has_many :relationships_as_mentor, class_name: "Relationship", foreign_key: :mentor_id
   has_many :accepted_relationships, -> { where status: :accepted }, class_name: "Relationship", foreign_key: :padawan_id
+
   has_many :mentors, class_name: "User", foreign_key: :padawan_id, through: :accepted_relationships
+  has_many :applied_mentors, class_name: "User", foreign_key: :padawan_id, through: :not_connected_relationships_as_padawan, source: :mentor
   acts_as_taggable_on :tags
 
   devise :database_authenticatable, :registerable,

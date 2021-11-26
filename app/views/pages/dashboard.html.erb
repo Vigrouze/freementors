@@ -49,22 +49,45 @@
               <div class="card">
 								<div class="card-body">
 									<h5 class="d-flex align-items-center mb-3">Mentors</h5>
-                  <!-- MISSIONS ACCEPTED -->
+                  <!-- MENTORS ACCEPTED -->
+                  <div class="list-group">
                     <% @mentors.each do |mentor| %>
-                      <div class="list-group">
-                          <div class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-start align-items-center">
-                              <% if mentor.avatar.attached? %>
-                                <%= cl_image_tag mentor.avatar.key, class: "avatar" %>
-                              <% else %>
-                                <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
-                              <% end %>
-                              <h5 class="mb-1"><%= "#{mentor.first_name} #{mentor.last_name}" %></h5>
-
-                            </div>
+                      <%= link_to mentor_path(mentor) do %>
+                        <div class="list-group-item list-group-item-action">
+                          <div class="d-flex w-100 align-items-center gap-3">
+                            <% if mentor.avatar.attached? %>
+                              <%= cl_image_tag mentor.avatar.key, class: "avatar" %>
+                            <% else %>
+                              <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
+                            <% end %>
+                            <h5 class="flex-grow-1 mb-1"><%= "#{mentor.first_name} #{mentor.last_name}" %></h5>
+                            <p class="text-success text-center flex-align-end"> <span class="fw-bolder">Connected</span> <i class="fas fa-check-circle"></i></p>
                         </div>
-                      </div>
+                      <% end %>
                     <% end %>
+                  </div>
+                  <!-- MENTORS PENDING OR DENIED -->
+                  <div class="list-group transparent mt-3">
+                    <% @applied_mentors.each do |applied_mentor| %>
+                      <%= link_to mentor_path(applied_mentor) do %>
+                        <div class="list-group-item list-group-item-action">
+                          <div class="d-flex w-100 align-items-center gap-3">
+                            <% if applied_mentor.avatar.attached? %>
+                              <%= cl_image_tag applied_mentor.avatar.key, class: "avatar" %>
+                            <% else %>
+                              <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
+                            <% end %>
+                            <h5 class="flex-grow-1 mb-1"><%= "#{applied_mentor.first_name} #{applied_mentor.last_name}" %></h5>
+                            <% case current_user.relationship_request_status(applied_mentor) %>
+                            <% when "not_connected" %>
+                              <p class="text-warning text-center"> <span class="fw-bolder">Not connected</span> <i class="fas fa-times"></i></p>
+                            <% else %>
+                              <p class="text-secondary text-center"> <span class="fw-bolder">Pending</span> <i class="fas fa-hourglass-half"></i></i></p>
+                            <% end %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
 								</div>
 							</div>
 						</div>
@@ -93,20 +116,19 @@
                             </small>
                           </div>
                           <% case mission.status %>
-                          <% when "not_started" %>
-                            <p class="text-center fs-5 m-0">WILL BEGIN IN <%= "#{(mission.start_date - Date.today).to_i} DAYS" %></i></p>
                           <% when "on_going" %>
                             <p class="text-center fs-3 m-0"><span class="text-success">ONGOING <i class="fas fa-plane-departure"></span></i></p>
                           <% when "finished" %>
                             <p class="text-center fs-3 m-0"><span class="text-muted">FINISHED <i class="fas fa-plane-arrival"></span></i></p>
                           <% else %>
+                            <p class="text-center fs-5 m-0">WILL BEGIN IN <%= "#{(mission.start_date - Date.today).to_i} DAYS" %></i></p>
                           <% end %>
                           <p class="mb-1"><%= mission.description %></p>
                         <% end %>
                       </div>
                     </div>
-                    <!-- MISSIONS WHERE APPLICATION IS PENDING -->
-                    <div class="list-group mt-3 applied-missions-cards">
+                    <!-- MISSIONS WHERE APPLICATION IS PENDING OR DENIED -->
+                    <div class="list-group transparent mt-3">
                       <% @applied_missions.each do |applied_mission| %>
                         <div class="list-group-item list-group-item-action">
                           <div class="d-flex w-100 justify-content-between">
