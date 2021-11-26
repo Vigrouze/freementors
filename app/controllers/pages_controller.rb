@@ -8,5 +8,6 @@ class PagesController < ApplicationController
     @user = current_user
     @missions = @user.missions_as_padawan
     @applied_missions = @user.applied_missions
+    @mentors = @user.mentors
   end
 end
