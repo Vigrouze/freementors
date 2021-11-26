@@ -1,24 +1,27 @@
-<div class="container">
-  <div class="mentors" data-controller="filter" data-filter-url-value=<%= mentors_path %>>
-  <h1>List of all mentors</h1>
-    <div class="filter">
 
-      <%= form_tag mentors_path, method: 'get' do %>
-        <% User::SKILLS.values.flatten.each do |skill| %>
-          <% if !params[:tags].nil? && params[:tags].include?(skill) %>
-            <% value = true %>
-          <% else %>
-            <% value = nil %>
-          <% end %>
+<h1 id="title-index">List of all mentors</h1>
+<div class="mentors" data-controller="filter" data-filter-url-value=<%= mentors_path %>>
+  <div class="filter">
+    <%= form_tag mentors_path, method: 'get' do %>
+      <h3>Frontend</h3>
+      <% User::SKILLS[:frontend].each do |skill| %>
+
+          <%= check_box_tag "tags[]", skill, !params[:tags].nil? && params[:tags].include?(skill), id: "#{skill}", class:"form-check-input check_boxes optional tag-selector", data: {action: 'change->filter#refresh', filter_target: 'checkbox'} %>
+          <%= label_tag skill, nil, class:'form-check-label collection_check_boxes' %>
+      <% end %>
+      <h3>Backend</h3>
+      <% User::SKILLS[:backend].each do |skill| %>
+        <% if !params[:tags].nil? && params[:tags].include?(skill) %>
+          <% value = true %>
+        <% else %>
+          <% value = nil %>
+        <% end %>
           <%= check_box_tag "tags[]", skill, value, id: "#{skill}", class:"form-check-input check_boxes optional tag-selector", data: {action: 'change->filter#refresh', filter_target: 'checkbox'} %>
           <%= label_tag skill, nil, class:'form-check-label collection_check_boxes' %>
-        <% end %>
       <% end %>
-
-    </div>
-    <%= render "shared/mentors", mentors: @mentors  %>
+    <% end %>
   </div>
+
+  <%= render "shared/mentors", mentors: @mentors  %>
+
 </div>
-
-
-<%# data-action= 'click->filter#refresh %>

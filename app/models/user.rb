@@ -22,7 +22,7 @@ class User < ApplicationRecord
   SKILLS = { frontend: ["HTML", "CSS", "JavaScript", "React", "Angular", "Vue", "JQuery", "Swift", "SASS", "Elm"],
              backend: ["PHP", "Ruby", "Java", "C#", "C++", "Python", "Julia", "Scala", "Perl", "Kotlin"] }
 
-  has_many :application_requests, class_name: "Apply", foreign_key: :padawan_id
+  has_many :application_requests, -> { where status: nil }, class_name: "Apply", foreign_key: :padawan_id
   # will return a collection of all the applies of a user
   has_many :applied_missions, class_name: "Mission", through: :application_requests, source: :mission
   # will return a collection of all the missions where the user applied
