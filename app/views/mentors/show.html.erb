@@ -25,7 +25,7 @@
         <% when "accepted" %>
           <p class="text-success text-center"> <span class="fw-bolder">Connected</span> <i class="fas fa-check-circle"></i></p>
         <% when "denied" %>
-          <p class="text-warning text-center"> <span class="fw-bolder">Not connected</span> <i class="fas fa-check-circle"></i></p>
+          <p class="text-warning text-center"> <span class="fw-bolder">Not connected</span> <i class="fas fa-times"></i></p>
         <% else %>
           <%= link_to mentor_relationships_path(@mentor), method: :post do %>
             <%= button_tag "Connect",
