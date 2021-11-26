@@ -135,8 +135,6 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.12.5-x86_64-linux)
-      racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.2.3)
     pg_search (2.3.5)
@@ -265,12 +263,7 @@ GEM
     zeitwerk (2.5.1)
 
 PLATFORMS
-  arm64-darwin-20
   x86_64-darwin-20
-<<<<<<< HEAD
-  x86_64-linux
-=======
->>>>>>> fc15dfe1f17448e084bff7ce187176eebc3614a9
 
 DEPENDENCIES
   acts-as-taggable-on (~> 6.0)
