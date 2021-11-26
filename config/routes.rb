@@ -16,5 +16,5 @@ Rails.application.routes.draw do
     # => mission_applies POST /missions/:mission_id/applies(.:format)
   end
   get '/tagged', to: "mentors#tagged", as: :tagged
-
+  get "/dashboard", to: "pages#dashboard"
 end
