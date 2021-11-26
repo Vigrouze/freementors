@@ -97,6 +97,44 @@ alex = User.new(
 )
 alex.save
 
+puts 'Creating PY'
+py = User.new(
+  first_name: "Pierre-Yves",
+  last_name: "Le Guennec",
+  email: "py@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "14 Rue Crespin du Gast, 75011 Paris",
+  description: "Frontend expert with years of experience, teacher @LeWagonParis",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Senior",
+  link_github: "https://github.com/pyveslg",
+  link_malt: "xxx",
+  link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=U4XK1JBAB",
+  tag_list: "CSS, HTML, Javascript"
+)
+py.save
+
+puts 'Creating thibaud'
+thibaud = User.new(
+  first_name: "Thibaud",
+  last_name: "Maurel",
+  email: "maurel@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "16 Vla Gaudelet, 75011 Paris",
+  description: "Working as freelancer since 2019, teacher @LeWagonParis",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Senior",
+  link_github: "https://github.com/thmaurel",
+  link_malt: "xxx",
+  link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=UHSMW24EA",
+  tag_list: "Ruby, Python, C"
+)
+thibaud.save
+
 puts 'Seeding done:'
 puts "#{User.where(mentor: true).count} padawans and #{User.where(mentor: false).count} mentors created"
 
