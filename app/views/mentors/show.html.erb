@@ -96,7 +96,7 @@
                     <i class="fas fa-building"></i><%= mission.company %>
                   </li>
                   <li class="list-inline-item">
-                    <i class="fas fa-clock"></i></i> <%= mission.duration %>
+                    <i class="fas fa-clock"></i></i> <%= mission.duration %> days
                   </li>
                   <li class="list-inline-item">
                     <i class="fas fa-euro-sign"></i> <%= mission.fee %>
@@ -106,7 +106,8 @@
               </div>
               <div class="mentor-show-card-mission-actions d-flex justify-content-around align-items-center">
                 <p>Skills required: Ruby</p>
-              <% if current_user.not_yet_applied?(mission) %>
+                <p><%=mission.status if mission.status != "not_started" %></p>
+              <% if current_user.not_yet_applied?(mission) && mission.status == "not_started" %>
                 <%= link_to new_mission_apply_path(mission) do %>
                   <button type="button" class="btn btn-outline-primary">Apply</button>
                 <% end %>
@@ -135,10 +136,11 @@
       </div>
     </div>
   </div>
-
+<!--
   <div class="navigation d-flex justify-content-center">
     <%= link_to mentors_path do %>
       <%= button_tag "Back to all mentors", type: "button", class: "btn btn-yellow-mentor my-3" %>
     <% end %>
   </div>
+  -->
 </div>

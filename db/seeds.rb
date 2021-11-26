@@ -196,8 +196,8 @@ mission2 = Mission.new(
   Optimisation du code existant (refacto, bugfixing etc.)",
   fee: 600,
   remote: true,
-  mentor_id: nicolas.id,
-  status: 1
+  mentor_id: py.id,
+  status: 0
 )
 mission2.save
 
@@ -213,7 +213,7 @@ puts 'Sending faker missions'
     fee: rand(200..1000),
     remote: true,
     mentor_id: rand((User.mentor.first.id)..(User.mentor.last.id)),
-    status: rand(0..2)
+    status: 0
   )
   faker_mission.save
 
