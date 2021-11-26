@@ -45,7 +45,7 @@
     <div class="col-4">
       <div class="mentor-show-cards-left d-flex flex-column">
         <div class="mentor-show-card-skills p-3 mt-3">
-          <h3>Skills</h3>
+          <div class="title d-flex justify-content-center align-items-center mb-2"><h4>Skills</h4></div>
           <% front_end_skills = @mentor.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
           <% if front_end_skills.any? %>
             <strong class="mt-3">Front-end</strong>
@@ -57,7 +57,7 @@
           <% end %>
           <% back_end_skills = @mentor.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
           <% if back_end_skills.any? %>
-            <strong class="mt-3">Front-end</strong>
+            <strong class="mt-3"><h5>Front-end</h5></strong>
             <ul>
               <% back_end_skills.each do |back_end_skill| %>
                 <li><%= back_end_skill %></li>
@@ -67,16 +67,16 @@
         </div>
 
         <div class="mentor-show-card-experiences p-3 mt-3">
-          <h3>Experiences</h3>
-          <h6 class="mt-3">Digital Project Manager</h6>
+          <div class="title d-flex justify-content-center align-items-center mb-2"><h4>Experiences</h4></div>
+          <h5 class="mt-3"><strong>Digital Project Manager</strong></h5>
           <p class="m-0"><strong>Key People SA Freelance</strong></p>
           <p><small>2 ans et 8 mois</small></p>
           <hr>
-          <h6>Teacher</h6>
+          <h5><strong>Teacher</strong></h5>
           <p class="m-0"><strong>Le Wagon Freelance</strong></p>
           <p><small>3 ans 10 mois</small></p>
           <hr>
-          <h6>Random job</h6>
+          <h5><strong>Random job</strong></h5>
           <p class="m-0"><strong>Random company</strong></p>
           <p><small>Random duration</small></p>
         </div>
@@ -86,14 +86,14 @@
 
     <div class="col-8">
       <div class="mentor-show-cards-missions">
-        <h3 class="text-center mission-text"><%= "#{@missions.count} #{('mission').pluralize(@missions.count)}" %> proposed:</h3>
+        <h4 class="text-center mission-text"><%= "#{@missions.count} #{('mission').pluralize(@missions.count)}" %> proposed</h4>
         <% @missions.each do |mission| %>
           <% if current_user.connected?(@mentor) %>
             <div class="mentor-show-card-mission shadow p-3 mt-3">
               <div class="mentor-show-card-mission-infos">
                 <ul class="list-inline d-flex justify-content-between">
                   <li class="list-inline-item">
-                    <i class="fas fa-building"></i> <%= mission.company %>
+                    <i class="fas fa-building"></i><%= mission.company %>
                   </li>
                   <li class="list-inline-item">
                     <i class="fas fa-clock"></i></i> <%= mission.duration %>
