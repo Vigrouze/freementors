@@ -26,11 +26,13 @@
   align-content: center;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  margin-top: 20px;
   margin-left: 40px;
   padding: 5px;
   max-width: 150px;
   position: sticky;
-  top: 0;
+  top: 100px;
+  height: fit-content;
   background-color: white;
   h3 {
     text-align: center;
@@ -48,4 +50,8 @@
 .hr-mentor {
   color: grey;
   height: 2px !important;
+}
+
+.tag {
+  margin: 2px
 }

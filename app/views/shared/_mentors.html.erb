@@ -34,15 +34,15 @@
               <% end %>
             </div>
              <div class="list-inline d-flex justify-content-between">
-                <ul>
+                <ul id="list-ratings">
                  <li class="list-inline-item">
-                    4,75 <i class="fas fa-star img-attributes"></i>
+                    <%= rand(1..5) %> <i class="fas fa-star img-attributes"></i>
                   </li>
                   <li class="list-inline-item">
                     4 <i class="fas fa-male img-attributes"></i>
                   </li>
                   <li class="list-inline-item">
-                    10 <i class="fas fa-briefcase img-attributes"></i>
+                    <%= mentor.missions_as_mentor.count %> <i class="fas fa-briefcase img-attributes"></i>
                   </li>
                 </ul>
               </div>

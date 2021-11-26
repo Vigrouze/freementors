@@ -14,6 +14,8 @@
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   width: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-header-mentors img {
@@ -23,17 +25,17 @@
   border-radius: 5px 5px;
 }
 .card-body-mentors {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
   padding: 20px;
+  flex-grow: 1;
   h4 {
     color: #022147;
     margin-top: 5px;
   }
   p {
     color: black;
+  }
+  ol, ul {
+    padding-left: 20px
   }
 }
 
@@ -86,4 +88,8 @@
 .img-attributes {
   color:#fea93a;
   font-size: 18px;
+}
+
+#list-ratings {
+  padding-left: 20px;
 }
