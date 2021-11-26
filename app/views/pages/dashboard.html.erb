@@ -62,10 +62,10 @@
                       <%= link_to mentor_path(mentor) do %>
                         <div class="list-group-item list-group-item-action">
                           <div class="d-flex w-100 align-items-center gap-3">
-                            <% if current_user.avatar.attached? %>
-                              <%= cl_image_tag current_user.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                            <% if mentor.avatar.attached? %>
+                              <%= cl_image_tag mentor.avatar.key, class: "avatar" %>
                             <% else %>
-                              <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                              <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
                             <% end %>
                             <h5 class="flex-grow-1 mb-1"><%= "#{mentor.first_name} #{mentor.last_name}" %></h5>
                             <p class="text-success text-center flex-align-end"> <span class="fw-bolder">Connected</span> <i class="fas fa-check-circle"></i></p>
