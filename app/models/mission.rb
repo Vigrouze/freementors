@@ -13,7 +13,14 @@ class Mission < ApplicationRecord
 
   before_save :calculate_duration
 
+  def application_status(user)
+    application = applies.find_by(padawan_id: user.id)
+
+    application ? application.status : ""
+  end
+
   private
+
 
   def end_date_after_start_date
     return if end_date.blank? || start_date.blank?

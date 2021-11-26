@@ -16,15 +16,22 @@
   font-family: "Work-sans";
   color: #022147;
   text-shadow: 1px 1px 3px rgb(164, 164, 164);
-  font-size: 50px;
-  font-weight: bold;
+  font-size: 55px;
 }
 
 .patch_2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 60px;
   height: 400px;
   background-color: #EBF3FD;
+}
+
+.hr-home {
+  height: 3px !important;
+  border-radius: 8px;
+  color: #fea93a;
+  opacity: 1;
+  width: 25%;
 }
