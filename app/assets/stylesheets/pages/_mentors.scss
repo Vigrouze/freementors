@@ -12,4 +12,12 @@
   padding: 5px;
   border: solid 1px grey;
   max-width: 150px;
+  position: sticky;
+  top: 0;
+  h3 {
+    text-align: center;
+  }
+}
+#title-index {
+  text-align: center;
 }
