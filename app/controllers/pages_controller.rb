@@ -6,5 +6,7 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
+    @missions = @user.missions_as_padawan
+    @applied_missions = @user.applied_missions
   end
 end
