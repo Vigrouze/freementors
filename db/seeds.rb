@@ -135,6 +135,28 @@ thibaud = User.new(
 )
 thibaud.save
 
+puts 'Creating fakkers'
+50.times do
+  last_name = Faker::Name.last_name
+  faker = User.new(
+    first_name: Faker::Name.first_name,
+    last_name: last_name,
+    email: "#{last_name}@test.com",
+    password: "password",
+    password_confirmation: "password",
+    address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+    description: Faker::Lorem,
+    mentor: true,
+    xp_level: 100,
+    xp_status: "Senior",
+    link_github: "https://github.com/#{last_name}",
+    link_malt: "xxx",
+    link_slack: "xxx",
+    tag_list: User::SKILLS[:frontend].sample(2) + User::SKILLS[:backend].sample(2)
+  )
+  faker.save
+end
+
 puts 'Seeding done:'
 puts "#{User.where(mentor: true).count} padawans and #{User.where(mentor: false).count} mentors created"
 
