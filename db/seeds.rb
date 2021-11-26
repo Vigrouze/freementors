@@ -68,10 +68,10 @@ nicolas = User.new(
   password: "password",
   password_confirmation: "password",
   language: "French, English",
-  description: "Senior freelance developper specialized in backend with years of experience",
-  mentor: true,
-  xp_level: 100,
-  xp_status: "Senior",
+  description: "Junior freelance developper with serveral experiences in front, alumni @LeWagonParis",
+  mentor: false,
+  xp_level: 25,
+  xp_status: "Padawan",
   link_github: "https://github.com/ndgdl",
   link_malt: "xxx",
   link_slack: "xxx",
@@ -176,8 +176,9 @@ mission1 = Mission.new(
     Vous avez des compétences techniques clefs : HTML 5, Java Script, CSS3, Ruby on Rails",
   fee: 500,
   remote: true,
-  mentor_id: alex.id,
-  status: 1
+  mentor_id: py.id,
+  padawan_id: alex.id,
+  status: 2
 )
 mission1.save
 
@@ -215,8 +216,16 @@ puts 'Sending faker missions'
     status: rand(0..2)
   )
   faker_mission.save
+
+  relation = Relationship.new(
+    padawan_id: alex.id,
+    mentor_id: py.id,
+    status: 1
+  )
+  relation.save
 end
 
 puts 'Seeding done:'
 puts "#{User.all.count} users created"
 puts "#{Mission.all.count} missions created"
+puts "#{Relationship.all.count} relation created"
