@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'open-uri'
+require 'faker'
 
 puts 'Cleaning DB...'
 
@@ -67,10 +68,10 @@ nicolas = User.new(
   password: "password",
   password_confirmation: "password",
   language: "French, English",
-  description: "Senior freelance developper specialized in backend with years of experience",
-  mentor: true,
-  xp_level: 100,
-  xp_status: "Senior",
+  description: "Junior freelance developper with serveral experiences in front, alumni @LeWagonParis",
+  mentor: false,
+  xp_level: 25,
+  xp_status: "Padawan",
   link_github: "https://github.com/ndgdl",
   link_malt: "xxx",
   link_slack: "xxx",
@@ -86,10 +87,10 @@ alex = User.new(
   password: "password",
   password_confirmation: "password",
   address: "246 rue du Faubourg Saint-Martin, 75010 Paris",
-  description: "Senior freelance developper specialized in frontend with years of experience",
-  mentor: true,
-  xp_level: 100,
-  xp_status: "Senior",
+  description: "Young freelance developper, several experiences in frontend, alumni @LeWagonParis",
+  mentor: false,
+  xp_level: 25,
+  xp_status: "Padawan",
   link_github: "https://github.com/Vigrouze",
   link_malt: "xxx",
   link_slack: "xxx",
@@ -97,8 +98,68 @@ alex = User.new(
 )
 alex.save
 
+puts 'Creating PY'
+py = User.new(
+  first_name: "Pierre-Yves",
+  last_name: "Le Guennec",
+  email: "py@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "14 Rue Crespin du Gast, 75011 Paris",
+  description: "Frontend expert with years of experience, teacher @LeWagonParis",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Senior",
+  link_github: "https://github.com/pyveslg",
+  link_malt: "https://www.linkedin.com/in/pierre-yvesleguennec/?originalSubdomain=fr",
+  link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=U4XK1JBAB",
+  tag_list: "CSS, HTML, Javascript"
+)
+py.save
+
+puts 'Creating thibaud'
+thibaud = User.new(
+  first_name: "Thibaud",
+  last_name: "Maurel",
+  email: "maurel@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "16 Vla Gaudelet, 75011 Paris",
+  description: "Working as freelancer since 2019, teacher @LeWagonParis",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Senior",
+  link_github: "https://github.com/thmaurel",
+  link_malt: "https://www.linkedin.com/in/thibaudmaurel/",
+  link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=UHSMW24EA",
+  tag_list: "Ruby, Python, C"
+)
+thibaud.save
+
+puts 'Creating fakkers'
+50.times do
+  last_name = Faker::Name.last_name
+  faker = User.new(
+    first_name: Faker::Name.first_name,
+    last_name: last_name,
+    email: "#{last_name}@test.com",
+    password: "password",
+    password_confirmation: "password",
+    address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+    description: Faker::Lorem.paragraphs(number: 1).join,
+    mentor: true,
+    xp_level: 100,
+    xp_status: "Senior",
+    link_github: "https://github.com/#{last_name}",
+    link_malt: "xxx",
+    link_slack: "xxx",
+    tag_list: User::SKILLS[:frontend].sample(2) + User::SKILLS[:backend].sample(2)
+  )
+  faker.save
+end
+
 puts 'Seeding done:'
-puts "#{User.where(mentor: true).count} padawans and #{User.where(mentor: false).count} mentors created"
+puts "#{User.where(mentor: false).count} padawans and #{User.where(mentor: true).count} mentors created"
 
 puts 'Sending missions'
 mission1 = Mission.new(
@@ -115,8 +176,9 @@ mission1 = Mission.new(
     Vous avez des compétences techniques clefs : HTML 5, Java Script, CSS3, Ruby on Rails",
   fee: 500,
   remote: true,
-  mentor_id: alex.id,
-  status: 1
+  mentor_id: py.id,
+  padawan_id: alex.id,
+  status: 2
 )
 mission1.save
 
@@ -134,10 +196,36 @@ mission2 = Mission.new(
   Optimisation du code existant (refacto, bugfixing etc.)",
   fee: 600,
   remote: true,
-  mentor_id: nicolas.id,
-  status: 1
+  mentor_id: thibaud.id,
+  status: 0
 )
 mission2.save
 
+puts 'Sending faker missions'
+30.times do
+  start_date = Faker::Date.between(from: '2021-11-23', to: '2022-04-25')
+  faker_mission = Mission.new(
+    name: "Développeur(se) Back-End",
+    company: Faker::Company.name,
+    start_date: start_date,
+    end_date: Faker::Date.between(from: start_date, to: '2022-04-25'),
+    description: Faker::Lorem.paragraphs(number: 1).join,
+    fee: rand(200..1000),
+    remote: true,
+    mentor_id: rand((User.mentor.first.id)..(User.mentor.last.id)),
+    status: 0
+  )
+  faker_mission.save
+
+  relation = Relationship.new(
+    padawan_id: alex.id,
+    mentor_id: py.id,
+    status: 1
+  )
+  relation.save
+end
+
 puts 'Seeding done:'
+puts "#{User.all.count} users created"
 puts "#{Mission.all.count} missions created"
+puts "#{Relationship.all.count} relation created"
