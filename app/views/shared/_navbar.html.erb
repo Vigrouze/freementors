@@ -23,9 +23,9 @@
             <% else %>
               <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% end %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Profil", "#", class: "dropdown-item" %>
-              <%= link_to "Messages", "#", class: "dropdown-item" %>
+            <div class="dropdown-menu dropdown-menu-end dropdown" aria-labelledby="navbarDropdown">
+              <%= link_to "Action", "#", class: "dropdown-item" %>
+              <%= link_to "Another action", "#", class: "dropdown-item" %>
               <div class="dropdown-divider"></div>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
