@@ -1,6 +1,9 @@
     <div class="mentor-show-card d-flex justify-content-center align-items-center px-2 mt-3">
-      <%= image_tag("placeholder-avatar.png", class: "avatar-xl") %>
-
+     <% if current_user.avatar.attached? %>
+        <%= cl_image_tag current_user.avatar.key, class: "avatar-xl" %>
+      <% else %>
+        <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-xl" %>
+      <% end %>
       <div class="mentor-show-card-infos">
       <h1><%= @mentor.first_name%> <%= @mentor.last_name%></h1>
       <p><%= @mentor.description %></p>
