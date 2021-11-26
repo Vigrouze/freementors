@@ -60,7 +60,7 @@
           <% end %>
           <% back_end_skills = @mentor.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
           <% if back_end_skills.any? %>
-            <strong class="mt-3"><h5>Front-end</h5></strong>
+            <strong class="mt-3"><h5>Back-end</h5></strong>
             <ul>
               <% back_end_skills.each do |back_end_skill| %>
                 <li><%= back_end_skill %></li>
