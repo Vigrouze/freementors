@@ -11,11 +11,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <button name="button" type="submit" class="btn btn-homepage-yellow">
-            <p>Button</p>
-          </button>
+          <a href="/mentors">
+            <button type="button" id="btn-navbar" class="btn btn-homepage-yellow">Mentors</button>
+          </a>
           <li class="nav-item active">
-            <%= link_to "Home", "/", class: "nav-link" %>
+            <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <% if current_user.avatar.attached? %>
@@ -31,9 +31,9 @@
             </div>
           </li>
         <% else %>
-          <button name="button" type="submit" class="btn btn-homepage-yellow">
-            <p>Button</p>
-          </button>
+          <a href="/mentors">
+            <button type="button" id="btn-navbar" class="btn btn-homepage-yellow">Mentors</button>
+          </a>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
