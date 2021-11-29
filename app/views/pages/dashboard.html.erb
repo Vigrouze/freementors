@@ -133,10 +133,13 @@
                           <% end %>
                           <p class="mb-1"><%= mission.description %></p>
                            <!-- CREATE REVIEW IF NOT EXIST, UPDATE OTHERWISE-->
-                          <div class="review" data-controller='form-action'>
+                          <div class="review">
                             <% if mission.reviews.exists?(reviewer: current_user) && mission.status == "finished" %>
                               <div class="mission-review">
-                                <p><%= mission.reviews.find_by(reviewer: current_user).content %></p>
+                                <div class="review-info">
+                                  <p><%= mission.reviews.find_by(reviewer: current_user).content %></p>
+                                  <p><%= mission.reviews.find_by(reviewer: current_user).rating %>/5</p>
+                                </div>
                                 <i class="fas fa-pencil-alt", data-bs-toggle="collapse" data-bs-target="#edit_review_2"></i>
                                 <%= render "shared/new-review", mission: mission, review: mission.reviews.find_by(reviewer: current_user) %>
                               </div>
