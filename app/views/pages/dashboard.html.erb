@@ -92,6 +92,7 @@
                             <% else %>
                               <p class="text-secondary text-center"> <span class="fw-bolder">Pending</span> <i class="fas fa-hourglass-half"></i></i></p>
                             <% end %>
+                          </div>
                         </div>
                       <% end %>
                     <% end %>
@@ -132,6 +133,7 @@
                             <p class="text-center fs-5 m-0">WILL BEGIN IN <%= "#{(mission.start_date - Date.today).to_i} DAYS" %></i></p>
                           <% end %>
                           <p class="mb-1"><%= mission.description %></p>
+                        </div>
                         <% end %>
                       </div>
                     </div>

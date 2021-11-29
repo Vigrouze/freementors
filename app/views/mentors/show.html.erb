@@ -110,11 +110,11 @@
               <div class="mentor-show-card-mission-actions d-flex justify-content-around align-items-center">
                 <p>Skills required: Ruby</p>
                 <p><%=mission.status if mission.status != "not_started" %></p>
-              <% if current_user.not_yet_applied?(mission) && mission.status == "not_started" %>
-                <%= link_to new_mission_apply_path(mission) do %>
-                  <button type="button" class="btn btn-outline-primary">Apply</button>
+                <% if current_user.not_yet_applied?(mission) && mission.status == "not_started" %>
+                  <%= link_to new_mission_apply_path(mission) do %>
+                    <button type="button" class="btn btn-outline-primary">Apply</button>
+                  <% end %>
                 <% end %>
-              <% end %>
               </div>
             </div>
           <% else %>
