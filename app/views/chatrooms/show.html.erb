@@ -4,7 +4,7 @@
     <div class="col-4" id="sticky-sidebar">
       <div class="border">
         <div class="list-group">
-          <%= render 'chatrooms', chatrooms: @chatrooms %>
+          <%= render @chatrooms %>
         </div>
       </div>
     </div>
@@ -14,9 +14,7 @@
               data-controller="chatroom-subscription"
               data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
               >
-              <% @chatroom.messages.each do |message| %>
-                <%= render "messages/message", message: message %>
-              <% end %>
+              <%= render @chatroom.messages %>
             </div>
             <%= simple_form_for [@chatroom, @message], remote: true do |f| %>
               <%= f.input :content, label: false, class: "rounded", placeholder: "Message" %>
