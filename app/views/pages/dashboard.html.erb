@@ -138,14 +138,22 @@
                               <div class="mission-review">
                                 <div class="review-info">
                                   <p><%= mission.reviews.find_by(reviewer: current_user).content %></p>
-                                  <p><%= mission.reviews.find_by(reviewer: current_user).rating %>/5</p>
                                 </div>
+                                  <% rating = mission.reviews.find_by(reviewer: current_user).rating %>
+                                  <% rating.times do %>
+                                   <i class="fas fa-star"></i>
+                                  <% end %>
+                                  <% (5 - rating).times do %>
+                                    <i class="far fa-star"></i>
+                                  <% end %>
                                 <i class="fas fa-pencil-alt", data-bs-toggle="collapse" data-bs-target="#edit_review_2"></i>
                                 <%= render "shared/new-review", mission: mission, review: mission.reviews.find_by(reviewer: current_user) %>
                               </div>
                             <% elsif mission.status == "finished" %>
                               <button class='btn btn-yellow', data-bs-toggle="collapse" data-bs-target="#new_review">Create Review</button>
-                              <%= render "shared/new-review", mission: mission, review: Review.new %>
+                              <div class="mission-review">
+                                <%= render "shared/new-review", mission: mission, review: Review.new %>
+                              </div>
                             <% end %>
                           </div>
                         </div>
