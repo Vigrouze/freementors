@@ -128,16 +128,16 @@
                             <p class="text-center fs-3 m-0"><span class="text-success">ONGOING <i class="fas fa-plane-departure"></span></i></p>
                           <% when "finished" %>
                             <p class="text-center fs-3 m-0"><span class="text-muted">FINISHED <i class="fas fa-plane-arrival"></span></i></p>
-                            <%#  %>
-                            <% if mission.reviews.exists?(reviewer: current_user) %>
-                              <%= render "shared/new-review", mission: mission, review: mission.reviews.find_by(reviewer: current_user) %>
-                            <% else  %>
-                              <%= render "shared/new-review", mission: mission, review: Review.new %>
-                            <% end %>
                           <% else %>
                             <p class="text-center fs-5 m-0">WILL BEGIN IN <%= "#{(mission.start_date - Date.today).to_i} DAYS" %></i></p>
                           <% end %>
                           <p class="mb-1"><%= mission.description %></p>
+                           <!-- CREATE REVIEW IF NOT EXIST, UPDATE OTHERWISE-->
+                            <% if mission.reviews.exists?(reviewer: current_user) && mission.status == "finished" %>
+                              <%= render "shared/new-review", mission: mission, review: mission.reviews.find_by(reviewer: current_user) %>
+                            <% elsif mission.status == "finished" %>
+                              <%= render "shared/new-review", mission: mission, review: Review.new %>
+                            <% end %>
                         <% end %>
                       </div>
                     </div>

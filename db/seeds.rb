@@ -201,6 +201,21 @@ mission2 = Mission.new(
 )
 mission2.save
 
+mission3 = Mission.new(
+  name: "Back-End dev",
+  company: "Le Wagon",
+  start_date: "2022-01-02",
+  end_date: "2022-06-06",
+  description: "
+  Improve the roulette",
+  fee: 200,
+  remote: true,
+  mentor_id: py.id,
+  padawan_id: alex.id,
+  status: 2
+)
+mission3.save!
+
 review = Review.new(
   content: "Pierre-Yves was a great mentors with lot of support and advices to improve my code. The mission was good for a beginner and enjoy to apply what I learned",
   reviewer_id: alex.id,
