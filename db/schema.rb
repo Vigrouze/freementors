@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_24_104830) do
+ActiveRecord::Schema.define(version: 2021_11_29_084250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,19 @@ ActiveRecord::Schema.define(version: 2021_11_24_104830) do
     t.index ["padawan_id"], name: "index_relationships_on_padawan_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.integer "rating"
+    t.bigint "mission_id", null: false
+    t.bigint "reviewer_id", null: false
+    t.bigint "reviewee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mission_id"], name: "index_reviews_on_mission_id"
+    t.index ["reviewee_id"], name: "index_reviews_on_reviewee_id"
+    t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -143,5 +156,8 @@ ActiveRecord::Schema.define(version: 2021_11_24_104830) do
   add_foreign_key "missions", "users", column: "padawan_id"
   add_foreign_key "relationships", "users", column: "mentor_id"
   add_foreign_key "relationships", "users", column: "padawan_id"
+  add_foreign_key "reviews", "missions"
+  add_foreign_key "reviews", "users", column: "reviewee_id"
+  add_foreign_key "reviews", "users", column: "reviewer_id"
   add_foreign_key "taggings", "tags"
 end
