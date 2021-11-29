@@ -66,6 +66,7 @@
 
 .card-body p {
   font-size: 13px;
+  text-align: justify;
 }
 
 .user {
@@ -92,4 +93,27 @@
 
 #list-ratings {
   padding-left: 20px;
+}
+
+.review {
+  display: flex;
+  justify-content: center;
+}
+.mission-review {
+  border-radius: 10px;
+  padding: 1px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 90%;
+  p {
+    font-style: italic;
+    color: grey;
+    margin: 2px;
+  }
+  .fas.fa-pencil-alt {
+    opacity: .5;
+  }
+  .fas.fa-pencil-alt:hover {
+    opacity: 1;
+  }
 }

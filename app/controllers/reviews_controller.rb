@@ -7,13 +7,15 @@ class ReviewsController < ApplicationController
     mentor = Mission.find(params[:mission_id]).mentor_id
     @review.mentor = mentor
     @review.save
+    authorize @review
     redirect_to dashboard_path
   end
 
   def update
-    @review = Review.find(params_review)
-    @review.save
+    @review = Review.find(params[:id])
+    @review = Review.update(params_review)
     redirect_to dashboard_path
+    authorize @review
   end
 
   private

@@ -1,7 +1,7 @@
-
-<%= simple_form_for([mission, review], html: { class: "collapse"}) do |f| %>
-  <%= f.input :content %>
-  <%= f.input :rating %>
-  <%= f.submit %>
-<% end %>
-<%# , html: { class: "collapse"} %>
+<div class="form-container">
+  <%= simple_form_for([mission, review], html: { class: "collapse"}) do |f| %>
+    <%= f.input :content, label: 'Enter your review', placeholder: 'describe your impression about the mission, your mentor supports etc' %>
+    <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience" %>
+    <%= f.submit 'enter your review', class: "btn btn-yellow" %>
+  <% end %>
+</div>
