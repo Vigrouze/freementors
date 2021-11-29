@@ -36,6 +36,8 @@ class User < ApplicationRecord
   has_many :applied_missions, class_name: "Mission", through: :application_requests, source: :mission
   # will return a collection of all the missions where the user applied
 
+  has_many :padawan_chatrooms, foreign_key: :padawan_id
+
   # pgsearch
   include PgSearch::Model
   pg_search_scope :search_by_last_name_and_skills,
@@ -60,6 +62,10 @@ class User < ApplicationRecord
 
   def connected?(mentor)
     relationships_as_padawan.connected.where(mentor_id: mentor.id).any?
+  end
+
+  def mentor?
+    mentor
   end
 
   private

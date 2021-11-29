@@ -11,7 +11,6 @@ class ChatroomsController < ApplicationController
 
   def show
     @chatrooms = policy_scope(current_user.chatrooms).order(updated_at: :desc)
-
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
     authorize @chatroom
