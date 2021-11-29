@@ -220,20 +220,18 @@
 
 <div class="container">
   <div class="col-lg-6">
-    <h5 class="align-items-center mb-3">My mentors</h5>
+    <h5 class="align-items-center m-3">My mentors</h5>
     <div class="bubbles m-3">
     <!-- MENTORS ACCEPTED -->
       <div class="mentor_bubbles">
         <% @mentors.each do |mentor| %>
           <%= link_to mentor_path(mentor) do %>
             <% if mentor.avatar.attached? %>
-              <%= cl_image_tag mentor.avatar.key, class: "avatar-medium" %>
+              <%= cl_image_tag mentor.avatar.key, class: "avatar-medium", data: { bs_toggle:"popover", bs_trigger:"hover focus", bs_content: mentor.name } %>
             <% else %>
-              <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-medium" %>
+              <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-medium", data: { content: mentor.name } %>
             <% end %>
-          <div>
-            <p class="text-success text-center flex-align-end"><%= image_tag("Accepted.png", class:"avatar-status") %></p>
-          </div>
+            <%= image_tag("Accepted.png", class:"avatar-status") %>
           <% end %>
         <% end %>
       </div>
@@ -248,68 +246,12 @@
             <% end %>
             <% case current_user.relationship_request_status(applied_mentor) %>
             <% when "not_connected" %>
-              <p class="text-warning text-center"><%= image_tag("Denied.png", class:"avatar-status") %></p>
+              <%= image_tag("Denied.png", class:"avatar-status") %></p>
             <% else %>
-              <p class="text-secondary text-center"><%= image_tag("Pending.png", class:"avatar-status") %></p>
+              <%= image_tag("Pending.png", class:"avatar-status") %></p>
             <% end %>
           <% end %>
         <% end %>
       </div>
     </div>
-  </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<%# <div class="container"> %>
-
-	<%# </div> %>
