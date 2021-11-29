@@ -17,6 +17,22 @@
           <li class="nav-item active">
             <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
           </li>
+          <div class="icon" id="bell"> <img src="https://i.imgur.com/AC7dgLA.png" alt=""> </div>
+          <div class="notifications" id="box">
+              <h2>Notifications - <span>2</span></h2>
+              <div class="notifications-item"> <img src="https://i.imgur.com/uIgDDDd.jpg" alt="img">
+                  <div class="text">
+                      <h4>Samso aliao</h4>
+                      <p>Samso Nagaro Like your home work</p>
+                  </div>
+              </div>
+              <div class="notifications-item"> <img src="https://img.icons8.com/flat_round/64/000000/vote-badge.png" alt="img">
+                  <div class="text">
+                      <h4>John Silvester</h4>
+                      <p>+20 vista badge earned</p>
+                  </div>
+              </div>
+          </div>
           <li class="nav-item dropdown">
             <% if current_user.avatar.attached? %>
               <%= cl_image_tag current_user.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>

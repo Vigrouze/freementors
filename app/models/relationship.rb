@@ -8,4 +8,12 @@ class Relationship < ApplicationRecord
   scope :connected, -> { where(status: :accepted) }
   scope :pending, -> { where(status: :pending) }
   scope :not_connected, -> { where(status: :denied) }
+
+  after_update :build_notification
+
+  private
+
+  def build_notification
+    # Créer la notification (avec le titre, le content et le url) pour chaque recipient (= @user)
+  end
 end
