@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     # => mission_applies POST /missions/:mission_id/applies(.:format)
   end
 
-  resources :chatrooms, only: :show
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 
   get '/tagged', to: "mentors#tagged", as: :tagged
   get "/dashboard", to: "pages#dashboard"

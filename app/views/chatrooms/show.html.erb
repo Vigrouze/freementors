@@ -11,4 +11,8 @@
       </div>
     <% end %>
   </div>
+  <%= simple_form_for [@chatroom, @message], remote: true do |f| %>
+    <%= f.input :content, label: false, placeholder: "Message" %>
+    <%= f.submit %>
+  <% end %>
 </div>
