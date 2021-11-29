@@ -107,7 +107,6 @@
   border-radius: 10px;
   margin-top: 10px;
   padding: 1px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
   width: 90%;
   p {
@@ -116,11 +115,14 @@
     margin: 2px;
   }
   .fas.fa-pencil-alt {
-    opacity: .5;
+    opacity: 0;
     text-align: right;
+    transition: ease .3s;
   }
-  .fas.fa-pencil-alt:hover {
+  &:hover {
+   .fas.fa-pencil-alt {
     opacity: 1;
+    }
   }
   .review-info {
     display: flex;
