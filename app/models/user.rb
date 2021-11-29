@@ -24,6 +24,9 @@ class User < ApplicationRecord
   after_validation :set_tags # see private function
   scope :mentor, -> { where(mentor: true) }
 
+  has_many :messages
+  has_many :chatrooms, -> { distinct }, through: :messages
+
   # Constant for filter and forms if we need
   SKILLS = { frontend: ["HTML", "CSS", "JavaScript", "React", "Angular", "Vue", "JQuery", "Swift", "SASS", "Elm"],
              backend: ["PHP", "Ruby", "Java", "C#", "C++", "Python", "Julia", "Scala", "Perl", "Kotlin"] }

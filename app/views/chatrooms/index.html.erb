@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <!-- SIDEBAR -->
+    <div class="col-4" id="sticky-sidebar">
+      <div class="border">
+        <div class="list-group">
+          <% @chatrooms.each do |chatroom| %>
+            <%= link_to chatroom_path(chatroom) do %>
+              <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 align-items-center gap-3">
+                  <%= chatroom.name %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="col-8" id="main">
+      <div class="chatroom border">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ul>

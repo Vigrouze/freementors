@@ -22,7 +22,13 @@
   #new_message {
     border-top: 1px solid $gray-200;
     padding: 1rem;
+    position: relative;
 
+    .btn {
+      position: absolute;
+      top: 16px;
+      right: 15px;
+    }
     .form-group {
       margin-bottom: 0;
     }

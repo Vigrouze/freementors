@@ -1,0 +1,28 @@
+.messages {
+  display: flex;
+  flex-direction: column;
+}
+
+.msg-left {
+  align-self: flex-end;
+}
+
+.msg-right {
+  align-self: flex-start;
+}
+
+.message-content {
+  max-width: 450px;
+}
+
+.msg-yellow {
+ background-color: #FEA93A;
+ border-radius: 5px 10px;
+ padding: 10px;
+}
+
+.msg-grey {
+ background-color: lightgrey;
+ border-radius: 10px 5px;
+ padding: 10px;
+}
