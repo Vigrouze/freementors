@@ -205,10 +205,11 @@ review = Review.new(
   content: "Pierre-Yves was a great mentors with lot of support and advices to improve my code. The mission was good for a beginner and enjoy to apply what I learned",
   reviewer_id: alex.id,
   reviewee_id: py.id,
-  mission_id: mission1,
+  mission_id: mission1.id,
   rating: 5
 )
-review.save
+review.save!
+puts "review saved"
 
 puts 'Sending faker missions'
 30.times do

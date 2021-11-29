@@ -1,36 +1,24 @@
 class ReviewsController < ApplicationController
-  def index
-    @reviews = Review.all
-  end
-
-  def show
-    @review = Review.find(params[:id])
-    authorize @review
-  end
-
-  def new
-    @review = Review.new
-    authorize @review
-  end
 
   def create
     @review = Review.new(params_review)
+    @review.reviewer = current_user
+    @review.mission_id = params[:mission_id]
+    mentor = Mission.find(params[:mission_id]).mentor_id
+    @review.mentor = mentor
     @review.save
-    authorize @review
-  end
-
-  def edit
-    @review = Review.find(params[:id])
+    redirect_to dashboard_path
   end
 
   def update
-    @review = Review.update(params_review)
+    @review = Review.find(params_review)
     @review.save
+    redirect_to dashboard_path
   end
 
   private
 
   def params_review
-    params.require(:review).permit(:content, :rating, :reviewer_id, :reviewee_id, :mission_id)
+    params.require(:review).permit(:content, :rating)
   end
 end

@@ -7,5 +7,5 @@ class Review < ApplicationRecord
   validates :content, length: { in: 10..500 }
   validates :rating, numericality: { only_integer: true }
   # validation between 0 and 5
-  validates_inclusion_of :age, { in: 0..5 }
+  validates_inclusion_of :rating, { in: 0..5 }
 end
