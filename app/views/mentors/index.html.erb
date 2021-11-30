@@ -31,6 +31,11 @@
             <%= label_tag skill, nil, class:'form-check-label collection_check_boxes', id:'backend' %>
         <% end %>
       </div>
+        <div class="text-align: center">
+          <%= select_tag "rating", options_for_select((1..5).to_a), data: { action:'change->filter#refresh', filter_target: 'select'} %>
+          <%= check_box_tag 'missions' %>
+          <%= label_tag 'missions availables' %>
+        </div>
     <% end %>
     <%= image_tag asset_url("Saly-8.png") %>
   </div>
