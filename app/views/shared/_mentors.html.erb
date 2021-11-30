@@ -1,5 +1,6 @@
-
-<div class="container-mentors" data-filter-target="mentors">
+<div class="vide" data-filter-target="mentors">
+  <h3 class= 'results'><%= @mentors.count %> results </h3>
+<div class="container-mentors" >
   <% mentors.each do |mentor| %>
     <%= link_to mentor_path(mentor) do %>
       <div class="card-mentors">
@@ -45,4 +46,5 @@
           </div>
       </div>
   <% end %>
+</div>
 </div>
