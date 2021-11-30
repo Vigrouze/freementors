@@ -75,50 +75,38 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="card-dashboard mb-3 shadow-sm">
-            <div class="card-body">
-              <h5 class="d-flex align-items-center mb-3">My mentors</h5>
-                <!-- MENTORS ACCEPTED -->
-              <div class="list-group">
-                <% @mentors.each do |mentor| %>
-                  <%= link_to mentor_path(mentor) do %>
-                    <div class="list-group-item list-group-item-action">
-                      <div class="d-flex w-100 align-items-center gap-3">
-                        <% if mentor.avatar.attached? %>
-                          <%= cl_image_tag mentor.avatar.key, class: "avatar" %>
-                        <% else %>
-                          <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
-                        <% end %>
-                        <h5 class="flex-grow-1 mb-1"><%= "#{mentor.first_name} #{mentor.last_name}" %></h5>
-                        <p class="text-success text-center flex-align-end"> <span class="fw-bolder">Connected</span> <%= image_tag("Accepted.png", style:"width: 40px;") %></p>
-                      </div>
-                    </div>
+          <h5 class="align-items-center m-3">My mentors</h5>
+          <div class="bubbles m-3" data-controller="tippy">
+          <!-- MENTORS ACCEPTED -->
+            <div class="mentor_bubbles">
+              <% @mentors.each do |mentor| %>
+                <%= link_to mentor_path(mentor) do %>
+                  <% if mentor.avatar.attached? %>
+                    <%= cl_image_tag mentor.avatar.key, class: "avatar-medium", data: { tippy_target: "avatar", content: mentor.name} %>
+                  <% else %>
+                    <%= image_tag asset_url("placeholder-avatar.png"), class:"avatar-medium", data: { tippy_target: "avatar", content: mentor.name} %>
+                  <% end %>
+                  <%= image_tag("check.png", class:"avatar-status") %>
+                <% end %>
+              <% end %>
+            </div>
+            <!-- MENTORS PENDING OR DENIED -->
+            <div class="mentor_bubbles">
+              <% @applied_mentors.each do |applied_mentor| %>
+                <%= link_to mentor_path(applied_mentor) do %>
+                  <% if applied_mentor.avatar.attached? %>
+                    <%= cl_image_tag applied_mentor.avatar.key, class: "avatar-medium", data: { tippy_target: "avatar", content: applied_mentor.name } %>
+                  <% else %>
+                    <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-medium", data: { tippy_target: "avatar", content: applied_mentor.name } %>
+                  <% end %>
+                  <% case current_user.relationship_request_status(applied_mentor) %>
+                  <% when "not_connected" %>
+                    <%= image_tag("remove.png", class:"avatar-status") %></p>
+                  <% else %>
+                    <%= image_tag("minuteur.png", class:"avatar-status2") %></p>
                   <% end %>
                 <% end %>
-              </div>
-              <!-- MENTORS PENDING OR DENIED -->
-              <div class="list-group transparent mt-3">
-                <% @applied_mentors.each do |applied_mentor| %>
-                  <%= link_to mentor_path(applied_mentor) do %>
-                    <div class="list-group-item list-group-item-action">
-                      <div class="d-flex w-100 align-items-center gap-3">
-                        <% if applied_mentor.avatar.attached? %>
-                          <%= cl_image_tag applied_mentor.avatar.key, class: "avatar" %>
-                        <% else %>
-                          <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
-                        <% end %>
-                          <h5 class="flex-grow-1 mb-1"><%= "#{applied_mentor.first_name} #{applied_mentor.last_name}" %></h5>
-                        <% case current_user.relationship_request_status(applied_mentor) %>
-                        <% when "not_connected" %>
-                          <p class="text-warning text-center"> <span class="fw-bolder">Not connected</span> <i class="fas fa-times"></i></p>
-                        <% else %>
-                          <p class="text-secondary text-center"> <span class="fw-bolder">Pending</span> <%= image_tag("Pending.png", style:"width: 40px;") %></p>
-                        <% end %>
-                      </div>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
+              <% end %>
             </div>
           </div>
         </div>
@@ -126,9 +114,6 @@
           <div class="card-dashboard mb-3 shadow-sm">
             <div class="card-body">
               <h5 class="d-flex align-items-center mb-3">My missions</h5>
-              <!-- A UPLOADER ICI-->
-
-
               <!-- MISSIONS ACCEPTED -->
               <div class="list-group">
                 <% @missions.each do |mission| %>
@@ -138,13 +123,13 @@
                         <small>
                           <ul class="list-inline d-flex justify-content-between">
                             <li class="list-inline-item">
-                              <%= image_tag("Briefcase.png", style:"width: 20px;") %></i> <%= mission.company %>
+                              <%= image_tag("company.png", style:"width: 25px;") %> <%= mission.company %>
                             </li>
                             <li class="list-inline-item">
-                              <%= image_tag("Time.png", style:"width: 20px;") %></i></i> <%= mission.duration %>
+                              <%= image_tag("time.png", style:"width: 25px;") %> <%= mission.duration %>
                             </li>
                             <li class="list-inline-item">
-                              <%= image_tag("Coin.png", style:"width: 20px;") %></i> <%= mission.fee %>€
+                              <%= image_tag("money.png", style:"width: 25px;") %> <%= mission.fee %>€
                             </li>
                           </ul>
                         </small>
@@ -201,47 +186,6 @@
             </div>
           </div>
         </div> %>
-      </div>
-    </div>
-</div>
-
-
-
-<!-- A UPLOADER TOMORROW -->
-<div class="container">
-  <div class="col-lg-6">
-    <h5 class="align-items-center m-3">My mentors</h5>
-    <div class="bubbles m-3" data-controller="tippy">
-    <!-- MENTORS ACCEPTED -->
-      <div class="mentor_bubbles">
-        <% @mentors.each do |mentor| %>
-          <%= link_to mentor_path(mentor) do %>
-            <% if mentor.avatar.attached? %>
-              <%= cl_image_tag mentor.avatar.key, class: "avatar-medium", data: { tippy_target: "avatar", content: mentor.name} %>
-            <% else %>
-              <%= image_tag asset_url("placeholder-avatar.png"), class:"avatar-medium", data: { tippy_target: "avatar", content: mentor.name} %>
-            <% end %>
-            <%= image_tag("Accepted.png", class:"avatar-status") %>
-          <% end %>
-        <% end %>
-      </div>
-      <!-- MENTORS PENDING OR DENIED -->
-      <div class="mentor_bubbles">
-        <% @applied_mentors.each do |applied_mentor| %>
-          <%= link_to mentor_path(applied_mentor) do %>
-            <% if applied_mentor.avatar.attached? %>
-              <%= cl_image_tag applied_mentor.avatar.key, class: "avatar-medium", data: { tippy_target: "avatar", content: applied_mentor.name } %>
-            <% else %>
-              <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-medium", data: { tippy_target: "avatar", content: applied_mentor.name } %>
-            <% end %>
-            <% case current_user.relationship_request_status(applied_mentor) %>
-            <% when "not_connected" %>
-              <%= image_tag("Denied.png", class:"avatar-status") %></p>
-            <% else %>
-              <%= image_tag("Pending.png", class:"avatar-status") %></p>
-            <% end %>
-          <% end %>
-        <% end %>
       </div>
     </div>
 </div>

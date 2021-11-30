@@ -7,7 +7,8 @@ export default class extends Controller {
   connect() {
     this.avatarTargets.forEach((avatar) => {
       tippy(avatar, {
-        content: avatar.dataset.content
+        content: avatar.dataset.content,
+        placement: 'bottom',
       })
     });
   }
