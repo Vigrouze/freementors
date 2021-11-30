@@ -66,6 +66,7 @@
 
 .card-body p {
   font-size: 13px;
+  text-align: justify;
 }
 
 .user {
@@ -92,4 +93,41 @@
 
 #list-ratings {
   padding-left: 20px;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .form-container {
+    text-align: center;
+  }
+}
+.mission-review {
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 1px;
+  text-align: center;
+  width: 90%;
+  p {
+    font-style: italic;
+    color: grey;
+    margin: 2px;
+  }
+  .fas.fa-pencil-alt {
+    opacity: 0;
+    text-align: right;
+    transition: ease .3s;
+  }
+  &:hover {
+   .fas.fa-pencil-alt {
+    opacity: 1;
+    }
+  }
+  .review-info {
+    display: flex;
+  }
+  .fa-star {
+    color:#FEA93A
+  }
 }
