@@ -4,20 +4,19 @@
       <div class="row">
         <div class="col-lg-3">
           <div class="card-profil mb-3 mt-3 shadow-sm">
-            <div class="card-body">
-              <div class="d-flex flex-column align-items-center text-center">
+              <div class="d-flex flex-column">
                 <% if current_user.avatar.attached? %>
-                  <%= cl_image_tag current_user.avatar.key, class: "avatar-large" %>
+                  <%= cl_image_tag current_user.avatar.key, class: "avatar-medium" %>
                 <% else %>
-                  <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-large" %>
+                  <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-medium" %>
                 <% end %>
                 <div class="mt-3">
                   <h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
                   <p class="text-secondary mb-1">Full Stack Developer</p>
                   <p class="text-muted font-size-sm"><%= @user.address %></p>
+                  <p class="fake-button-dashboard">Update my profil</p>
                 </div>
               </div>
-            </div>
           </div>
           <!-- SOCIAL MEDIA LINKS -->
           <%# <div class="card-dashboard mb-3 shadow-sm">
@@ -41,37 +40,26 @@
         </div>
         <div class="col-lg-9">
           <div class="d-flex card-dashboard mb-3 mt-3 shadow-sm">
-            <div class="card-body">
+            <div class="card-body" style="width: 495px;">
               <h5 class="d-flex align-items-center mb-3">My level experience</h5>
-              <div class="progress card-level">
+              <div class="progress card-level" style="width: 90%;">
                   <div class="progress-bar progress-bar-striped progress-bar-animated rounded" role="progressbar" aria-valuenow="<%= @user.xp_level %>"  aria-valuemin="0" aria-valuemax="100" style="width: <%= @user.xp_level %>%"><%= @user.xp_level %>%</div>
               </div>
-              <p class="text-primary text-center fs-6">1 mission left to get to the next level! </p>
-              <div class="d-flex justify-content-around">
-                <div>
-                  <div class="card-level m-3">
-                    <h6>Complited profil : 100%</h6>
-                  </div>
-                  <div class="card-level m-3">
-                    <h6>Missions done : <%= current_user.finished_missions_as_padawan.count %></h6>
-                  </div>
-                  <div class="card-level m-3">
-                    <h6>Reviews : 4,75 <i class="fas fa-star", style="color: #f3a837"></i></h6>
-                  </div>
+              <p class="next-mission text-center fs-6", style="margin-top: 27px">1 mission left to get to the next level</p>
+              <div class="d-flex justify-content-around" style="margin-top: 65px; width: 90%">
+                <div class="small-card-level">
+                  <h6>✅ Complited profil</h6>
                 </div>
-                <div class="card-level m-3">
-                    <h5>Your level</h5>
-                    <%= current_user.xp_status %>
+                <div class="small-card-level">
+                  <h6>🚀 <%= current_user.finished_missions_as_padawan.count %> missions</h6>
+                </div>
+                <div class="small-card-level">
+                    <h6>4,75 ⭐</h6>
                 </div>
               </div>
             </div>
-            <hr class="hr-dashboard">
-            <div class="card-body", style="width: 150px;">
-              <div class="card-next-level">
-                <h5>Next level</h5>
-                <%= image_tag("badge.png", style:"width: 60px;") %>
-                <h6>The next level will allow you to unlock new missions and options</h6>
-              </div>
+            <div>
+              <%= image_tag("status-padawan.png", class:"card-next-level") %>
             </div>
           </div>
         </div>
@@ -217,5 +205,16 @@
         </div>
       </div>
     </div>
+    <nav class="nav">
+      <a class="nav-link active" aria-current="page" href="#">Mission on-going</a>
+      <a class="nav-link" href="#">Mission applied</a>
+      <a class="nav-link" href="#">Mission finished</a>
+    </nav>
   </div>
 </div>
+
+
+
+<%= @missions.where.not(status: 2).each do |mission| %>
+
+<%= @missions.where(status: 2).each do |mission| %>

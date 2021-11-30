@@ -3,14 +3,32 @@
 }
 
 .card-dashboard {
-  border-radius: 6px;
-  background-color: white
+  width: 950px;
+  height: 345px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: white;
+  justify-content: space-between;
+  box-shadow: 0px 4px 14px 0px #00000014;
 }
 
+.next-mission {
+  width: 90%;
+  height: 43px;
+  top: 55px;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: #FFF8EC;
+  color: #745013
+}
 
 .card-profil {
-  border-radius: 6px;
+  height: 345px;
+  width: 305px;
+  border-radius: 8px;
+  padding: 40px 20px;
   background-color: #022147;
+  box-shadow: 0px 4px 14px 0px #00000014;
   h4 {
     color: white;
   }
@@ -19,26 +37,29 @@
   }
 }
 
-.hr-dashboard{
-   width : 1px;
-   height: 240px !important;
-   color: black;
-}
-
-
-.card-level {
-  background-color: #ebf3fd;
+.small-card-level {
+  width: 170.67px;
+  height: 83px;
+  border-radius: 8px;
+  padding: 32px 12px;
+  background-color: #ECFFEC;
+  color: #137423;
+  text-align: center;
 }
 
 .card-next-level {
-  background-color: #ebf3fd;
-  text-align: center;
+  position: static;
   width: 100%;
+  height: 300px;
+  left: 655.66px;
+  top: 20px;
+  // box-shadow: 0px 4px 4px 0px #00000040;
 }
+
 
 .bubbles {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
   text-align: center;
 }
@@ -49,14 +70,25 @@
 
 .avatar-status {
   position: absolute;
-  right: 26px;
-  width: 23px;
-  top: -4px;
+  right: 5px;
+  width: 19px;
+  top: 0px;
 }
 
 .avatar-status2 {
   position: absolute;
-  right: 25px;
-  width: 26px;
-  top: -5px;
+  right: 5px;
+  width: 22px;
+  top: -1px;
+}
+
+.fake-button-dashboard {
+  background-color: #EAF3FE;
+  height: 51px;
+  width: 265px;
+  left: 0px;
+  top: 0px;
+  border-radius: 8px;
+  padding: 16px;
+  color: #022147 !important;
 }
