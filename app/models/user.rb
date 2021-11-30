@@ -48,6 +48,11 @@ class User < ApplicationRecord
       tsearch: { prefix: true }
     }
 
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+
   def not_yet_applied?(mission)
     applied_missions.where(id: mission.id).empty?
     # will return true if a user hasn't applied yet to a mission
