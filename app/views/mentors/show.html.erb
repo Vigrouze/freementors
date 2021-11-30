@@ -95,17 +95,7 @@
 
         <div class="mentor-show-card-experiences p-3 mt-3">
           <div class="title d-flex justify-content-center align-items-center mb-2"><h4>Experiences</h4></div>
-          <h5 class="mt-3"><strong>Digital Project Manager</strong></h5>
-          <p class="m-0"><strong>Key People SA Freelance</strong></p>
-          <p><small>2 ans et 8 mois</small></p>
-          <hr>
-          <h5><strong>Teacher</strong></h5>
-          <p class="m-0"><strong>Le Wagon Freelance</strong></p>
-          <p><small>3 ans 10 mois</small></p>
-          <hr>
-          <h5><strong>Random job</strong></h5>
-          <p class="m-0"><strong>Random company</strong></p>
-          <p><small>Random duration</small></p>
+          <%= render 'experiences', mentor: @mentor %>
         </div>
 
       </div>
