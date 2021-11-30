@@ -83,7 +83,7 @@ class User < ApplicationRecord
   end
 
   def chatrooms
-    padawan_chatrooms || mentor_chatrooms
+    mentor? ? mentor_chatrooms : padawan_chatrooms
   end
 
   private
