@@ -14,4 +14,12 @@ class RelationshipsController < ApplicationController
       redirect_to mentor_path(@mentor), alert: 'You already sent a request, be patient'
     end
   end
+
+  def update
+    @relationship = Relationship.find(params[:id])
+    @relationship.status = 1
+    @relationship.save
+    authorize @relationship
+    redirect_to mentor_path(@relationship.mentor)
+  end
 end

@@ -14,6 +14,15 @@ class Relationship < ApplicationRecord
   private
 
   def build_notification
-    # Créer la notification (avec le titre, le content et le url) pour chaque recipient (= @user)
+    # Vérifier le statut de la relation
+    if self.accepted?
+      mentor = User.find(self.mentor_id)
+      receiver = User.find(self.padawan_id)
+      Notification.create(
+        title: "You're connected with #{mentor.first_name}",
+        on_click_url: Rails.application.routes.url_helpers.mentor_path(mentor),
+        user_id: receiver.id
+      )
+    end
   end
 end

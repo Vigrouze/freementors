@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  before_action :notifications
   include Pundit
 
   after_action :verify_authorized, except: :index, unless: :skip_pundit?
@@ -22,6 +23,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:avatar])
   end
   private
+
+  def notifications
+    @notifications = current_user.notifications if current_user
+  end
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/

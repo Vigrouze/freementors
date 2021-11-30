@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_24_104830) do
+ActiveRecord::Schema.define(version: 2021_11_29_142956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,18 @@ ActiveRecord::Schema.define(version: 2021_11_24_104830) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["mentor_id"], name: "index_missions_on_mentor_id"
     t.index ["padawan_id"], name: "index_missions_on_padawan_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.text "content"
+    t.string "on_click_url"
+    t.datetime "read_at"
+    t.datetime "seen_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -141,6 +153,7 @@ ActiveRecord::Schema.define(version: 2021_11_24_104830) do
   add_foreign_key "applies", "users", column: "padawan_id"
   add_foreign_key "missions", "users", column: "mentor_id"
   add_foreign_key "missions", "users", column: "padawan_id"
+  add_foreign_key "notifications", "users"
   add_foreign_key "relationships", "users", column: "mentor_id"
   add_foreign_key "relationships", "users", column: "padawan_id"
   add_foreign_key "taggings", "tags"

@@ -8,7 +8,10 @@ class User < ApplicationRecord
   has_many :relationships_as_mentor, class_name: "Relationship", foreign_key: :mentor_id
   has_many :accepted_relationships, -> { where status: :accepted }, class_name: "Relationship", foreign_key: :padawan_id
 
+  has_many :notifications
+
   has_many :mentors, class_name: "User", foreign_key: :padawan_id, through: :accepted_relationships
+  has_many :padawans, class_name: "User", foreign_key: :mentor_id
   has_many :applied_mentors, class_name: "User", foreign_key: :padawan_id, through: :not_connected_relationships_as_padawan, source: :mentor
   acts_as_taggable_on :tags
 

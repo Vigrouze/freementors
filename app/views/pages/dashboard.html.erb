@@ -99,6 +99,35 @@
 								</div>
 							</div>
 						</div>
+            <div class="col-sm-12">
+              <div class="card border-0">
+								<div class="card-body">
+									<h5 class="d-flex align-items-center mb-3">Connections</h5>
+                  <!-- PADAWAN ACCEPTED -->
+                  <div class="list-group">
+                    <% @padawans.each do |padawan| %>
+                      <%= link_to mentor_path(padawan) do %>
+                        <div class="list-group-item list-group-item-action">
+                          <div class="d-flex w-100 align-items-center gap-3">
+                            <% if padawan.avatar.attached? %>
+                              <%= cl_image_tag padawan.avatar.key, class: "avatar" %>
+                            <% else %>
+                              <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
+                            <% end %>
+                            <h5 class="flex-grow-1 mb-1"><%= "#{padawan.first_name} #{padawan.last_name}" %></h5>
+                            <% relationship = Relationship.find_by(padawan: padawan, mentor: current_user) %>
+                            <p class="text-success text-center flex-align-end"> <span class="fw-bolder"><%= relationship.status %></span> <i class="fas fa-check-circle"></i></p>
+                            <% if relationship.pending? %>
+                              <%= link_to "Connect", mentor_relationship_path(current_user, relationship), method: :patch %>
+                            <% end %>
+                          </div>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+								</div>
+							</div>
+						</div>
 						<div class="col-sm-12 mt-3">
 							<div class="card border-0">
 								<div class="card-body">

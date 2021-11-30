@@ -225,6 +225,11 @@ puts 'Sending faker missions'
   relation.save
 end
 
+Relationship.create(
+    padawan_id: jeremy.id,
+    mentor_id: py.id
+)
+
 puts 'Seeding done:'
 puts "#{User.all.count} users created"
 puts "#{Mission.all.count} missions created"
