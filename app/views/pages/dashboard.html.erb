@@ -113,93 +113,26 @@
         <div class="col-lg-6">
           <div class="card-dashboard mb-3 shadow-sm">
             <div class="card-body">
-              
-            <!-- A SUPPRIMER A PARTIR D'ICI -->
-              <h5 class="d-flex align-items-center mb-3">My missions</h5>
+            <h5 class="d-flex align-items-center mb-3">My missions</h5>
               <!-- MISSIONS ACCEPTED -->
               <div class="list-group">
                 <% @missions.each do |mission| %>
                   <div class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                       <h5 class="mb-1"><%= mission.name %></h5>
-                        <small>
-                          <ul class="list-inline d-flex justify-content-between">
-                            <li class="list-inline-item">
-                              <%= image_tag("company.png", style:"width: 25px;") %> <%= mission.company %>
-                            </li>
-                            <li class="list-inline-item">
-                              <%= image_tag("time.png", style:"width: 25px;") %> <%= mission.duration %>
-                            </li>
-                            <li class="list-inline-item">
-                              <%= image_tag("money.png", style:"width: 25px;") %> <%= mission.fee %>€
-                            </li>
-                          </ul>
-                        </small>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-12 mt-3">
-							<div class="card border-0">
-								<div class="card-body">
-                  <!-- A SUPPRIMER JUSQU'ICI -->
-                  
-									<h5 class="d-flex align-items-center mb-3">My missions</h5>
-                    <!-- MISSIONS ACCEPTED -->
-                    <div class="list-group">
-                      <% @missions.each do |mission| %>
-                        <div class="list-group-item list-group-item-action">
-                          <div class="d-flex w-100 justify-content-between">
-
-                            <h5 class="mb-1"><%= mission.name %></h5>
-                            <small>
-                              <ul class="list-inline d-flex justify-content-between">
-                                <li class="list-inline-item">
-                                  <i class="fas fa-building"></i><%= mission.company %>
-                                </li>
-                                <li class="list-inline-item">
-                                  <i class="fas fa-clock"></i></i> <%= mission.duration %>
-                                </li>
-                                <li class="list-inline-item">
-                                  <i class="fas fa-euro-sign"></i> <%= mission.fee %>
-                                </li>
-                              </ul>
-                            </small>
-                          </div>
-                          <% case mission.status %>
-                          <% when "on_going" %>
-                            <p class="text-center fs-3 m-0"><span class="text-success">ONGOING <i class="fas fa-plane-departure"></span></i></p>
-                          <% when "finished" %>
-                            <p class="text-center fs-3 m-0"><span class="text-muted">FINISHED <i class="fas fa-plane-arrival"></span></i></p>
-                          <% else %>
-                            <p class="text-center fs-5 m-0">WILL BEGIN IN <%= "#{(mission.start_date - Date.today).to_i} DAYS" %></i></p>
-                          <% end %>
-                          <p class="mb-1"><%= mission.description %></p>
-                           <!-- CREATE REVIEW IF NOT EXIST, UPDATE OTHERWISE-->
-                          <div class="review">
-                            <% if mission.reviews.exists?(reviewer: current_user) && mission.status == "finished" %>
-                              <div class="mission-review">
-                                <div class="review-info">
-                                  <p><%= mission.reviews.find_by(reviewer: current_user).content %></p>
-                                </div>
-                                  <% rating = mission.reviews.find_by(reviewer: current_user).rating %>
-                                  <% rating.times do %>
-                                   <i class="fas fa-star"></i>
-                                  <% end %>
-                                  <% (5 - rating).times do %>
-                                    <i class="far fa-star"></i>
-                                  <% end %>
-                                <i class="fas fa-pencil-alt", data-bs-toggle="collapse" data-bs-target="#edit_review_2"></i>
-                                <%= render "shared/new-review", mission: mission, review: mission.reviews.find_by(reviewer: current_user) %>
-                              </div>
-                            <% elsif mission.status == "finished" %>
-                              <button class='btn btn-yellow', data-bs-toggle="collapse" data-bs-target="#new_review">Create Review</button>
-                              <div class="mission-review">
-                                <%= render "shared/new-review", mission: mission, review: Review.new %>
-                              </div>
-                            <% end %>
-                          </div>
-                        </div>
-                      <% end %>
+                      <small>
+                        <ul class="list-inline d-flex justify-content-between">
+                          <li class="list-inline-item">
+                            <%= image_tag("company.png", style:"width: 25px;") %> <%= mission.company %>
+                          </li>
+                          <li class="list-inline-item">
+                            <%= image_tag("Time.png", style:"width: 25px;") %> <%= mission.duration %>
+                          </li>
+                          <li class="list-inline-item">
+                            <%= image_tag("money.png", style:"width: 25px;") %> <%= mission.fee %>€
+                          </li>
+                        </ul>
+                      </small>
                     </div>
                     <% case mission.status %>
                     <% when "on_going" %>
@@ -209,50 +142,78 @@
                     <% else %>
                       <p class="text-center fs-5 m-0">WILL BEGIN IN <%= "#{(mission.start_date - Date.today).to_i} DAYS" %></i></p>
                     <% end %>
-                      <p class="mb-1"><%= mission.description %></p>
-                  </div>
-                <% end %>
-              </div>
-              <!-- MISSIONS WHERE APPLICATION IS PENDING OR DENIED -->
-              <div class="list-group transparent mt-3">
-                <% @applied_missions.each do |applied_mission| %>
-                  <div class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                      <h5 class="mb-1"><%= applied_mission.name %></h5>
-                        <small>
-                          <ul class="list-inline d-flex justify-content-between">
-                            <li class="list-inline-item">
-                              <i class="fas fa-building"></i><%= applied_mission.company %>
-                            </li>
-                            <li class="list-inline-item">
-                              <i class="fas fa-clock"></i></i> <%= applied_mission.duration %>
-                            </li>
-                            <li class="list-inline-item">
-                              <i class="fas fa-euro-sign"></i> <%= applied_mission.fee %>
-                            </li>
-                          </ul>
-                        </small>
+                    <p class="mb-1"><%= mission.description %></p>
+                      <!-- CREATE REVIEW IF NOT EXIST, UPDATE OTHERWISE-->
+                    <div class="review">
+                      <% if mission.reviews.exists?(reviewer: current_user) && mission.status == "finished" %>
+                        <div class="mission-review">
+                          <div class="review-info">
+                            <p><%= mission.reviews.find_by(reviewer: current_user).content %></p>
+                          </div>
+                            <% rating = mission.reviews.find_by(reviewer: current_user).rating %>
+                            <% rating.times do %>
+                              <i class="fas fa-star"></i>
+                            <% end %>
+                            <% (5 - rating).times do %>
+                              <i class="far fa-star"></i>
+                            <% end %>
+                          <i class="fas fa-pencil-alt", data-bs-toggle="collapse" data-bs-target="#edit_review_2"></i>
+                          <%= render "shared/new-review", mission: mission, review: mission.reviews.find_by(reviewer: current_user) %>
+                        </div>
+                      <% elsif mission.status == "finished" %>
+                        <button class='btn btn-yellow', data-bs-toggle="collapse" data-bs-target="#new_review">Create Review</button>
+                        <div class="mission-review">
+                          <%= render "shared/new-review", mission: mission, review: Review.new %>
+                        </div>
+                      <% end %>
                     </div>
-                    <% case applied_mission.application_status(current_user) %>
-                    <% when "denied" %>
-                      <p class="text-center fs-5 m-0">Application <span class="text-danger">DENIED <i class="fas fa-times"></i></span></i></p>
-                    <% else %>
-                      <p class="text-center fs-5 m-0">Application <span class="text-secondary">PENDING</span></i></p>
-                    <% end %>
-                      <p class="mb-1"><%= applied_mission.description %></p>
                   </div>
+                  <!--
+                  <% case mission.status %>
+                  <% when "on_going" %>
+                    <p class="text-center fs-3 m-0"><span class="text-success">ONGOING <i class="fas fa-plane-departure"></span></i></p>
+                  <% when "finished" %>
+                    <p class="text-center fs-3 m-0"><span class="text-muted">FINISHED <i class="fas fa-plane-arrival"></span></i></p>
+                  <% else %>
+                    <p class="text-center fs-5 m-0">WILL BEGIN IN <%= "#{(mission.start_date - Date.today).to_i} DAYS" %></i></p>
+                  <% end %>
+                    <p class="mb-1"><%= mission.description %></p> -->
                 <% end %>
               </div>
             </div>
           </div>
         </div>
-        <%# <div class="col-lg-2">
-          <div class="card-dashboard mb-3 mt-3 shadow-sm">
-            <div class="card-body">
-              <h5 class="d-flex align-items-center mb-3">Notifications</h5>
+        <!-- MISSIONS WHERE APPLICATION IS PENDING OR DENIED -->
+        <div class="list-group transparent mt-3">
+          <% @applied_missions.each do |applied_mission| %>
+            <div class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><%= applied_mission.name %></h5>
+                  <small>
+                    <ul class="list-inline d-flex justify-content-between">
+                      <li class="list-inline-item">
+                        <%= image_tag("company.png", style:"width: 25px;") %> <%= applied_mission.company %>
+                      </li>
+                      <li class="list-inline-item">
+                        <%= image_tag("Time.png", style:"width: 25px;") %> <%= applied_mission.duration %>
+                      </li>
+                      <li class="list-inline-item">
+                        <%= image_tag("money.png", style:"width: 25px;") %> <%= applied_mission.fee %>
+                      </li>
+                    </ul>
+                  </small>
+              </div>
+              <% case applied_mission.application_status(current_user) %>
+              <% when "denied" %>
+                <p class="text-center fs-5 m-0">Application <span class="text-danger">DENIED <i class="fas fa-times"></i></span></i></p>
+              <% else %>
+                <p class="text-center fs-5 m-0">Application <span class="text-secondary">PENDING</span></i></p>
+              <% end %>
+                <p class="mb-1"><%= applied_mission.description %></p>
             </div>
-          </div>
-        </div> %>
+          <% end %>
+        </div>
       </div>
     </div>
+  </div>
 </div>
