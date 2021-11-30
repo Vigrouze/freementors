@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_29_084250) do
+
+ActiveRecord::Schema.define(version: 2021_11_29_164215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +46,25 @@ ActiveRecord::Schema.define(version: 2021_11_29_084250) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["mission_id"], name: "index_applies_on_mission_id"
     t.index ["padawan_id"], name: "index_applies_on_padawan_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "padawan_id", null: false
+    t.bigint "mentor_id", null: false
+    t.index ["mentor_id"], name: "index_chatrooms_on_mentor_id"
+    t.index ["padawan_id"], name: "index_chatrooms_on_padawan_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "missions", force: :cascade do |t|
@@ -152,6 +172,10 @@ ActiveRecord::Schema.define(version: 2021_11_29_084250) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "applies", "missions"
   add_foreign_key "applies", "users", column: "padawan_id"
+  add_foreign_key "chatrooms", "users", column: "mentor_id"
+  add_foreign_key "chatrooms", "users", column: "padawan_id"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "missions", "users", column: "mentor_id"
   add_foreign_key "missions", "users", column: "padawan_id"
   add_foreign_key "relationships", "users", column: "mentor_id"

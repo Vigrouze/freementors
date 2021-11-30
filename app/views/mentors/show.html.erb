@@ -37,7 +37,21 @@
             %>
           <% end %>
         <% end %>
-        <%= button_tag "Send a message", type: "button", class: "btn btn-blue-mentor my-2" %>
+        <% if current_user.find_chatroom(@mentor).nil? %>
+          <%= link_to mentor_chatrooms_path(@mentor), method: :post do %>
+            <%= button_tag "Send a message",
+                            type: "button",
+                            class: "btn btn-blue-mentor my-2"
+              %>
+          <% end %>
+        <% else %>
+          <%= link_to chatroom_path(current_user.find_chatroom(@mentor)) do %>
+            <%= button_tag "Send a message",
+                            type: "button",
+                            class: "btn btn-blue-mentor my-2"
+              %>
+          <% end %>
+        <% end %>
       </div>
     </div>
 

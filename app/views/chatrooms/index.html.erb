@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <!-- SIDEBAR -->
+    <div class="col-4" id="sticky-sidebar">
+      <div class="border">
+        <div class="list-group">
+          <%= render @chatrooms %>
+        </div>
+      </div>
+    </div>
+    <div class="col-8" id="main">
+        <div class="chatroom empty mt-0 border rounded d-flex justify-content-center align-items-center">
+          <div>
+            <p class="text-secondary fs-1 m-0">Select a conversation</p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
