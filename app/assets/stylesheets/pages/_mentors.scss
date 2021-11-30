@@ -22,18 +22,18 @@
 
 .filter {
   display: flex;
+  flex: 0 0 300px;
   flex-direction: column;
   align-content: center;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   margin-top: 20px;
-  margin-left: 40px;
+  margin-left: 20px;
   padding: 5px;
-  max-width: 150px;
   position: sticky;
   top: 100px;
   height: fit-content;
-  background-color: white;
+  background-color: rgb(234, 243, 254);
   h3 {
     text-align: center;
     color: #022147;
@@ -54,4 +54,23 @@
 
 .tag {
   margin: 2px
+}
+
+#frontend {
+  color: #01BFD7;
+  background-color: white;
+  border: #01BFD7 solid 1px;
+  &:hover {
+    color:white;
+    background-color: #01BFD7;
+  }
+}
+#backend {
+  color: #606FC1;
+  background-color: white;
+  border: #606FC1 solid 1px;
+  &:hover {
+    color:white;
+    background-color: #606FC1;
+  }
 }

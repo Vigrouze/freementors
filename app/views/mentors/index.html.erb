@@ -10,16 +10,16 @@
 <div class="mentors" data-controller="filter" data-filter-url-value=<%= mentors_path %>>
   <div class="filter">
     <%= form_tag mentors_path, method: 'get' do %>
-      <h3>Frontend</h3>
+      <h5>Frontend</h5>
       <div style="text-align: center">
         <% User::SKILLS[:frontend].each do |skill| %>
 
             <%= check_box_tag "tags[]", skill, !params[:tags].nil? && params[:tags].include?(skill), id: "#{skill}", class:"form-check-input check_boxes optional tag-selector", data: {action: 'change->filter#refresh', filter_target: 'checkbox'} %>
-            <%= label_tag skill, nil, class:'form-check-label collection_check_boxes' %>
+            <%= label_tag skill, nil, class:'form-check-label collection_check_boxes', id:'frontend' %>
         <% end %>
       </div>
       <hr class="hr-mentor">
-      <h3>Backend</h3>
+      <h5>Backend</h5>
       <div style="text-align: center">
         <% User::SKILLS[:backend].each do |skill| %>
           <% if !params[:tags].nil? && params[:tags].include?(skill) %>
@@ -28,10 +28,11 @@
             <% value = nil %>
           <% end %>
             <%= check_box_tag "tags[]", skill, value, id: "#{skill}", class:"form-check-input check_boxes optional tag-selector", data: {action: 'change->filter#refresh', filter_target: 'checkbox'} %>
-            <%= label_tag skill, nil, class:'form-check-label collection_check_boxes' %>
+            <%= label_tag skill, nil, class:'form-check-label collection_check_boxes', id:'backend' %>
         <% end %>
       </div>
     <% end %>
+    <%= image_tag asset_url("Saly-8.png") %>
   </div>
 
   <%= render "shared/mentors", mentors: @mentors  %>
