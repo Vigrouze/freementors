@@ -4,7 +4,6 @@
 
 .card-dashboard {
   border-radius: 6px;
-  // box-shadow: 0 10px 10px rgba(0,0,0,.1);
   background-color: white
 }
 
@@ -34,12 +33,14 @@
 .card-next-level {
   background-color: #ebf3fd;
   text-align: center;
+  width: 100%;
 }
 
 .bubbles {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
+  text-align: center;
 }
 
 .mentor_bubbles {
@@ -48,14 +49,14 @@
 
 .avatar-status {
   position: absolute;
-  right: 33px;
+  right: 26px;
   width: 23px;
   top: -4px;
 }
 
 .avatar-status2 {
   position: absolute;
-  right: 33px;
+  right: 25px;
   width: 26px;
   top: -5px;
 }
