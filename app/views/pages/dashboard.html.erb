@@ -46,30 +46,31 @@
               <div class="progress card-level">
                   <div class="progress-bar progress-bar-striped progress-bar-animated rounded" role="progressbar" aria-valuenow="<%= @user.xp_level %>"  aria-valuemin="0" aria-valuemax="100" style="width: <%= @user.xp_level %>%"><%= @user.xp_level %>%</div>
               </div>
-              <p class="text-primary text-center fs-6">7 missions to get to the next level! </p>
+              <p class="text-primary text-center fs-6">1 mission left to get to the next level! </p>
               <div class="d-flex justify-content-around">
                 <div>
                   <div class="card-level m-3">
-                    <h5>Complited profil</h5>
+                    <h6>Complited profil : 100%</h6>
                   </div>
                   <div class="card-level m-3">
-                    <h5>Missions</h5>
+                    <h6>Missions done : <%= current_user.finished_missions_as_padawan.count %></h6>
                   </div>
                   <div class="card-level m-3">
-                    <h5>Reviews</h5>
+                    <h6>Reviews : 4,75 <i class="fas fa-star", style="color: #f3a837"></i></h6>
                   </div>
                 </div>
                 <div class="card-level m-3">
                     <h5>Your level</h5>
+                    <%= current_user.xp_status %>
                 </div>
               </div>
             </div>
             <hr class="hr-dashboard">
-            <div class="card-body">
+            <div class="card-body", style="width: 150px;">
               <div class="card-next-level">
                 <h5>Next level</h5>
-                <h6>Icon</h6>
-                <h6>Description</h6>
+                <%= image_tag("badge.png", style:"width: 60px;") %>
+                <h6>The next level will allow you to unlock new missions and options</h6>
               </div>
             </div>
           </div>
@@ -113,12 +114,10 @@
         <div class="col-lg-9">
           <div class="card-dashboard mb-3 shadow-sm">
             <div class="card-body">
-            <h5 class="d-flex align-items-center mb-3">My missions</h5>
+            <h5 class="d-flex align-items-center mb-3">My missions : <%= @missions.count %></h5>
               <!-- MISSIONS ACCEPTED -->
               <div class="list-group">
                 <% @missions.each do |mission| %>
-                <%= mission.id %>
-                <%= mission.status %>
                   <div class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                       <h5 class="mb-1"><%= mission.name %></h5>

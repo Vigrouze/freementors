@@ -27,6 +27,7 @@ class User < ApplicationRecord
 
   after_validation :set_tags # see private function
   scope :mentor, -> { where(mentor: true) }
+  has_many :finished_missions_as_padawan, -> { where status: :finished }, class_name: "Mission", foreign_key: :padawan_id
 
   # Constant for filter and forms if we need
   SKILLS = { frontend: ["HTML", "CSS", "JavaScript", "React", "Angular", "Vue", "JQuery", "Swift", "SASS", "Elm"],
@@ -61,7 +62,7 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  
+
   def not_yet_applied?(mission)
     applied_missions.where(id: mission.id).empty?
     # will return true if a user hasn't applied yet to a mission
