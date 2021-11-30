@@ -61,7 +61,7 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  
+
   def not_yet_applied?(mission)
     applied_missions.where(id: mission.id).empty?
     # will return true if a user hasn't applied yet to a mission
@@ -82,7 +82,7 @@ class User < ApplicationRecord
   end
 
   def chatrooms
-    padawan_chatrooms || mentor_chatrooms
+    mentor? ? mentor_chatrooms : padawan_chatrooms
   end
 
   private
