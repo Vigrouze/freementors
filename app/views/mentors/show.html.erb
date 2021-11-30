@@ -101,7 +101,7 @@
 
     <div class="col-9">
       <div class="mentor-show-cards-missions">
-        <h4 class="text-center mission-text"><%= "#{@missions.count} #{('mission').pluralize(@missions.count)}" %> proposed</h4>
+        <h4 class="title-blank mt-3"><%= "#{@missions.count} #{('mission').pluralize(@missions.count)}" %> proposed</h4>
         <% @missions.each do |mission| %>
           <% if current_user.connected?(@mentor) %>
             <div class="mentor-show-card-mission shadow p-3 mt-3">
@@ -130,22 +130,7 @@
               </div>
             </div>
           <% else %>
-            <div class="mentor-show-card-mission shadow p-3 mt-3">
-              <div class="mentor-show-card-mission-infos">
-                <ul class="list-inline d-flex justify-content-between">
-                  <li class="list-inline-item">
-                    <i class="fas fa-building"></i> <%= mission.company %>
-                  </li>
-                  <li class="list-inline-item">
-                    <i class="fas fa-clock"></i> <%= mission.duration %> days
-                  </li>
-                </ul>
-                <p><%= mission.description %></p>
-              </div>
-              <div class="mentor-show-card-mission-actions d-flex justify-content-around align-items-center">
-                <p>Skills required: Ruby</p>
-              </div>
-            </div>
+            <%= render 'mentors-missions', mission: mission %>
           <% end %>
         <% end %>
       </div>

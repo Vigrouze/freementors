@@ -35,6 +35,16 @@
   border-radius: 15px;
 }
 
+.finished {
+  filter: brightness(0.8);
+}
+
+.finished-tag {
+  background-color: #E8FFEA;
+  border-radius: 10px;
+  z-index: 9;
+}
+
 .mentor-show-card-experiences {
   background-color: white;
   box-shadow: 0 1.5em 2.5em -.5em rgba(#000000, .2);
@@ -44,6 +54,12 @@
  .title {
    background-color: #EAF3FE;
    border-radius: 15px 15px 0 0;
+   padding: 10px 10px 10px 30px;
+   h4 {
+     color: #001D48;
+   }
+  }
+ .title-blank {
    padding: 10px 10px 10px 30px;
    h4 {
      color: #001D48;
