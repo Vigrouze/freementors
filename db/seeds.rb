@@ -1,10 +1,5 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
 require 'open-uri'
 require 'faker'
@@ -18,7 +13,7 @@ User.destroy_all
 puts 'Cleaning done'
 
 puts 'Seeding padawans...'
-
+mentors = []
 puts 'Creating Alexandre'
 alexandre = User.new(
   first_name: "Alexandre",
@@ -36,6 +31,8 @@ alexandre = User.new(
   link_malt: "xxx",
   link_slack: "xxx"
 )
+file = URI.open('https://avatars.githubusercontent.com/u/87811770?v=4')
+alexandre.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 alexandre.save
 
 puts 'Creating Jeremy'
@@ -55,6 +52,8 @@ jeremy = User.new(
   link_malt: "xxx",
   link_slack: "xxx"
 )
+file = URI.open('https://avatars.githubusercontent.com/u/86318433?v=4')
+jeremy.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 jeremy.save
 
 puts 'Seeding mentors...'
@@ -77,6 +76,8 @@ nicolas = User.new(
   link_slack: "xxx",
   tag_list: "Ruby, Java, HTML, CSS"
 )
+file = URI.open('https://avatars.githubusercontent.com/u/88536137?v=4')
+nicolas.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 nicolas.save
 
 puts 'Creating Alex'
@@ -96,7 +97,55 @@ alex = User.new(
   link_slack: "xxx",
   tag_list: "CSS, HTML"
 )
+file = URI.open('https://avatars.githubusercontent.com/u/87474835?v=4')
+alex.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 alex.save
+
+puts 'Creating Germain'
+germain = User.new(
+  first_name: "Germain",
+  last_name: "Loret",
+  email: "loret@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "27 Rue d'Argenteuil, Paris",
+  description: "I was Marketing Manager for 3 years at GSM55.com. I learn to code to be abble to make my own projects. After the Wagon, I want to continue to code, on my projects or on any cool projects.",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Mentor",
+  link_github: "https://github.com/grmnlrt",
+  link_malt: "xxx",
+  link_slack: "xxx",
+  tag_list: "CSS, HTML, Javascript, Ruby, React",
+  rating: 5,
+)
+file = URI.open('https://avatars.githubusercontent.com/u/25386941?v=4')
+germain.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+germain.save
+mentors << germain
+
+puts 'Creating Nadia'
+nadia = User.new(
+  first_name: "Nadia",
+  last_name: "Auger",
+  email: "auger@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "49 Rue de Varenne, Paris",
+  description: "After being graduated from an engineering school I worked in an Investment Bank in New York during two years. I always wanted to work as a freelancer this is why I attempted Le Wagon Paris.",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Mentor",
+  link_github: "https://github.com/nadiaauger",
+  link_malt: "xxx",
+  link_slack: "xxx",
+  tag_list: "CSS, HTML, Javascript, Ruby, React",
+  rating: 4,
+)
+file = URI.open('https://avatars.githubusercontent.com/u/54894352?v=4')
+nadia.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+nadia.save
+mentors << nadia
 
 puts 'Creating PY'
 py = User.new(
@@ -111,10 +160,13 @@ py = User.new(
   xp_level: 100,
   xp_status: "Senior",
   link_github: "https://github.com/pyveslg",
-  link_malt: "https://www.linkedin.com/in/pierre-yvesleguennec/?originalSubdomain=fr",
+  link_malt: "#",
   link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=U4XK1JBAB",
-  tag_list: "CSS, HTML, Javascript"
+  tag_list: "CSS, HTML, Javascript",
+  rating: 5,
 )
+file = URI.open('https://avatars.githubusercontent.com/u/8135012?v=4')
+py.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 py.save
 
 puts 'Creating thibaud'
@@ -125,16 +177,181 @@ thibaud = User.new(
   password: "password",
   password_confirmation: "password",
   address: "16 Vla Gaudelet, 75011 Paris",
-  description: "Working as freelancer since 2019, teacher @LeWagonParis",
+  description: "Working as freelancer since 2019, teacher @LeWagonParis. Former student in engineer school and working in bank sector",
   mentor: true,
   xp_level: 100,
   xp_status: "Senior",
   link_github: "https://github.com/thmaurel",
   link_malt: "https://www.linkedin.com/in/thibaudmaurel/",
   link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=UHSMW24EA",
-  tag_list: "Ruby, Python, C"
+  tag_list: "Ruby, Python, C",
+  rating: 5,
 )
+file = URI.open('https://avatars.githubusercontent.com/u/30435844?v=4')
+thibaud.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 thibaud.save
+
+puts 'Creating matthieu'
+matthieu = User.new(
+  first_name: "Matthieu",
+  last_name: "Minier",
+  email: "minier@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "Paris",
+  description: "Hi! I'm Matthieu, from Paris. After working in HR Communications and Marketing, I worked one year in Indonesia towards the social & professional integration of excluded young adults",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Senior",
+  link_github: "https://github.com/Mafiews",
+  link_malt: "#",
+  link_slack: "#",
+  tag_list: "Java, Ruby, Python",
+  rating: 4,
+)
+file = URI.open('https://avatars.githubusercontent.com/u/62572114?v=4')
+matthieu.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+matthieu.save
+mentors << matthieu
+
+puts 'Creating thanh'
+thanh = User.new(
+  first_name: "Thanh",
+  last_name: "Tran",
+  email: "tran@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "Paris",
+  description: "I enjoy every aspect of programming, whether front or back. :) Hopefully I'll be able to help you on both",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Senior",
+  link_github: "https://github.com/trandthanh",
+  link_malt: "#",
+  link_slack: "#",
+  tag_list: "Java, Ruby, Python",
+  rating: 4,
+)
+file = URI.open('https://avatars.githubusercontent.com/u/25582652?v=4')
+thanh.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+thanh.save
+mentors << thanh
+
+puts 'Creating Victor'
+victor = User.new(
+  first_name: "Victor",
+  last_name: "Branger",
+  email: "tran@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "Paris",
+  description: "For 5 years, I worked for a TV series festival and I was in charge of the professional arm of the event. I had a great time working on digital projects and that's why I want to learn to code.",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Senior",
+  link_github: "https://github.com/vbranger",
+  link_malt: "#",
+  link_slack: "#",
+  tag_list: "CSS, Javascript, React, HTML",
+  rating: 5,
+)
+file = URI.open('https://avatars.githubusercontent.com/u/25443871?v=4')
+victor.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+victor.save
+mentors << victor
+
+puts 'Creating Sunny'
+sunny = User.new(
+  first_name: "Sunny",
+  last_name: "Ripert",
+  email: "ripert@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "Paris",
+  description: "Web developer, mentor, teacher, and speaker. Previously at KissKissBankBank, now working with the 3D printing models marketplace Cults. Loving theater improv and code.",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Senior",
+  link_github: "https://github.com/sunny",
+  link_malt: "#",
+  link_slack: "#",
+  tag_list: "CSS, Javascript, React, HTML",
+  rating: 4,
+)
+file = URI.open('https://avatars.githubusercontent.com/u/132?v=4')
+sunny.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+sunny.save
+mentors << sunny
+
+puts 'Creating Hugo'
+hugo = User.new(
+  first_name: "Hugo",
+  last_name: "Mancini",
+  email: "mancini@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "Paris",
+  description: "I worked for two years in a startup as business analyst and then as business developper",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Senior",
+  link_github: "https://github.com/pur100",
+  link_malt: "#",
+  link_slack: "#",
+  tag_list: "CSS, HTML, Ruby",
+  rating: 4,
+)
+file = URI.open('https://avatars.githubusercontent.com/u/52654117?v=4')
+hugo.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+hugo.save
+mentors << hugo
+
+puts 'Creating Martial'
+martial = User.new(
+  first_name: "Martial",
+  last_name: "salgues",
+  email: "salgues@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "Paris",
+  description: "After 7 years as a b2b sales representative, I was thrilled to take a new challenge and embrace what I always loved to do, coding.",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Senior",
+  link_github: "https://github.com/mar7ius",
+  link_malt: "#",
+  link_slack: "#",
+  tag_list: "CSS, HTML, Ruby",
+  rating: 5
+)
+file = URI.open('https://avatars.githubusercontent.com/u/10807969?v=4')
+martial.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+martial.save
+mentors << martial
+
+puts(mentors.count + 2)
+
+############################ MENTORS' MISSION CREATION EXCEPT PY & THIBAUD #############
+mentors.each do |mentor|
+  rand(3..10).times do
+    start_date = Faker::Date.between(from: '2021-11-23', to: '2022-04-25')
+    faker_mission = Mission.new(
+      name: "Développeur(se) Back-End",
+      company: Faker::Company.name,
+      start_date: start_date,
+      end_date: Faker::Date.between(from: start_date, to: '2022-04-25'),
+      description: Faker::Lorem.paragraphs(number: 1).join,
+      fee: rand(200..1000),
+      remote: true,
+      mentor_id: mentor.id,
+      status: 0
+    )
+    faker_mission.save
+  end
+end
+
+###################################################################################
+
 
 puts 'Creating fakkers'
 50.times do
@@ -153,9 +370,25 @@ puts 'Creating fakkers'
     link_github: "https://github.com/#{last_name}",
     link_malt: "xxx",
     link_slack: "xxx",
-    tag_list: User::SKILLS[:frontend].sample(2) + User::SKILLS[:backend].sample(2)
+    tag_list: User::SKILLS[:frontend].sample(2) + User::SKILLS[:backend].sample(2),
+    rating: rand(3..4)
   )
   faker.save
+  rand(3..10).times do
+    start_date = Faker::Date.between(from: '2021-11-23', to: '2022-04-25')
+    faker_mission = Mission.new(
+      name: "Développeur(se) Back-End",
+      company: Faker::Company.name,
+      start_date: start_date,
+      end_date: Faker::Date.between(from: start_date, to: '2022-04-25'),
+      description: Faker::Lorem.paragraphs(number: 1).join,
+      fee: rand(200..1000),
+      remote: true,
+      mentor_id: faker.id,
+      status: 0
+    )
+    faker_mission.save
+  end
 end
 
 puts 'Seeding done:'
@@ -203,11 +436,10 @@ mission2.save
 
 mission3 = Mission.new(
   name: "Back-End dev",
-  company: "Le Wagon",
+  company: "Le Wagon Paris",
   start_date: "2022-01-02",
   end_date: "2022-06-06",
-  description: "
-  Improve the roulette",
+  description: "Create an web application to count the points during the 'Wag-Olympiades'. We have different challenge and referees need an application to count the points per team, set the timers and assign the different teams to events",
   fee: 200,
   remote: true,
   mentor_id: py.id,
@@ -226,29 +458,28 @@ review = Review.new(
 review.save!
 puts "review saved"
 
-puts 'Sending faker missions'
-30.times do
-  start_date = Faker::Date.between(from: '2021-11-23', to: '2022-04-25')
-  faker_mission = Mission.new(
-    name: "Développeur(se) Back-End",
-    company: Faker::Company.name,
-    start_date: start_date,
-    end_date: Faker::Date.between(from: start_date, to: '2022-04-25'),
-    description: Faker::Lorem.paragraphs(number: 1).join,
-    fee: rand(200..1000),
-    remote: true,
-    mentor_id: rand((User.mentor.first.id)..(User.mentor.last.id)),
-    status: 0
-  )
-  faker_mission.save
-
-  relation = Relationship.new(
-    padawan_id: alex.id,
-    mentor_id: py.id,
-    status: 1
-  )
-  relation.save
-end
+# puts 'Sending faker missions'
+# 300.times do
+#   start_date = Faker::Date.between(from: '2021-11-23', to: '2022-04-25')
+#   faker_mission = Mission.new(
+#     name: "Développeur(se) Back-End",
+#     company: Faker::Company.name,
+#     start_date: start_date,
+#     end_date: Faker::Date.between(from: start_date, to: '2022-04-25'),
+#     description: Faker::Lorem.paragraphs(number: 1).join,
+#     fee: rand(200..1000),
+#     remote: true,
+#     mentor_id: rand((User.mentor.first.id)..(User.mentor.last.id)),
+#     status: 0
+#   )
+#   faker_mission.save
+#   end
+relation = Relationship.new(
+  padawan_id: alex.id,
+  mentor_id: py.id,
+  status: 1
+)
+relation.save
 
 puts 'Seeding done:'
 puts "#{User.all.count} users created"
