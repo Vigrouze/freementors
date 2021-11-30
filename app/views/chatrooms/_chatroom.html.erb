@@ -1,5 +1,6 @@
 <%= link_to chatroom_path(chatroom) do %>
   <div class="list-group-item list-group-item-action">
+    <!-- LIST OF CHATROOMS -->
     <div class="d-flex w-100 align-items-center gap-3">
       <% if chatroom.mentor.avatar.attached? %>
         <%= cl_image_tag chatroom.mentor.avatar.key, class: "avatar" %>
@@ -13,8 +14,6 @@
       <% else %>
         <p class="flex-grow-1 m-0"><%= chatroom.mentor.first_name %></p>
       <% end %>
-
-      <i class="fas fa-check-circle text-success"></i></p>
     </div>
   </div>
 <% end %>

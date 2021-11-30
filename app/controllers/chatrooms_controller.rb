@@ -6,7 +6,18 @@ class ChatroomsController < ApplicationController
 
   def create
     @chatroom = Chatroom.new
-    @user = User.find(params[:id])
+    authorize @chatroom
+
+    @mentor = User.find(params[:mentor_id])
+
+    @chatroom.mentor = @mentor
+    @chatroom.padawan = current_user
+
+    if @chatroom.save
+      redirect_to chatroom_path(@chatroom)
+    else
+      render 'mentors/show'
+    end
   end
 
   def show

@@ -7,7 +7,8 @@ Rails.application.routes.draw do
             path: 'mentors', # url of routes will be /mentors instead of /users
             controller: 'mentors', # controller called will be MentorsController instead of UsersController
             only: [:index, :show] do
-              resources :relationships, only: [:create]
+              resources :chatrooms, only: :create
+              resources :relationships, only: :create
             end
 
   # no need to nest the mission show as we access by the mission_id

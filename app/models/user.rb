@@ -24,9 +24,6 @@ class User < ApplicationRecord
   after_validation :set_tags # see private function
   scope :mentor, -> { where(mentor: true) }
 
-  has_many :messages
-  has_many :chatrooms, -> { distinct }, through: :messages
-
   # Constant for filter and forms if we need
   SKILLS = { frontend: ["HTML", "CSS", "JavaScript", "React", "Angular", "Vue", "JQuery", "Swift", "SASS", "Elm"],
              backend: ["PHP", "Ruby", "Java", "C#", "C++", "Python", "Julia", "Scala", "Perl", "Kotlin"] }
@@ -36,6 +33,7 @@ class User < ApplicationRecord
   has_many :applied_missions, class_name: "Mission", through: :application_requests, source: :mission
   # will return a collection of all the missions where the user applied
 
+  has_many :messages
   has_many :padawan_chatrooms, class_name: "Chatroom", foreign_key: :padawan_id
   has_many :mentor_chatrooms, class_name: "Chatroom", foreign_key: :mentor_id
 
@@ -49,6 +47,10 @@ class User < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  def find_chatroom(another_user)
+    chatrooms.find_by(mentor_id: another_user.id)
+  end
 
   def not_yet_applied?(mission)
     applied_missions.where(id: mission.id).empty?
