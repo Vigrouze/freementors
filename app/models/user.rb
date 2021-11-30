@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :mentors, class_name: "User", foreign_key: :padawan_id, through: :accepted_relationships
   has_many :applied_mentors, class_name: "User", foreign_key: :padawan_id, through: :not_connected_relationships_as_padawan, source: :mentor
+
   acts_as_taggable_on :tags
 
   devise :database_authenticatable, :registerable,
@@ -20,6 +21,9 @@ class User < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
   has_many :missions_as_mentor, class_name: "Mission", foreign_key: :mentor_id
   has_many :missions_as_padawan, class_name: "Mission", foreign_key: :padawan_id
+
+  has_many :reviews_as_reviewer, class_name: "Review", foreign_key: :reviewer_id
+  has_many :reviews_as_reviewer, class_name: "Review", foreign_key: :reviewee_id
 
   after_validation :set_tags # see private function
   scope :mentor, -> { where(mentor: true) }

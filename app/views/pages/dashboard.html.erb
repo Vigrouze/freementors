@@ -108,6 +108,7 @@
                       <% @missions.each do |mission| %>
                         <div class="list-group-item list-group-item-action">
                           <div class="d-flex w-100 justify-content-between">
+
                             <h5 class="mb-1"><%= mission.name %></h5>
                             <small>
                               <ul class="list-inline d-flex justify-content-between">
@@ -132,8 +133,32 @@
                             <p class="text-center fs-5 m-0">WILL BEGIN IN <%= "#{(mission.start_date - Date.today).to_i} DAYS" %></i></p>
                           <% end %>
                           <p class="mb-1"><%= mission.description %></p>
-                        <% end %>
-                      </div>
+                           <!-- CREATE REVIEW IF NOT EXIST, UPDATE OTHERWISE-->
+                          <div class="review">
+                            <% if mission.reviews.exists?(reviewer: current_user) && mission.status == "finished" %>
+                              <div class="mission-review">
+                                <div class="review-info">
+                                  <p><%= mission.reviews.find_by(reviewer: current_user).content %></p>
+                                </div>
+                                  <% rating = mission.reviews.find_by(reviewer: current_user).rating %>
+                                  <% rating.times do %>
+                                   <i class="fas fa-star"></i>
+                                  <% end %>
+                                  <% (5 - rating).times do %>
+                                    <i class="far fa-star"></i>
+                                  <% end %>
+                                <i class="fas fa-pencil-alt", data-bs-toggle="collapse" data-bs-target="#edit_review_2"></i>
+                                <%= render "shared/new-review", mission: mission, review: mission.reviews.find_by(reviewer: current_user) %>
+                              </div>
+                            <% elsif mission.status == "finished" %>
+                              <button class='btn btn-yellow', data-bs-toggle="collapse" data-bs-target="#new_review">Create Review</button>
+                              <div class="mission-review">
+                                <%= render "shared/new-review", mission: mission, review: Review.new %>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      <% end %>
                     </div>
                     <!-- MISSIONS WHERE APPLICATION IS PENDING OR DENIED -->
                     <div class="list-group transparent mt-3">
