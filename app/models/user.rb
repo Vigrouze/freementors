@@ -36,7 +36,8 @@ class User < ApplicationRecord
   has_many :applied_missions, class_name: "Mission", through: :application_requests, source: :mission
   # will return a collection of all the missions where the user applied
 
-  has_many :padawan_chatrooms, foreign_key: :padawan_id
+  has_many :padawan_chatrooms, class_name: "Chatroom", foreign_key: :padawan_id
+  has_many :mentor_chatrooms, class_name: "Chatroom", foreign_key: :mentor_id
 
   # pgsearch
   include PgSearch::Model
@@ -66,6 +67,10 @@ class User < ApplicationRecord
 
   def mentor?
     mentor
+  end
+
+  def chatrooms
+    padawan_chatrooms || mentor_chatrooms
   end
 
   private
