@@ -1,10 +1,5 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
 require 'open-uri'
 require 'faker'
@@ -121,7 +116,8 @@ germain = User.new(
   link_github: "https://github.com/grmnlrt",
   link_malt: "xxx",
   link_slack: "xxx",
-  tag_list: "CSS, HTML, Javascript, Ruby, React"
+  tag_list: "CSS, HTML, Javascript, Ruby, React",
+  rating: 5,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/25386941?v=4')
 germain.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
@@ -143,7 +139,8 @@ nadia = User.new(
   link_github: "https://github.com/nadiaauger",
   link_malt: "xxx",
   link_slack: "xxx",
-  tag_list: "CSS, HTML, Javascript, Ruby, React"
+  tag_list: "CSS, HTML, Javascript, Ruby, React",
+  rating: 4,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/54894352?v=4')
 nadia.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
@@ -165,7 +162,8 @@ py = User.new(
   link_github: "https://github.com/pyveslg",
   link_malt: "#",
   link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=U4XK1JBAB",
-  tag_list: "CSS, HTML, Javascript"
+  tag_list: "CSS, HTML, Javascript",
+  rating: 5,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/8135012?v=4')
 py.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
@@ -186,7 +184,8 @@ thibaud = User.new(
   link_github: "https://github.com/thmaurel",
   link_malt: "https://www.linkedin.com/in/thibaudmaurel/",
   link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=UHSMW24EA",
-  tag_list: "Ruby, Python, C"
+  tag_list: "Ruby, Python, C",
+  rating: 5,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/30435844?v=4')
 thibaud.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
@@ -207,7 +206,8 @@ matthieu = User.new(
   link_github: "https://github.com/Mafiews",
   link_malt: "#",
   link_slack: "#",
-  tag_list: "Java, Ruby, Python"
+  tag_list: "Java, Ruby, Python",
+  rating: 4,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/62572114?v=4')
 matthieu.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
@@ -229,7 +229,8 @@ thanh = User.new(
   link_github: "https://github.com/trandthanh",
   link_malt: "#",
   link_slack: "#",
-  tag_list: "Java, Ruby, Python"
+  tag_list: "Java, Ruby, Python",
+  rating: 4,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/25582652?v=4')
 thanh.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
@@ -251,7 +252,8 @@ victor = User.new(
   link_github: "https://github.com/vbranger",
   link_malt: "#",
   link_slack: "#",
-  tag_list: "CSS, Javascript, React, HTML"
+  tag_list: "CSS, Javascript, React, HTML",
+  rating: 5,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/25443871?v=4')
 victor.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
@@ -273,7 +275,8 @@ sunny = User.new(
   link_github: "https://github.com/sunny",
   link_malt: "#",
   link_slack: "#",
-  tag_list: "CSS, Javascript, React, HTML"
+  tag_list: "CSS, Javascript, React, HTML",
+  rating: 4,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/132?v=4')
 sunny.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
@@ -295,7 +298,8 @@ hugo = User.new(
   link_github: "https://github.com/pur100",
   link_malt: "#",
   link_slack: "#",
-  tag_list: "CSS, HTML, Ruby"
+  tag_list: "CSS, HTML, Ruby",
+  rating: 4,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/52654117?v=4')
 hugo.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
@@ -317,7 +321,8 @@ martial = User.new(
   link_github: "https://github.com/mar7ius",
   link_malt: "#",
   link_slack: "#",
-  tag_list: "CSS, HTML, Ruby"
+  tag_list: "CSS, HTML, Ruby",
+  rating: 5
 )
 file = URI.open('https://avatars.githubusercontent.com/u/10807969?v=4')
 martial.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
@@ -365,7 +370,8 @@ puts 'Creating fakkers'
     link_github: "https://github.com/#{last_name}",
     link_malt: "xxx",
     link_slack: "xxx",
-    tag_list: User::SKILLS[:frontend].sample(2) + User::SKILLS[:backend].sample(2)
+    tag_list: User::SKILLS[:frontend].sample(2) + User::SKILLS[:backend].sample(2),
+    rating: rand(3..4)
   )
   faker.save
   rand(3..10).times do
@@ -433,7 +439,7 @@ mission3 = Mission.new(
   company: "Le Wagon Paris",
   start_date: "2022-01-02",
   end_date: "2022-06-06",
-  description: "Create an web application to count the points during the 'Wag-Olympiades'. We have different challenge and referee need application to count the points per team, set the timers and assign the different teams to events",
+  description: "Create an web application to count the points during the 'Wag-Olympiades'. We have different challenge and referees need an application to count the points per team, set the timers and assign the different teams to events",
   fee: 200,
   remote: true,
   mentor_id: py.id,
@@ -468,13 +474,12 @@ puts "review saved"
 #   )
 #   faker_mission.save
 #   end
-  relation = Relationship.new(
-    padawan_id: alex.id,
-    mentor_id: py.id,
-    status: 1
-  )
-  relation.save
-
+relation = Relationship.new(
+  padawan_id: alex.id,
+  mentor_id: py.id,
+  status: 1
+)
+relation.save
 
 puts 'Seeding done:'
 puts "#{User.all.count} users created"
