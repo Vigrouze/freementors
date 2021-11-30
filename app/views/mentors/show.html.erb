@@ -2,7 +2,9 @@
 
 <% content_for :meta_title, "#{@mentor.last_name} is on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, @mentor.description %>
-<% content_for :meta_image, cl_image_path(@mentor.avatar.path) %>
+<% if @mentor.avatar.attached? %>
+  <% content_for :meta_image, cl_image_path(@mentor.avatar.key) %>
+<% end %>
 
 <!-- end of configuration -->
 
