@@ -1,3 +1,11 @@
+<!-- Configure the meta tags for the mentor show -->
+
+<% content_for :meta_title, "#{@mentor.last_name} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @mentor.description %>
+<% content_for :meta_image, cl_image_path(@mentor.avatar.path) %>
+
+<!-- end of configuration -->
+
     <div class="mentor-show-card d-flex justify-content-center align-items-center px-2 mt-3">
      <% if @mentor.avatar.attached? %>
         <%= cl_image_tag @mentor.avatar.key, class: "avatar-xl" %>
