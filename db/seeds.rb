@@ -36,6 +36,8 @@ alexandre = User.new(
   link_malt: "xxx",
   link_slack: "xxx"
 )
+file = URI.open('https://avatars.githubusercontent.com/u/87811770?v=4')
+alexandre.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 alexandre.save
 
 puts 'Creating Jeremy'
@@ -55,6 +57,8 @@ jeremy = User.new(
   link_malt: "xxx",
   link_slack: "xxx"
 )
+file = URI.open('https://avatars.githubusercontent.com/u/86318433?v=4')
+jeremy.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 jeremy.save
 
 puts 'Seeding mentors...'
@@ -77,6 +81,8 @@ nicolas = User.new(
   link_slack: "xxx",
   tag_list: "Ruby, Java, HTML, CSS"
 )
+file = URI.open('https://avatars.githubusercontent.com/u/88536137?v=4')
+nicolas.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 nicolas.save
 
 puts 'Creating Alex'
@@ -96,7 +102,51 @@ alex = User.new(
   link_slack: "xxx",
   tag_list: "CSS, HTML"
 )
+file = URI.open('https://avatars.githubusercontent.com/u/87474835?v=4')
+alex.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 alex.save
+
+puts 'Creating Germain'
+germain = User.new(
+  first_name: "Germain",
+  last_name: "Loret",
+  email: "loret@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "27 Rue d'Argenteuil, Paris",
+  description: "I was Marketing Manager for 3 years at GSM55.com. I learn to code to be abble to make my own projects. After the Wagon, I want to continue to code, on my projects or on any cool projects.",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Mentor",
+  link_github: "https://github.com/grmnlrt",
+  link_malt: "xxx",
+  link_slack: "xxx",
+  tag_list: "CSS, HTML, Javascript, Ruby, React"
+)
+file = URI.open('https://avatars.githubusercontent.com/u/25386941?v=4')
+germain.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+germain.save
+
+puts 'Creating Nadia'
+nadia = User.new(
+  first_name: "Nadia",
+  last_name: "Auger",
+  email: "auger@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "49 Rue de Varenne, Paris",
+  description: "After being graduated from an engineering school I worked in an Investment Bank in New York during two years. I always wanted to work as a freelancer this is why I attempted Le Wagon Paris.",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Mentor",
+  link_github: "https://github.com/nadiaauger",
+  link_malt: "xxx",
+  link_slack: "xxx",
+  tag_list: "CSS, HTML, Javascript, Ruby, React"
+)
+file = URI.open('https://avatars.githubusercontent.com/u/54894352?v=4')
+nadia.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+nadia.save
 
 puts 'Creating PY'
 py = User.new(
@@ -111,10 +161,12 @@ py = User.new(
   xp_level: 100,
   xp_status: "Senior",
   link_github: "https://github.com/pyveslg",
-  link_malt: "https://www.linkedin.com/in/pierre-yvesleguennec/?originalSubdomain=fr",
+  link_malt: "#",
   link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=U4XK1JBAB",
   tag_list: "CSS, HTML, Javascript"
 )
+file = URI.open('https://avatars.githubusercontent.com/u/8135012?v=4')
+py.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 py.save
 
 puts 'Creating thibaud'
@@ -125,7 +177,7 @@ thibaud = User.new(
   password: "password",
   password_confirmation: "password",
   address: "16 Vla Gaudelet, 75011 Paris",
-  description: "Working as freelancer since 2019, teacher @LeWagonParis",
+  description: "Working as freelancer since 2019, teacher @LeWagonParis. Former student in engineer school and working in bank sector",
   mentor: true,
   xp_level: 100,
   xp_status: "Senior",
@@ -134,6 +186,8 @@ thibaud = User.new(
   link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=UHSMW24EA",
   tag_list: "Ruby, Python, C"
 )
+file = URI.open('https://avatars.githubusercontent.com/u/30435844?v=4')
+thibaud.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 thibaud.save
 
 puts 'Creating fakkers'
