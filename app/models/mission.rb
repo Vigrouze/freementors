@@ -4,6 +4,7 @@ class Mission < ApplicationRecord
   acts_as_taggable_on :tags
 
   has_many :applies, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   enum status: { not_started: 0, on_going: 1, finished: 2 }
 
