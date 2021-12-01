@@ -17,6 +17,7 @@ class PagesController < ApplicationController
     @user = current_user
     @missions = @user.missions_as_mentor
     @accepted_relationships = @user.relationships_as_mentor.where(status: :accepted)
-    @other_relationships = @user.relationships_as_mentor.where.not(status: :accepted)
+    @pending_relationships = @user.relationships_as_mentor.where(status: :pending)
+    @denied_relationships = @user.relationships_as_mentor.where(status: :denied)
   end
 end

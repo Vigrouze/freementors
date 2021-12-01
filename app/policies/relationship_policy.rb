@@ -4,8 +4,12 @@ class RelationshipPolicy < ApplicationPolicy
     true
   end
 
-  def update?
-    true
+  def approve?
+    user.mentor?
+  end
+
+  def decline?
+    user.mentor?
   end
 
   class Scope < Scope

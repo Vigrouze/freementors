@@ -17,13 +17,15 @@ class RelationshipsController < ApplicationController
 
   def approve
     @relationship = Relationship.find(params[:id])
+    authorize @relationship
     @relationship.update(status: :accepted)
-    redirect_to 'pages/mentor-dashboard'
+    redirect_to dashboard_mentors_path
   end
 
   def decline
     @relationship = Relationship.find(params[:id])
+    authorize @relationship
     @relationship.update(status: :denied)
-    redirect_to 'pages/mentor-dashboard'
+    redirect_to dashboard_mentors_path
   end
 end

@@ -10,22 +10,36 @@
         <li><%= padawan.name  %></li>
       <% end %>
     </ul>
-  <h4>Pending or denied:</h4>
+  <h4>Pending</h4>
     <ul>
-      <% @other_relationships.each do |other_relationship| %>
-        <% padawan = other_relationship.padawan %>
+      <% @pending_relationships.each do |pending_relationship| %>
+        <% padawan = pending_relationship.padawan %>
         <li>
           <%= padawan.name  %>
           <%= link_to "Accept",
-            relationships_path(other_relationship),
-            method: :patch,
-            action: :approve
+            approve_relationship_path(pending_relationship),
+            method: :patch
           %> |
-          <%= link_to "Decline", "" %>
+          <%= link_to "Decline",
+            decline_relationship_path(pending_relationship),
+            method: :patch
+          %>
         </li>
       <% end %>
     </ul>
-  </ol>
+  <h4>Denied:</h4>
+    <ul>
+      <% @denied_relationships.each do |denied_relationship| %>
+        <% padawan = denied_relationship.padawan %>
+        <li>
+          <%= padawan.name  %>
+          <%= link_to "Accept",
+            approve_relationship_path(denied_relationship),
+            method: :patch
+          %>
+        </li>
+      <% end %>
+    </ul>
   <br>
   <hr>
   <h2>Missions:</h2>

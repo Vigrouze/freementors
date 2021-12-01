@@ -16,7 +16,7 @@ Rails.application.routes.draw do
             end
 
   resources :relationships do
-    collection do
+    member do
       patch :approve
       patch :decline
     end
