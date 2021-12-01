@@ -30,7 +30,7 @@ class User < ApplicationRecord
   has_many :finished_missions_as_padawan, -> { where status: :finished }, class_name: "Mission", foreign_key: :padawan_id
 
   # Constant for filter and forms if we need
-  SKILLS = { frontend: ["HTML", "CSS", "Javascript", "React", "Angular", "Vue", "JQuery", "Swift", "SASS", "Elm"],
+  SKILLS = { frontend: ["HTML", "CSS", "JavaScript", "React", "Angular", "Vue", "jQuery", "Swift", "SASS", "Elm"],
              backend: ["PHP", "Ruby", "Java", "C#", "C++", "Python", "Julia", "Scala", "Perl", "Kotlin"] }
 
   has_many :application_requests, -> { where.not status: :accepted }, class_name: "Apply", foreign_key: :padawan_id

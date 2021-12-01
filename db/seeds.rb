@@ -117,7 +117,7 @@ germain = User.new(
   link_github: "https://github.com/grmnlrt",
   link_malt: "xxx",
   link_slack: "xxx",
-  tag_list: "CSS, HTML, Javascript, Ruby, React",
+  tag_list: "CSS, HTML, JavaScript, Ruby, React",
   rating: 5,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/25386941?v=4')
@@ -140,7 +140,7 @@ nadia = User.new(
   link_github: "https://github.com/nadiaauger",
   link_malt: "xxx",
   link_slack: "xxx",
-  tag_list: "CSS, HTML, Javascript, Ruby, React",
+  tag_list: "CSS, HTML, JavaScript, Ruby, React",
   rating: 4,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/54894352?v=4')
@@ -163,7 +163,7 @@ py = User.new(
   link_github: "https://github.com/pyveslg",
   link_malt: "https://www.linkedin.com/in/pierre-yvesleguennec/",
   link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=U4XK1JBAB",
-  tag_list: "CSS, HTML, Javascript",
+  tag_list: "CSS, HTML, JavaScript",
   rating: 5,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/8135012?v=4')
@@ -253,7 +253,7 @@ victor = User.new(
   link_github: "https://github.com/vbranger",
   link_malt: "#",
   link_slack: "#",
-  tag_list: "CSS, Javascript, React, HTML",
+  tag_list: "CSS, JavaScript, React, HTML",
   rating: 5,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/25443871?v=4')
@@ -276,7 +276,7 @@ sunny = User.new(
   link_github: "https://github.com/sunny",
   link_malt: "#",
   link_slack: "#",
-  tag_list: "CSS, Javascript, React, HTML",
+  tag_list: "CSS, JavaScript, React, HTML",
   rating: 4,
 )
 file = URI.open('https://avatars.githubusercontent.com/u/132?v=4')
@@ -334,7 +334,7 @@ puts(mentors.count + 2)
 
 ############################ MENTORS' MISSION CREATION EXCEPT PY & THIBAUD #############
 mentors.each do |mentor|
-  rand(3..10).times do
+  rand(1..5).times do
     start_date = Faker::Date.between(from: '2021-11-23', to: '2022-04-25')
     faker_mission = Mission.new(
       name: "Développeur(se) Back-End",

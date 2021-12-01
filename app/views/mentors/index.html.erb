@@ -9,27 +9,28 @@
             <%= label_tag skill, nil, class:'form-check-label collection_check_boxes', id:'frontend' %>
         <% end %>
       </div>
-      <hr class="hr-mentor">
-      <h5>Backend</h5>
-      <div style="text-align: center">
-        <% User::SKILLS[:backend].each do |skill| %>
-          <% if !params[:tags].nil? && params[:tags].include?(skill) %>
-            <% value = true %>
-          <% else %>
-            <% value = nil %>
+      <div class="backend">
+        <h5>Backend</h5>
+        <div style="text-align: center">
+          <% User::SKILLS[:backend].each do |skill| %>
+            <% if !params[:tags].nil? && params[:tags].include?(skill) %>
+              <% value = true %>
+            <% else %>
+              <% value = nil %>
+            <% end %>
+              <%= check_box_tag "tags[]", skill, value, id: "#{skill}", class:"form-check-input check_boxes optional tag-selector", data: {action: 'change->filter#refresh', filter_target: 'checkbox'} %>
+              <%= label_tag skill, nil, class:'form-check-label collection_check_boxes', id:'backend' %>
           <% end %>
-            <%= check_box_tag "tags[]", skill, value, id: "#{skill}", class:"form-check-input check_boxes optional tag-selector", data: {action: 'change->filter#refresh', filter_target: 'checkbox'} %>
-            <%= label_tag skill, nil, class:'form-check-label collection_check_boxes', id:'backend' %>
-        <% end %>
+        </div>
       </div>
         <div class="rating-missions">
           <div class="ratingfilter">
+          <h5>Minimum rating</h5>
           <%= select_tag "rating", options_for_select((1..5).to_a), data: { action:'change->filter#refresh', filter_target: 'select'} %>
-          <h6>Minimum rating</h6>
           </div>
           <div class="missionsfilter">
           <%= check_box_tag 'missions', nil, nil, data: {action: 'change->filter#refresh', filter_target: 'tickbox'} %>
-          <h6>Availables missions</h6>
+          <h5>Availables missions</h5>
           </div>
         </div>
     <% end %>
