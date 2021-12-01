@@ -45,7 +45,7 @@
               <div class="progress card-level" style="width: 90%;">
                   <div class="progress-bar progress-bar-striped progress-bar-animated rounded" role="progressbar" aria-valuenow="<%= @user.xp_level %>"  aria-valuemin="0" aria-valuemax="100" style="width: <%= @user.xp_level %>%"><%= @user.xp_level %>%</div>
               </div>
-              <p class="next-mission text-center fs-6", style="margin-top: 27px">1 mission left to get to the next level</p>
+              <p class="next-mission text-center fs-6", style="margin-top: 27px"><%= 10 - @missions.count%> missions left to get to the next level</p>
               <div class="d-flex justify-content-around" style="margin-top: 65px; width: 90%">
                 <div class="small-card-level">
                   <h6><span class="mx-1">✅ </span> Complited profil</h6>
@@ -64,18 +64,23 @@
           </div>
         </div>
         <div class="col-lg-3">
-          <h5 class="align-items-center m-3">My mentors</h5>
+          <h5 class="align-items-center m-3"><%= "My mentor".pluralize(@mentors.count)%> <!-- (<%= @mentors.count %>) --></h5>
           <div class="bubbles m-3" data-controller="tippy">
           <!-- MENTORS ACCEPTED -->
             <div class="mentor_bubbles">
               <% @mentors.each do |mentor| %>
                 <%= link_to mentor_path(mentor) do %>
                   <% if mentor.avatar.attached? %>
-                    <%= cl_image_tag mentor.avatar.key, class: "avatar-medium", data: { tippy_target: "avatar", content: mentor.name} %>
+                    <div class="div-avatar">
+                      <%= cl_image_tag mentor.avatar.key, class: "avatar-medium", data: { tippy_target: "avatar", content: mentor.name} %>
+                      <%= image_tag("check.png", class:"avatar-status") %>
+                    </div>
                   <% else %>
-                    <%= image_tag asset_url("placeholder-avatar.png"), class:"avatar-medium", data: { tippy_target: "avatar", content: mentor.name} %>
+                    <div class="div-avatar">
+                      <%= image_tag asset_url("placeholder-avatar.png"), class:"avatar-medium", data: { tippy_target: "avatar", content: mentor.name} %>
+                      <%= image_tag("check.png", class:"avatar-status") %>
+                    </div>
                   <% end %>
-                  <%= image_tag("check.png", class:"avatar-status") %>
                 <% end %>
               <% end %>
               <% @applied_mentors.each do |applied_mentor| %>
