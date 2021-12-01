@@ -29,6 +29,7 @@ class MentorsController < ApplicationController
 
   def show
     @mentor = User.find(params[:id])
+    @application = Apply.new
     authorize @mentor
     @missions = @mentor.missions_as_mentor.where(padawan_id: nil).order(status: :asc)
   end
