@@ -15,6 +15,12 @@ Rails.application.routes.draw do
               resources :relationships, only: :create
             end
 
+  resources :relationships do
+    collection do
+      patch :approve
+      patch :decline
+    end
+  end
   # no need to nest the mission show as we access by the mission_id
   resources :missions, only: [:show] do
     resources :reviews, only: [:create, :update]

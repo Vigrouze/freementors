@@ -16,7 +16,11 @@
         <% padawan = other_relationship.padawan %>
         <li>
           <%= padawan.name  %>
-          <%= link_to "Accept", "" %> |
+          <%= link_to "Accept",
+            relationships_path(other_relationship),
+            method: :patch,
+            action: :approve
+          %> |
           <%= link_to "Decline", "" %>
         </li>
       <% end %>
