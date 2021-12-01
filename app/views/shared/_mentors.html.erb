@@ -1,50 +1,50 @@
-<div class="vide" data-filter-target="mentors">
+<div class="mentors-cards" data-filter-target="mentors">
   <h3 class= 'results'><%= @mentors.count %> results </h3>
-<div class="container-mentors" >
-  <% mentors.each do |mentor| %>
-    <%= link_to mentor_path(mentor) do %>
-      <div class="card-mentors">
-        <div class="card-header-mentors">
-          <% if mentor.avatar.attached? %>
-            <%= cl_image_tag mentor.avatar.key, class: "avatar" %>
-          <% else %>
-              <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
-          <% end %>
-        </div>
-        <div class="card-body-mentors">
-          <div class="mentor-tag">
-            <% front_end_skills = mentor.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
-            <% if front_end_skills.any? %>
-                <% front_end_skills.each do |front_end_skill| %>
-                  <span class="tag tag-teal"><%= front_end_skill %></span>
-                <% end %>
-            <% end %>
-            <% back_end_skills = mentor.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
-            <% if back_end_skills.any? %>
-                <% back_end_skills.each do |back_end_skill| %>
-                  <span class="tag tag-purple"><%= back_end_skill %></span>
-                <% end %>
+  <div class="container-mentors" >
+    <% mentors.each do |mentor| %>
+      <%= link_to mentor_path(mentor) do %>
+        <div class="card-mentors">
+          <div class="card-header-mentors">
+            <% if mentor.avatar.attached? %>
+              <%= cl_image_tag mentor.avatar.key, class: "avatar" %>
+            <% else %>
+                <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
             <% end %>
           </div>
-          <h4>
-            <%= "#{mentor.first_name} #{mentor.last_name}" %>
-          </h4>
-          <p>
-            <%= "#{mentor.description}"%>
-          </p>
-          <% end %>
-        </div>
-          <div class="list-inline d-flex justify-content-between">
-            <ul id="list-ratings">
-              <li class="list-inline-item">
-                <%= mentor.rating %> <i class="fas fa-star img-attributes"></i>
-              </li>
-              <li class="list-inline-item">
-                <%= mentor.missions_as_mentor.count %> <i class="fas fa-briefcase img-attributes"></i>
-              </li>
-            </ul>
+          <div class="card-body-mentors">
+            <div class="mentor-tag d-flex flex-wrap">
+              <% front_end_skills = mentor.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
+              <% if front_end_skills.any? %>
+                  <% front_end_skills.each do |front_end_skill| %>
+                    <span class="tag tag-teal"><%= front_end_skill %></span>
+                  <% end %>
+              <% end %>
+              <% back_end_skills = mentor.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
+              <% if back_end_skills.any? %>
+                  <% back_end_skills.each do |back_end_skill| %>
+                    <span class="tag tag-purple"><%= back_end_skill %></span>
+                  <% end %>
+              <% end %>
+            </div>
+            <h4>
+              <%= "#{mentor.first_name} #{mentor.last_name}" %>
+            </h4>
+            <p>
+              <%= "#{mentor.description}"%>
+            </p>
+            <% end %>
           </div>
-      </div>
-  <% end %>
-</div>
+            <div class="list-inline d-flex justify-content-between">
+              <ul id="list-ratings">
+                <li class="list-inline-item">
+                  <%= mentor.rating %> <i class="fas fa-star img-attributes"></i>
+                </li>
+                <li class="list-inline-item">
+                  <%= mentor.missions_as_mentor.count %> <i class="fas fa-briefcase img-attributes"></i>
+                </li>
+              </ul>
+            </div>
+        </div>
+    <% end %>
+  </div>
 </div>
