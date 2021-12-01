@@ -21,6 +21,20 @@ class AppliesController < ApplicationController
     end
   end
 
+  def approve
+    @application = Apply.find(params[:id])
+    authorize @application
+    @application.update(status: :accepted)
+    redirect_to dashboard_mentors_path
+  end
+
+  def decline
+    @application = Apply.find(params[:id])
+    authorize @application
+    @application.update(status: :denied)
+    redirect_to dashboard_mentors_path
+  end
+
   def update
   end
 
