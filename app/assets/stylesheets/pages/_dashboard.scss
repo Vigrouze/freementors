@@ -60,21 +60,24 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
-  position: relative;
+}
+
+.div-avatar {
+  position: absolute;
 }
 
 .avatar-status {
-  position: absolute;
-  right: 5px;
+  position: relative;
+  right: 21px;
   width: 19px;
-  top: 0px;
+  top: -27px;
 }
 
 .avatar-status2 {
-  position: absolute;
-  right: 0px;
+  position: relative;
+  right: -59px;
   width: 22px;
-  top: -1px;
+  top: -77px;
 }
 
 .fake-button-dashboard {
