@@ -164,3 +164,15 @@
   padding: 9px;
   color: #47902b;
 }
+
+.progress-bar {
+  width: 25%;
+  background: rgb(15,20,27);
+  background: linear-gradient(90deg, rgba(15,20,27,1) 0%, rgba(16,102,168,1) 100%);
+  font-size: 13px;
+}
+
+.form-rating {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -15,7 +15,7 @@ class AppliesController < ApplicationController
     @apply.padawan = current_user
 
     if @apply.save
-      redirect_to mentor_path(@mission.mentor), notice: "Application sent"
+      redirect_to mentor_path(@mission.mentor, icon: 'success'), notice: "Application sent"
     else
       render :new
     end
