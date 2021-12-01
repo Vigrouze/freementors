@@ -1,16 +1,21 @@
 class RelationshipPolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
-  end
 
   def create?
     true
   end
 
-  def update?
-    true
+  def approve?
+    user.mentor?
+  end
+
+  def decline?
+    user.mentor?
+  end
+
+  class Scope < Scope
+    def resolve
+      scope.all
+    end
   end
 
 end

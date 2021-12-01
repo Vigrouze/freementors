@@ -1,74 +1,257 @@
-<div class="container">
-		<div class="main-body mt-3">
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="card">
-						<div class="card-body">
-							<div class="d-flex flex-column align-items-center text-center">
+<div class="body-dashboard">
+  <div class="container">
+    <div class="main-body">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="card-profil mb-3 mt-3 shadow-sm">
+              <div class="d-flex flex-column">
                 <% if current_user.avatar.attached? %>
-                  <%= cl_image_tag current_user.avatar.key, class: "avatar-large" %>
+                  <%= cl_image_tag current_user.avatar.key, class: "avatar-medium" %>
                 <% else %>
-                  <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-large" %>
+                  <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-medium" %>
                 <% end %>
-								<div class="mt-3">
-									<h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
-									<p class="text-secondary mb-1">Full Stack Developer</p>
-									<p class="text-muted font-size-sm"><%= @user.address %></p>
-								</div>
-							</div>
-							<hr class="my-4">
-              <div class="mt-3">
-                <p class="text-center fs-5">CONFIRMED PADAWAN</p>
-                <ul class="list-inline d-flex justify-content-between">
-                  <li class="list-inline-item">
-                    <i class="fas fa-user-graduate img-attributes"></i> 2 recommandations
-                  </li>
-                  <li class="list-inline-item">
-                    <i class="fas fa-briefcase img-attributes"></i> 3 missions done
-                  </li>
-                </ul>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated rounded" role="progressbar" aria-valuenow="<%= @user.xp_level %>"  aria-valuemin="0" aria-valuemax="100" style="width: <%= @user.xp_level %>%"><%= @user.xp_level %>%</div>
+                <div class="mt-3">
+                  <h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
+                  <p class="text-secondary mb-1">Full Stack Developer</p>
+                  <p class="text-muted font-size-sm"><%= @user.address %></p>
+                  <p class="fake-button-dashboard">Update my profil</p>
                 </div>
                 <p class="text-primary text-center fs-6">7 missions to get to the next level! </p>
               </div>
-							<hr class="my-4">
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-									<h6 class="mb-0"><i class="fab fa-github"></i> Github</h6>
-									<span class="text-secondary"><%= @user.link_github %></span>
-								</li>
-								<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-									<h6 class="mb-0"><i class="fas fa-laptop-code"></i> Malt</h6>
-									<span class="text-secondary"><%= @user.link_malt %></span>
-								</li>
-								<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-									<h6 class="mb-0"><i class="fab fa-slack"></i> Slack</h6>
-									<span class="text-secondary"><%= @user.link_slack %></span>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-8">
-					<div class="row">
-						<div class="col-sm-12">
-              <div class="card border-0">
-								<div class="card-body">
-									<h5 class="d-flex align-items-center mb-3">Mentors</h5>
-                  <!-- MENTORS ACCEPTED -->
-                  <div class="list-group">
-                    <% @mentors.each do |mentor| %>
-                      <%= link_to mentor_path(mentor) do %>
-                        <div class="list-group-item list-group-item-action">
-                          <div class="d-flex w-100 align-items-center gap-3">
-                            <% if mentor.avatar.attached? %>
-                              <%= cl_image_tag mentor.avatar.key, class: "avatar" %>
+          </div>
+          <!-- SOCIAL MEDIA LINKS -->
+          <%# <div class="card-dashboard mb-3 shadow-sm">
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0"><i class="fab fa-github"></i> Github</h6>
+                  <span class="text-secondary"><%= @user.link_github %></span>
+                <%# </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0"><i class="fas fa-laptop-code"></i> Malt</h6>
+                  <%# <span class="text-secondary"><%= @user.link_malt %></span>
+                <%# </li> %>
+                <%# <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0"><i class="fab fa-slack"></i> Slack</h6>
+                  <span class="text-secondary"><%= @user.link_slack %></span>
+                <%# </li>
+              </ul> %>
+            <%# </div>
+          </div> %>
+        </div>
+        <div class="col-lg-9">
+          <div class="d-flex card-dashboard mb-3 mt-3 shadow-sm">
+            <div class="card-body" style="width: 495px;">
+              <h5 class="d-flex align-items-center mb-3">My level experience</h5>
+              <div class="progress card-level" style="width: 90%;">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated rounded" role="progressbar" aria-valuenow="<%= @user.xp_level %>"  aria-valuemin="0" aria-valuemax="100" style="width: <%= @user.xp_level %>%"><%= @user.xp_level %>%</div>
+              </div>
+              <p class="next-mission text-center fs-6", style="margin-top: 27px"><%= 10 - @missions.count%> missions left to get to the next level</p>
+              <div class="d-flex justify-content-around" style="margin-top: 65px; width: 90%">
+                <div class="small-card-level">
+                  <h6><span class="mx-1">✅ </span> Complited profil</h6>
+                </div>
+                <div class="small-card-level">
+                  <h6><span class="mx-1">🚀 </span> <%= current_user.finished_missions_as_padawan.count %> missions</h6>
+                </div>
+                <div class="small-card-level">
+                    <h6>4,75 ⭐</h6>
+                </div>
+              </div>
+            </div>
+            <div>
+              <%= image_tag("status-padawan.png", class:"card-next-level") %>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <h5 class="align-items-center m-3"><%= "My mentor".pluralize(@mentors.count)%> <!-- (<%= @mentors.count %>) --></h5>
+          <div class="bubbles m-3" data-controller="tippy">
+          <!-- MENTORS ACCEPTED -->
+            <div class="mentor_bubbles">
+              <% @mentors.each do |mentor| %>
+                <%= link_to mentor_path(mentor) do %>
+                  <% if mentor.avatar.attached? %>
+                    <div class="div-avatar">
+                      <%= cl_image_tag mentor.avatar.key, class: "avatar-medium", data: { tippy_target: "avatar", content: mentor.name} %>
+                      <%= image_tag("check.png", class:"avatar-status") %>
+                    </div>
+                  <% else %>
+                    <div class="div-avatar">
+                      <%= image_tag asset_url("placeholder-avatar.png"), class:"avatar-medium", data: { tippy_target: "avatar", content: mentor.name} %>
+                      <%= image_tag("check.png", class:"avatar-status") %>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+              <% @applied_mentors.each do |applied_mentor| %>
+                <%= link_to mentor_path(applied_mentor) do %>
+                  <% if applied_mentor.avatar.attached? %>
+                    <%= cl_image_tag applied_mentor.avatar.key, class: "avatar-medium", data: { tippy_target: "avatar", content: applied_mentor.name } %>
+                  <% else %>
+                    <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-medium", data: { tippy_target: "avatar", content: applied_mentor.name } %>
+                  <% end %>
+                  <% case current_user.relationship_request_status(applied_mentor) %>
+                  <% when "not_connected" %>
+                    <%= image_tag("remove.png", class:"avatar-status") %></p>
+                  <% else %>
+                    <%= image_tag("minuteur.png", class:"avatar-status2") %></p>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <div class="mb-3">
+            <!-- DEBUT NAVBARD BOOTSTRAP -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Mission on-going</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Mission applied</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Mission finished</button>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <!-- MISSIONS ON-GOING -->
+                <% @missions.where.not(status: 2).each do |mission| %>
+                  <div class="nav-card-mission">
+                      <small>
+                        <ul class="list-inline d-flex">
+                          <li class="list-inline-item li-dashboard">
+                            <%= image_tag("company.png", style:"width: 20px;") %> <%= mission.company %>
+                          </li>
+                          <li class="list-inline-item li-dashboard">
+                            <%= image_tag("Time.png", style:"width: 20px;") %> <%= mission.duration %> days
+                          </li>
+                          <li class="list-inline-item li-dashboard">
+                            <%= image_tag("money.png", style:"width: 20px;") %> <%= mission.fee %>€/jours
+                          </li>
+                          <li class="li-status">
+                            <% case mission.status %>
+                            <% when "on_going" %>
+                              <div class="d-flex">
+                                <%# <%= link_to "Finish", finished_mission_path(mission), class:"btn-yellow" %>
+                                <p class="text-center fs-6 m-0 on-going-tag">On-going</p>
+                              </div>
+                            <% when "finished" %>
+                              <p class="text-center fs-6 m-0 finish-tag">Finished</p>
                             <% else %>
-                              <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
+                              <p class="text-center fs-6 m-0 start-tag">Start in <%= "#{(mission.start_date - Date.today).to_i} days" %></p>
                             <% end %>
-                            <h5 class="flex-grow-1 mb-1"><%= "#{mentor.first_name} #{mentor.last_name}" %></h5>
-                            <p class="text-success text-center flex-align-end"> <span class="fw-bolder">Connected</span> <i class="fas fa-check-circle"></i></p>
+                          </li>
+                        </ul>
+                      </small>
+                      <h5 class="mb-1"><%= mission.name %></h5>
+                      <p class="mb-1"><%= mission.description %></p>
+                      <div class="mission-tag d-flex flex-wrap p-3">
+                        <% front_end_skills = mission.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
+                        <% if front_end_skills.any? %>
+                          <% front_end_skills.each do |front_end_skill| %>
+                            <span class="tag tag-teal"><%= front_end_skill %></span>
+                          <% end %>
+                        <% end %>
+                        <% back_end_skills = mission.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
+                        <% if back_end_skills.any? %>
+                          <% back_end_skills.each do |back_end_skill| %>
+                            <span class="tag tag-purple"><%= back_end_skill %></span>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <!-- MISSIONS WHERE APPLICATION IS PENDING OR DENIED -->
+                  <% @applied_missions.each do |mission| %>
+                    <div class="nav-card-mission">
+                      <small>
+                        <ul class="list-inline d-flex">
+                          <li class="list-inline-item li-dashboard">
+                            <%= image_tag("company.png", style:"width: 20px;") %> <%= mission.company %>
+                          </li>
+                          <li class="list-inline-item li-dashboard">
+                            <%= image_tag("Time.png", style:"width: 20px;") %> <%= mission.duration %> days
+                          </li>
+                          <li class="list-inline-item li-dashboard">
+                            <%= image_tag("money.png", style:"width: 20px;") %> <%= mission.fee %>€/jours
+                          </li>
+                        </ul>
+                      </small>
+                      <h5 class="mb-1"><%= mission.name %></h5>
+                      <p class="mb-1"><%= mission.description %></p>
+                      <div class="mission-tag d-flex flex-wrap p-3">
+                        <% front_end_skills = mission.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
+                        <% if front_end_skills.any? %>
+                          <% front_end_skills.each do |front_end_skill| %>
+                            <span class="tag tag-teal"><%= front_end_skill %></span>
+                          <% end %>
+                        <% end %>
+                        <% back_end_skills = mission.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
+                        <% if back_end_skills.any? %>
+                          <% back_end_skills.each do |back_end_skill| %>
+                            <span class="tag tag-purple"><%= back_end_skill %></span>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+              <!-- MISSIONS FINISHED -->
+              <% @missions.where(status: 2).each do |mission| %>
+                    <div class="nav-card-mission">
+                      <small>
+                        <ul class="list-inline d-flex">
+                          <li class="list-inline-item li-dashboard">
+                            <%= image_tag("company.png", style:"width: 20px;") %> <%= mission.company %>
+                          </li>
+                          <li class="list-inline-item li-dashboard">
+                            <%= image_tag("Time.png", style:"width: 20px;") %> <%= mission.duration %> days
+                          </li>
+                          <li class="list-inline-item li-dashboard">
+                            <%= image_tag("money.png", style:"width: 20px;") %> <%= mission.fee %>€/jours
+                          </li>
+                          <li class="li-status">
+                            <% case mission.status %>
+                            <% when "on_going" %>
+                            <p class="text-center m-0 fs-6 on-going-tag">On-going</p>
+                              <%= link_to "Finish", finished_mission_path(mission), class:"btn-yellow" %>
+                            <% when "finished" %>
+                              <p class="text-center fs-6 m-0 finish-tag">Finished</p>
+                            <% else %>
+                              <p class="text-center fs-6 m-0 start-tag">Start in <%= "#{(mission.start_date - Date.today).to_i} days" %></p>
+                            <% end %>
+                          </li>
+                        </ul>
+                      </small>
+                      <h5 class="mb-1"><%= mission.name %></h5>
+                      <p class="mb-1"><%= mission.description %></p>
+                      <div class="mission-tag d-flex flex-wrap p-3">
+                          <% front_end_skills = mission.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
+                          <% if front_end_skills.any? %>
+                            <% front_end_skills.each do |front_end_skill| %>
+                              <span class="tag tag-teal"><%= front_end_skill %></span>
+                            <% end %>
+                          <% end %>
+                          <% back_end_skills = mission.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
+                          <% if back_end_skills.any? %>
+                            <% back_end_skills.each do |back_end_skill| %>
+                              <span class="tag tag-purple"><%= back_end_skill %></span>
+                            <% end %>
+                          <% end %>
+                    </div>
+                      <!-- CREATE REVIEW IF NOT EXIST, UPDATE OTHERWISE-->
+                    <div class="review">
+                      <% if mission.reviews.exists?(reviewer: current_user) && mission.status == "finished" %>
+                        <div class="mission-review">
+                          <div class="review-info">
+                            <p><%= mission.reviews.find_by(reviewer: current_user).content %></p>
                           </div>
                         </div>
                       <% end %>
@@ -125,80 +308,13 @@
                       <% end %>
                     <% end %>
                   </div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-12 mt-3">
-							<div class="card border-0">
-								<div class="card-body">
-									<h5 class="d-flex align-items-center mb-3">Missions</h5>
-                    <!-- MISSIONS ACCEPTED -->
-                    <div class="list-group">
-                      <% @missions.each do |mission| %>
-                        <div class="list-group-item list-group-item-action">
-                          <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><%= mission.name %></h5>
-                            <small>
-                              <ul class="list-inline d-flex justify-content-between">
-                                <li class="list-inline-item">
-                                  <i class="fas fa-building"></i><%= mission.company %>
-                                </li>
-                                <li class="list-inline-item">
-                                  <i class="fas fa-clock"></i></i> <%= mission.duration %>
-                                </li>
-                                <li class="list-inline-item">
-                                  <i class="fas fa-euro-sign"></i> <%= mission.fee %>
-                                </li>
-                              </ul>
-                            </small>
-                          </div>
-                          <% case mission.status %>
-                          <% when "on_going" %>
-                            <p class="text-center fs-3 m-0"><span class="text-success">ONGOING <i class="fas fa-plane-departure"></span></i></p>
-                          <% when "finished" %>
-                            <p class="text-center fs-3 m-0"><span class="text-muted">FINISHED <i class="fas fa-plane-arrival"></span></i></p>
-                          <% else %>
-                            <p class="text-center fs-5 m-0">WILL BEGIN IN <%= "#{(mission.start_date - Date.today).to_i} DAYS" %></i></p>
-                          <% end %>
-                          <p class="mb-1"><%= mission.description %></p>
-                        <% end %>
-                      </div>
-                    </div>
-                    <!-- MISSIONS WHERE APPLICATION IS PENDING OR DENIED -->
-                    <div class="list-group transparent mt-3">
-                      <% @applied_missions.each do |applied_mission| %>
-                        <div class="list-group-item list-group-item-action">
-                          <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><%= applied_mission.name %></h5>
-                            <small>
-                              <ul class="list-inline d-flex justify-content-between">
-                                <li class="list-inline-item">
-                                  <i class="fas fa-building"></i><%= applied_mission.company %>
-                                </li>
-                                <li class="list-inline-item">
-                                  <i class="fas fa-clock"></i></i> <%= applied_mission.duration %>
-                                </li>
-                                <li class="list-inline-item">
-                                  <i class="fas fa-euro-sign"></i> <%= applied_mission.fee %>
-                                </li>
-                              </ul>
-                            </small>
-                          </div>
-                          <% case applied_mission.application_status(current_user) %>
-                          <% when "denied" %>
-                            <p class="text-center fs-5 m-0">Application <span class="text-danger">DENIED <i class="fas fa-times"></i></span></i></p>
-                          <% else %>
-                            <p class="text-center fs-5 m-0">Application <span class="text-secondary">PENDING</span></i></p>
-                          <% end %>
-                          <p class="mb-1"><%= applied_mission.description %></p>
-                        <% end %>
-                      </div>
-                    </div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                <% end %>
+              </div>
+            </div>
+            <!-- FIN NAVBARD BOOTSTRAP -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

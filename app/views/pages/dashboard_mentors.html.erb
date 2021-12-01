@@ -1,0 +1,90 @@
+<div class="container">
+  <h1>Hello, bienvenue dans le back</h1>
+  <br>
+  <h2>Relationships:</h2>
+  <hr>
+  <h4>Connected:</h4>
+    <ul>
+      <% @accepted_relationships.each do |accepted_relationship| %>
+        <% padawan = accepted_relationship.padawan %>
+        <li><%= padawan.name  %></li>
+      <% end %>
+    </ul>
+  <h4>Pending</h4>
+    <ul>
+      <% @pending_relationships.each do |pending_relationship| %>
+        <% padawan = pending_relationship.padawan %>
+        <li>
+          <%= padawan.name  %>
+          <%= link_to "Accept",
+            approve_relationship_path(pending_relationship),
+            method: :patch
+          %> |
+          <%= link_to "Decline",
+            decline_relationship_path(pending_relationship),
+            method: :patch
+          %>
+        </li>
+      <% end %>
+    </ul>
+  <h4>Denied:</h4>
+    <ul>
+      <% @denied_relationships.each do |denied_relationship| %>
+        <% padawan = denied_relationship.padawan %>
+        <li>
+          <%= padawan.name  %>
+          <%= link_to "Accept",
+            approve_relationship_path(denied_relationship),
+            method: :patch
+          %>
+        </li>
+      <% end %>
+    </ul>
+  <br>
+  <hr>
+  <h2>Missions:</h2>
+  <hr>
+  <ol>
+    <% @missions.each do |mission| %>
+    <li>
+      <p><%= "##{mission.id}: #{mission.name} (#{mission.status}) " %> </p>
+      <% accepted_application = mission.applies.find_by(status: :accepted) %>
+      <% pending_applications = mission.applies.where(status: :pending) %>
+      <% denied_applications = mission.applies.where(status: :denied) %>
+
+      <h6> Application accepted: <strong><%= accepted_application.padawan.name unless accepted_application.nil? %></strong> </h6>
+      <h6> Applications pending: </h6>
+      <ul>
+        <% pending_applications.each do |pending_application| %>
+          <li>
+            <strong><%= "#{pending_application.padawan.first_name} (#{pending_application.created_at})" %></strong>
+            <%= link_to "Accept",
+              approve_apply_path(pending_application),
+              method: :patch
+            %> |
+            <%= link_to "Decline",
+              decline_apply_path(pending_application),
+              method: :patch
+            %>
+            <p><small><%= pending_application.motivation %></small></p>
+          </li>
+        <% end %>
+      </ul>
+      <h6> Applications denied: </h6>
+      <ul>
+        <% denied_applications.each do |denied_application| %>
+          <li>
+            <strong><%= "#{denied_application.padawan.first_name} (#{denied_application.created_at})" %></strong>
+            <%= link_to "Accept",
+              approve_apply_path(denied_application),
+              method: :patch
+            %>
+            <p><small><%= denied_application.motivation %></small></p>
+          </li>
+        <% end %>
+      </ul>
+
+    </li>
+    <% end %>
+  </ol>
+</div>
