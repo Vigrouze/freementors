@@ -9,6 +9,7 @@ puts 'Cleaning DB...'
 Relationship.destroy_all
 Mission.destroy_all
 User.destroy_all
+Message.destroy_all
 
 puts 'Cleaning done'
 
