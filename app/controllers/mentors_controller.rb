@@ -19,7 +19,7 @@ class MentorsController < ApplicationController
   def show
     @mentor = User.find(params[:id])
     authorize @mentor
-    @missions = @mentor.missions_as_mentor.order(status: :asc)
+    @missions = @mentor.missions_as_mentor.where(padawan_id: nil).order(status: :asc)
   end
 
   def tagged
