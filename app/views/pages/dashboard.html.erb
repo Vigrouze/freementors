@@ -14,7 +14,7 @@
                   <h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
                   <p class="text-secondary mb-1">Full Stack Developer</p>
                   <p class="text-muted font-size-sm"><%= @user.address %></p>
-                  <p class="fake-button-dashboard">Update my profil</p>
+                  <p class="fake-button-dashboard">Update my profile</p>
                 </div>
               </div>
           </div>
@@ -41,20 +41,20 @@
         <div class="col-lg-9">
           <div class="d-flex card-dashboard mb-3 mt-3 shadow-sm">
             <div class="card-body" style="width: 495px;">
-              <h5 class="d-flex align-items-center mb-3">My level experience</h5>
+              <h5 class="d-flex align-items-center mb-3">My experience level</h5>
               <div class="progress card-level" style="width: 90%;">
                   <div class="progress-bar progress-bar-striped progress-bar-animated rounded" role="progressbar" aria-valuenow="<%= @user.xp_level %>"  aria-valuemin="0" aria-valuemax="100" style="width: <%= @user.xp_level %>%"><%= @user.xp_level %>%</div>
               </div>
               <p class="next-mission text-center fs-6", style="margin-top: 27px"><%= 10 - @missions.count%> missions left to get to the next level</p>
               <div class="d-flex justify-content-around" style="margin-top: 65px; width: 90%">
                 <div class="small-card-level">
-                  <h6><span class="mx-1">✅ </span> Complited profil</h6>
+                  <h6><span class="mx-1">✅ </span> Complited profile</h6>
                 </div>
                 <div class="small-card-level">
                   <h6><span class="mx-1">🚀 </span> <%= current_user.finished_missions_as_padawan.count %> missions</h6>
                 </div>
                 <div class="small-card-level">
-                    <h6>4,75 ⭐</h6>
+                    <h6><span class="mx-1">⭐ </span> 4,75</h6>
                 </div>
               </div>
             </div>
@@ -85,17 +85,27 @@
               <% end %>
               <% @applied_mentors.each do |applied_mentor| %>
                 <%= link_to mentor_path(applied_mentor) do %>
-                  <% if applied_mentor.avatar.attached? %>
-                    <%= cl_image_tag applied_mentor.avatar.key, class: "avatar-medium", data: { tippy_target: "avatar", content: applied_mentor.name } %>
-                  <% else %>
-                    <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-medium", data: { tippy_target: "avatar", content: applied_mentor.name } %>
-                  <% end %>
-                  <% case current_user.relationship_request_status(applied_mentor) %>
-                  <% when "not_connected" %>
-                    <%= image_tag("remove.png", class:"avatar-status") %></p>
-                  <% else %>
-                    <%= image_tag("minuteur.png", class:"avatar-status2") %></p>
-                  <% end %>
+                  <div>
+                    <% if applied_mentor.avatar.attached? %>
+                      <%= cl_image_tag applied_mentor.avatar.key, class: "avatar-medium", data: { tippy_target: "avatar", content: applied_mentor.name } %>
+                      <% case current_user.relationship_request_status(applied_mentor) %>
+                      <% when "denied" %>
+                        <%= image_tag("remove.png", class:"avatar-status3") %></p>
+                      <% else %>
+                        <%= image_tag("minuteur.png", class:"avatar-status2") %></p>
+                      <% end %>
+                  </div>
+                  <div>
+                    <% else %>
+                      <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-medium", data: { tippy_target: "avatar", content: applied_mentor.name } %>
+                      <% case current_user.relationship_request_status(applied_mentor) %>
+                      <% when "denied" %>
+                        <%= image_tag("remove.png", class:"avatar-status3") %></p>
+                      <% else %>
+                        <%= image_tag("minuteur.png", class:"avatar-status2") %></p>
+                      <% end %>
+                    <% end %>
+                  </div>
                 <% end %>
               <% end %>
             </div>
