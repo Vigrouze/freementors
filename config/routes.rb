@@ -25,6 +25,12 @@ Rails.application.routes.draw do
     # => mission_applies POST /missions/:mission_id/applies(.:format)
   end
 
+  resources :notifications, only: [] do
+    member do
+      patch :mark_as_seen
+    end
+  end
+
   resources :chatrooms, only: [:index, :show] do
     resources :messages, only: :create
   end

@@ -22,7 +22,8 @@
 
               <div class="icon dropdown-toggle" role="button" data-bs-toggle="dropdown" id="bell">
                 <%= image_tag "notif.png" %>
-                <span class="notif-pastille"><%= @notifications.length %></span>
+                <% counter = @notifications.where(read: false).length %>
+                <span class="notif-pastille<%= " d-none" if counter.zero? %>"><%= counter %></span>
               </div>
               <div class="dropdown-menu dropdown-menu-end dropdown" id="box" style="border-radius: 15px">
                 <%= render 'notifications/notifications' %>

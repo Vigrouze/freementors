@@ -1,5 +1,9 @@
 <ol class="notifications-list lu" style="list-style-type: none; padding: initial; margin-left: 10px">
   <% @notifications.each do |notification| %>
-    <li class="notification_design"><%= notification.title %></li>
+    <li class="notification_design">
+    <%= notification.title %> |
+    <%= link_to "Check", "#{notification.on_click_url}" %> |
+    <%= link_to "Marked as seen", mark_as_seen_notification_path(notification), method: :patch %>
+    </li>
   <% end %>
 </ol>
