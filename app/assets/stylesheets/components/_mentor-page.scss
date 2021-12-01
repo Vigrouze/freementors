@@ -33,16 +33,28 @@
   background-color: white;
   box-shadow: 0 1.5em 2.5em -.5em rgba(#000000, .2);
   border-radius: 15px;
+  position: relative;
 }
 
 .finished {
-  filter: brightness(0.8);
+background-color: black;
+filter: alpha(opacity = 50); /* IE */
+opacity: 0.2; /* Safari, Opera */
+z-index: 1;
+background-repeat: no - repeat;
+background-position: center;
+position: absolute;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+border-radius: 15px;
 }
 
 .finished-tag {
   background-color: #E8FFEA;
   border-radius: 10px;
-  z-index: 9;
+  z-index: 2;
 }
 
 .mentor-show-card-experiences {

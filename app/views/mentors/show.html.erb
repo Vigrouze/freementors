@@ -101,7 +101,7 @@
 
     <div class="col-9">
       <div class="mentor-show-cards-missions">
-        <h4 class="title-blank mt-3"><%= "#{@missions.count} #{('mission').pluralize(@missions.count)}" %> proposed</h4>
+        <h4 class="title-blank mt-3"><%= "#{@missions.where.not(status: 2).count} #{('mission').pluralize(@missions.where.not(status: 2).count)}" %> available</h4>
         <% @missions.each do |mission| %>
           <% if current_user.connected?(@mentor) %>
             <div class="mentor-show-card-mission shadow p-3 mt-3">
@@ -136,11 +136,4 @@
       </div>
     </div>
   </div>
-<!--
-  <div class="navigation d-flex justify-content-center">
-    <%= link_to mentors_path do %>
-      <%= button_tag "Back to all mentors", type: "button", class: "btn btn-yellow-mentor my-3" %>
-    <% end %>
-  </div>
-  -->
 </div>

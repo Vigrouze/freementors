@@ -14,13 +14,12 @@ class MentorsController < ApplicationController
       format.html # Follow regular flow of Rails
       format.text { render partial: 'shared/mentors.html', locals: { mentors: @mentors } }
     end
-
   end
 
   def show
     @mentor = User.find(params[:id])
     authorize @mentor
-    @missions = @mentor.missions_as_mentor
+    @missions = @mentor.missions_as_mentor.order(status: :asc)
   end
 
   def tagged
