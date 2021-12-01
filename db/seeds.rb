@@ -160,7 +160,7 @@ py = User.new(
   xp_level: 100,
   xp_status: "Senior",
   link_github: "https://github.com/pyveslg",
-  link_malt: "#",
+  link_malt: "https://www.linkedin.com/in/pierre-yvesleguennec/",
   link_slack: "https://lewagon-alumni.slack.com/app_redirect?channel=U4XK1JBAB",
   tag_list: "CSS, HTML, Javascript",
   rating: 5,
