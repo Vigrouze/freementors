@@ -1,3 +1,46 @@
 <div class="container">
   <h1>Hello, bienvenue dans le back</h1>
+  <br>
+  <h2>Relationships:</h2>
+  <hr>
+  <h4>Connected:</h4>
+    <ul>
+      <% @accepted_relationships.each do |accepted_relationship| %>
+        <% padawan = accepted_relationship.padawan %>
+        <li><%= padawan.name  %></li>
+      <% end %>
+    </ul>
+  <h4>Pending or denied:</h4>
+    <ul>
+      <% @other_relationships.each do |other_relationship| %>
+        <% padawan = other_relationship.padawan %>
+        <li>
+          <%= padawan.name  %>
+          <%= link_to "Accept", "" %> |
+          <%= link_to "Decline", "" %>
+        </li>
+      <% end %>
+    </ul>
+  </ol>
+  <br>
+  <hr>
+  <h2>Missions:</h2>
+  <hr>
+  <ol>
+    <% @missions.each do |mission| %>
+    <li>
+      <p><%= "#{mission.name} (#{mission.status}) " %> </p>
+      <h6> Applications: </h6>
+      <ul>
+        <% mission.applies.each do |application| %>
+          <li>
+            <%= "#{application.padawan.first_name} (#{application.created_at})" %>
+            <%= link_to "Accept", "" %> |
+            <%= link_to "Decline", "" %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+    <% end %>
+  </ol>
 </div>
