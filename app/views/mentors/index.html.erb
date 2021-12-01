@@ -6,8 +6,8 @@
     <hr>
   </div>
 </div>
-
-<div class="mentors" data-controller="filter" data-filter-url-value=<%= mentors_path %>>
+<%# data-controller="filter" %>
+<div class="mentors"  data-filter-url-value=<%= mentors_path %>>
   <div class="filter">
     <%= form_tag mentors_path, method: 'get' do %>
       <h5>Frontend</h5>
@@ -35,11 +35,10 @@
           <%= select_tag "rating", options_for_select((1..5).to_a), data: { action:'change->filter#refresh', filter_target: 'select'} %>
           <%= check_box_tag 'missions' %>
           <%= label_tag 'missions availables' %>
+          <%= submit_tag %>
         </div>
     <% end %>
     <%= image_tag asset_url("Saly-8.png") %>
   </div>
-
   <%= render "shared/mentors", mentors: @mentors  %>
-
 </div>

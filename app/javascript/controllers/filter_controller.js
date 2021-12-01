@@ -22,8 +22,15 @@ export default class extends Controller {
     console.log(this.selectTarget.value)
     // si rating est rempli je viens l'ajouter, sinon je ne rajoute pas
     // if rating.nil?
-    let rating = `&rating=${this.selectTarget.value}`
-    //
+    let rating = null
+      if (this.selectTarget.value === null) {
+        rating;
+      } else {
+        rating = `&rating=${this.selectTarget.value}`;
+      }
+      return rating;
+
+    // let rating = `&rating=${this.selectTarget.value}`
     let checkBoxes = this.checkboxTargets
     const result = checkBoxes.filter(checkbox => checkbox.checked == true).map(checkbox => checkbox.value)
     const url = `${this.urlValue}?tags=${result}${rating}`
