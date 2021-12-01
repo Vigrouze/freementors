@@ -11,4 +11,8 @@ class PagesController < ApplicationController
     @mentors = @user.mentors
     @applied_mentors = @user.applied_mentors
   end
+
+  def dashboard_mentors
+
+  end
 end

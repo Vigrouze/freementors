@@ -31,4 +31,5 @@ Rails.application.routes.draw do
 
   get '/tagged', to: "mentors#tagged", as: :tagged
   get "/dashboard", to: "pages#dashboard"
+  get "/dashboard-mentors", to: "pages#dashboard_mentors"
 end
