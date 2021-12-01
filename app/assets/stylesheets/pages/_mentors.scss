@@ -22,7 +22,7 @@
 
 .filter {
   display: flex;
-  flex: 0 0 300px;
+  flex: 0 0 350px;
   flex-direction: column;
   align-content: center;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
@@ -89,7 +89,9 @@
   margin-top: 20px;
   .ratingfilter {
     margin: 5px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .missionsfilter {
     text-align: center;

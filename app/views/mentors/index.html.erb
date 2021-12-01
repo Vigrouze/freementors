@@ -4,9 +4,8 @@
       <h5>Frontend</h5>
       <div style="text-align: center">
         <% User::SKILLS[:frontend].each do |skill| %>
-
             <%= check_box_tag "tags[]", skill, !params[:tags].nil? && params[:tags].include?(skill), id: "#{skill}", class:"form-check-input check_boxes optional tag-selector", data: {action: 'change->filter#refresh', filter_target: 'checkbox'} %>
-            <%= label_tag skill, nil, class:'form-check-label collection_check_boxes', id:'frontend' %>
+            <%= label_tag skill, skill, class:'form-check-label collection_check_boxes', id:'frontend' %>
         <% end %>
       </div>
       <div class="backend">
@@ -19,7 +18,7 @@
               <% value = nil %>
             <% end %>
               <%= check_box_tag "tags[]", skill, value, id: "#{skill}", class:"form-check-input check_boxes optional tag-selector", data: {action: 'change->filter#refresh', filter_target: 'checkbox'} %>
-              <%= label_tag skill, nil, class:'form-check-label collection_check_boxes', id:'backend' %>
+              <%= label_tag skill, skill, class:'form-check-label collection_check_boxes', id:'backend' %>
           <% end %>
         </div>
       </div>

@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
     @review.reviewer = current_user
     @review.mission_id = params[:mission_id]
     mentor = Mission.find(params[:mission_id]).mentor_id
-    @review.mentor = mentor
+    @review.mentor_id = mentor
     @review.save
     authorize @review
     redirect_to dashboard_path

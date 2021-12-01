@@ -354,43 +354,43 @@ end
 ###################################################################################
 
 
-puts 'Creating fakkers'
-50.times do
-  last_name = Faker::Name.last_name
-  faker = User.new(
-    first_name: Faker::Name.first_name,
-    last_name: last_name,
-    email: "#{last_name}@test.com",
-    password: "password",
-    password_confirmation: "password",
-    address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
-    description: Faker::Lorem.paragraphs(number: 1).join,
-    mentor: true,
-    xp_level: 100,
-    xp_status: "Senior",
-    link_github: "https://github.com/#{last_name}",
-    link_malt: "xxx",
-    link_slack: "xxx",
-    tag_list: User::SKILLS[:frontend].sample(2) + User::SKILLS[:backend].sample(2),
-    rating: rand(3..4)
-  )
-  faker.save
-  rand(3..10).times do
-    start_date = Faker::Date.between(from: '2021-11-23', to: '2022-04-25')
-    faker_mission = Mission.new(
-      name: "Développeur(se) Back-End",
-      company: Faker::Company.name,
-      start_date: start_date,
-      end_date: Faker::Date.between(from: start_date, to: '2022-04-25'),
-      description: Faker::Lorem.paragraphs(number: 1).join,
-      fee: rand(200..1000),
-      remote: true,
-      mentor_id: faker.id,
-      status: 0
-    )
-    faker_mission.save
-  end
-end
+# puts 'Creating fakkers'
+# 50.times do
+#   last_name = Faker::Name.last_name
+#   faker = User.new(
+#     first_name: Faker::Name.first_name,
+#     last_name: last_name,
+#     email: "#{last_name}@test.com",
+#     password: "password",
+#     password_confirmation: "password",
+#     address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+#     description: Faker::Lorem.paragraphs(number: 1).join,
+#     mentor: true,
+#     xp_level: 100,
+#     xp_status: "Senior",
+#     link_github: "https://github.com/#{last_name}",
+#     link_malt: "xxx",
+#     link_slack: "xxx",
+#     tag_list: User::SKILLS[:frontend].sample(2) + User::SKILLS[:backend].sample(2),
+#     rating: rand(3..4)
+#   )
+#   faker.save
+#   rand(3..10).times do
+#     start_date = Faker::Date.between(from: '2021-11-23', to: '2022-04-25')
+#     faker_mission = Mission.new(
+#       name: "Développeur(se) Back-End",
+#       company: Faker::Company.name,
+#       start_date: start_date,
+#       end_date: Faker::Date.between(from: start_date, to: '2022-04-25'),
+#       description: Faker::Lorem.paragraphs(number: 1).join,
+#       fee: rand(200..1000),
+#       remote: true,
+#       mentor_id: faker.id,
+#       status: 0
+#     )
+#     faker_mission.save
+#   end
+# end
 
 puts 'Seeding done:'
 puts "#{User.where(mentor: false).count} padawans and #{User.where(mentor: true).count} mentors created"
