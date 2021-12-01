@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   resources :missions, only: [:show] do
     resources :reviews, only: [:create, :update]
     resources :applies, only: [:new, :create]
+    member do
+      get :finished
+    end
     # => mission_applies POST /missions/:mission_id/applies(.:format)
   end
 

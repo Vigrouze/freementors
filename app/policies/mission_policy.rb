@@ -17,5 +17,8 @@ class MissionPolicy < ApplicationPolicy
     return false
   end
 
+  def finished?
+    true
+  end
 
 end
