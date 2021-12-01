@@ -22,14 +22,18 @@
             <%= label_tag skill, nil, class:'form-check-label collection_check_boxes', id:'backend' %>
         <% end %>
       </div>
+      <hr class="hr-mentor">
         <div class="rating-missions">
           <div class="ratingfilter">
-          <%= select_tag "rating", options_for_select((1..5).to_a), data: { action:'change->filter#refresh', filter_target: 'select'} %>
-          <h6>Minimum rating</h6>
+            <h5>Minimum rating</h5>
+            <%= select_tag "rating", options_for_select((1..5).to_a), data: { action:'change->filter#refresh', filter_target: 'select'} %>
           </div>
-          <div class="missionsfilter">
-          <%= check_box_tag 'missions', nil, nil, data: {action: 'change->filter#refresh', filter_target: 'tickbox'} %>
-          <h6>Availables missions</h6>
+        </div>
+        <hr class="hr-mentor">
+        <div class="rating-missions">
+          <div class="missionsfilter d-flex">
+            <%= check_box_tag 'missions', nil, nil, data: {action: 'change->filter#refresh', filter_target: 'tickbox'} %>
+            <h6>Availables missions</h6>
           </div>
         </div>
     <% end %>
