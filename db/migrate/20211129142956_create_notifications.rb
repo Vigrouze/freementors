@@ -7,6 +7,7 @@ class CreateNotifications < ActiveRecord::Migration[6.0]
       t.string :on_click_url
       t.datetime :read_at
       t.datetime :seen_at
+      t.boolean :read, default: false
 
       t.timestamps
     end

@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2021_11_29_142956) do
     t.string "on_click_url"
     t.datetime "read_at"
     t.datetime "seen_at"
+    t.boolean "read", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"

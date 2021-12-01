@@ -21,19 +21,19 @@
 
 .notif-pastille {
   position: absolute;
-  top: 10px;
-  right: 95px;
-  padding: 0px 6px;
+  top: -4px;
+  right: 41px;
+  padding: 0px 7px;
   border-radius: 50%;
   background: red;
   color: white;
+  box-sizing: initial;
 }
 
 .icon img {
     display: inline-block;
     width: 31px;
     margin-top: 6px
-
 }
 
 .icon:hover {

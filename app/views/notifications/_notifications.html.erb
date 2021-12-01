@@ -1,5 +1,5 @@
-<ul class="notifications-list">
+<ol class="notifications-list lu" style="list-style-type: none; padding: initial; margin-left: 10px">
   <% @notifications.each do |notification| %>
-    <li><%= notification.title %></li>
+    <li class="notification_design"><%= notification.title %></li>
   <% end %>
-</ul>
+</ol>
