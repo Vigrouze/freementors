@@ -78,9 +78,6 @@
                   <%= image_tag("check.png", class:"avatar-status") %>
                 <% end %>
               <% end %>
-            </div>
-            <!-- MENTORS PENDING OR DENIED -->
-            <div class="mentor_bubbles">
               <% @applied_mentors.each do |applied_mentor| %>
                 <%= link_to mentor_path(applied_mentor) do %>
                   <% if applied_mentor.avatar.attached? %>
