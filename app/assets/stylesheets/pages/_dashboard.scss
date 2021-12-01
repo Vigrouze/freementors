@@ -92,3 +92,70 @@
   padding: 16px;
   color: #022147 !important;
 }
+
+
+.nav-tabs {
+  border: none;
+}
+
+.nav-tabs .nav-link.active {
+  color: #022147;
+  background-color: transparent;
+  border-color: transparent;
+  opacity: 1;
+}
+
+.nav-tabs .nav-link {
+  color: #022147;
+  opacity: 0.5;
+}
+
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+  border-color: transparent;
+}
+
+.nav-link:hover, .nav-link:focus {
+  color: #022147;
+}
+
+.nav-card-mission {
+  background-color: white;
+  margin: 15px 0px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 14px 0px #00000014;
+  width: 950px;
+}
+
+.li-dashboard {
+  margin-right: 30px !important;
+}
+
+
+.li-status {
+  margin-left: auto;
+}
+
+.start-tag {
+  padding: 5px;
+  background-color: #e8eaff;
+  border-radius: 4px;
+  padding: 9px;
+  color: #022147;
+}
+
+.on-going-tag {
+  padding: 5px;
+  background-color: #ffffe8;
+  border-radius: 4px;
+  padding: 9px;
+  color: #745013;
+}
+
+.finish-tag {
+  padding: 5px;
+  background-color: #e2ffd7;
+  border-radius: 4px;
+  padding: 9px;
+  color: #47902b;
+}
