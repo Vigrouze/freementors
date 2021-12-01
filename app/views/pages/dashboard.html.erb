@@ -16,7 +16,6 @@
                   <p class="text-muted font-size-sm"><%= @user.address %></p>
                   <p class="fake-button-dashboard">Update my profil</p>
                 </div>
-                <p class="text-primary text-center fs-6">7 missions to get to the next level! </p>
               </div>
           </div>
           <!-- SOCIAL MEDIA LINKS -->
@@ -253,60 +252,23 @@
                           <div class="review-info">
                             <p><%= mission.reviews.find_by(reviewer: current_user).content %></p>
                           </div>
+                            <% rating = mission.reviews.find_by(reviewer: current_user).rating %>
+                            <% rating.times do %>
+                              <i class="fas fa-star"></i>
+                            <% end %>
+                            <% (5 - rating).times do %>
+                              <i class="far fa-star"></i>
+                            <% end %>
+                          <i class="fas fa-pencil-alt", data-bs-toggle="collapse" data-bs-target="#edit_review_2"></i>
+                          <%= render "shared/new-review", mission: mission, review: mission.reviews.find_by(reviewer: current_user) %>
+                        </div>
+                      <% elsif mission.status == "finished" %>
+                        <button class='btn btn-yellow', data-bs-toggle="collapse" data-bs-target="#new_review">Create Review</button>
+                        <div class="mission-review">
+                          <%= render "shared/new-review", mission: mission, review: Review.new %>
                         </div>
                       <% end %>
-                    <% end %>
-                  </div>
-                  <!-- MENTORS PENDING OR DENIED -->
-                  <div class="list-group transparent mt-3">
-                    <% @applied_mentors.each do |applied_mentor| %>
-                      <%= link_to mentor_path(applied_mentor) do %>
-                        <div class="list-group-item list-group-item-action">
-                          <div class="d-flex w-100 align-items-center gap-3">
-                            <% if applied_mentor.avatar.attached? %>
-                              <%= cl_image_tag applied_mentor.avatar.key, class: "avatar" %>
-                            <% else %>
-                              <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
-                            <% end %>
-                            <h5 class="flex-grow-1 mb-1"><%= "#{applied_mentor.first_name} #{applied_mentor.last_name}" %></h5>
-                            <% case current_user.relationship_request_status(applied_mentor) %>
-                            <% when "not_connected" %>
-                              <p class="text-warning text-center"> <span class="fw-bolder">Not connected</span> <i class="fas fa-times"></i></p>
-                            <% else %>
-                              <p class="text-secondary text-center"> <span class="fw-bolder">Pending</span> <i class="fas fa-hourglass-half"></i></i></p>
-                            <% end %>
-                        </div>
-                      <% end %>
-                    <% end %>
-                  </div>
-								</div>
-							</div>
-						</div>
-            <div class="col-sm-12">
-              <div class="card border-0">
-								<div class="card-body">
-									<h5 class="d-flex align-items-center mb-3">Connections</h5>
-                  <!-- PADAWAN ACCEPTED -->
-                  <div class="list-group">
-                    <% @padawans.each do |padawan| %>
-                      <%= link_to mentor_path(padawan) do %>
-                        <div class="list-group-item list-group-item-action">
-                          <div class="d-flex w-100 align-items-center gap-3">
-                            <% if padawan.avatar.attached? %>
-                              <%= cl_image_tag padawan.avatar.key, class: "avatar" %>
-                            <% else %>
-                              <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
-                            <% end %>
-                            <h5 class="flex-grow-1 mb-1"><%= "#{padawan.first_name} #{padawan.last_name}" %></h5>
-                            <% relationship = Relationship.find_by(padawan: padawan, mentor: current_user) %>
-                            <p class="text-success text-center flex-align-end"> <span class="fw-bolder"><%= relationship.status %></span> <i class="fas fa-check-circle"></i></p>
-                            <% if relationship.pending? %>
-                              <%= link_to "Connect", mentor_relationship_path(current_user, relationship), method: :patch %>
-                            <% end %>
-                          </div>
-                        </div>
-                      <% end %>
-                    <% end %>
+                    </div>
                   </div>
                 <% end %>
               </div>

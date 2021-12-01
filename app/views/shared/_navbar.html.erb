@@ -29,7 +29,7 @@
 
           <li class="nav-item dropdown menu">
 
-              <div class="icon dropdown-toggle" role="button" data-bs-toggle="dropdown" id="bell">
+              <div class="icon dropdown-toggle" role="button" data-bs-toggle="<%= "dropdown" unless @notifications.count.zero? %>" id="bell">
                 <%= image_tag "notif.png" %>
                 <% counter = @notifications.where(read: false).length %>
                 <span class="notif-pastille<%= " d-none" if counter.zero? %>"><%= counter %></span>
