@@ -16,9 +16,15 @@
           <a href="/mentors">
             <button type="button" id="btn-navbar" class="btn btn-homepage-yellow">Mentors</button>
           </a>
-          <li class="nav-item active">
-            <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
-          </li>
+          <% if current_user.mentor? %>
+            <li class="nav-item active">
+              <%= link_to "Your mentor dashboard", dashboard_mentors_path, class: "nav-link" %>
+            </li>
+          <% else %>
+            <li class="nav-item active">
+              <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
+            </li>
+          <% end %>
           <% if current_user.chatrooms.any? %>
             <li>
               <%= link_to "Messages", chatrooms_path, class: "nav-link" %>

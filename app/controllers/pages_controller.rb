@@ -12,4 +12,12 @@ class PagesController < ApplicationController
     @mentors = @user.mentors
     @applied_mentors = @user.applied_mentors
   end
+
+  def dashboard_mentors
+    @user = current_user
+    @missions = @user.missions_as_mentor
+    @accepted_relationships = @user.relationships_as_mentor.where(status: :accepted)
+    @pending_relationships = @user.relationships_as_mentor.where(status: :pending)
+    @denied_relationships = @user.relationships_as_mentor.where(status: :denied)
+  end
 end

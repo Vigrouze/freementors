@@ -15,6 +15,12 @@ Rails.application.routes.draw do
               resources :relationships, only: :create
             end
 
+  resources :relationships do
+    member do
+      patch :approve
+      patch :decline
+    end
+  end
   # no need to nest the mission show as we access by the mission_id
   resources :missions, only: [:show] do
     resources :reviews, only: [:create, :update]
@@ -24,6 +30,12 @@ Rails.application.routes.draw do
     end
     # => mission_applies POST /missions/:mission_id/applies(.:format)
   end
+  resources :applies do
+    member do
+      patch :approve
+      patch :decline
+    end
+  end
 
   resources :chatrooms, only: [:index, :show] do
     resources :messages, only: :create
@@ -31,4 +43,5 @@ Rails.application.routes.draw do
 
   get '/tagged', to: "mentors#tagged", as: :tagged
   get "/dashboard", to: "pages#dashboard"
+  get "/dashboard-mentors", to: "pages#dashboard_mentors"
 end

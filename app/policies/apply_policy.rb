@@ -3,6 +3,14 @@ class ApplyPolicy < ApplicationPolicy
     true
   end
 
+  def approve?
+    user.mentor?
+  end
+
+  def decline?
+    user.mentor?
+  end
+
   class Scope < Scope
     def resolve
       scope.all
