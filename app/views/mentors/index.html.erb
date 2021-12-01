@@ -7,7 +7,7 @@
   </div>
 </div>
 <%# data-controller="filter" %>
-<div class="mentors"  data-filter-url-value=<%= mentors_path %>>
+<div class="mentors" data-controller="filter" data-filter-url-value=<%= mentors_path %>>
   <div class="filter">
     <%= form_tag mentors_path, method: 'get' do %>
       <h5>Frontend</h5>
@@ -33,9 +33,9 @@
       </div>
         <div class="text-align: center">
           <%= select_tag "rating", options_for_select((1..5).to_a), data: { action:'change->filter#refresh', filter_target: 'select'} %>
-          <%= check_box_tag 'missions' %>
-          <%= label_tag 'missions availables' %>
-          <%= submit_tag %>
+          <%= label_tag 'Minimum rating' %>
+          <%= check_box_tag 'missions', nil, nil, data: {action: 'change->filter#refresh', filter_target: 'tickbox'} %>
+          <%= label_tag 'Availables missions' %>
         </div>
     <% end %>
     <%= image_tag asset_url("Saly-8.png") %>

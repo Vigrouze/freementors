@@ -75,10 +75,10 @@
   }
 }
 .tag-selector:checked + #backend {
-  background-color: #7E73FF;
+  background-color: #606FC1;
   color: white;
 }
-.tag-selector:checked + label {
-  background-color: #7E73FF;
+.tag-selector:checked + #frontend{
+  background-color: #01BFD7;
   color: white;
 }

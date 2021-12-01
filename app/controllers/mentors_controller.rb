@@ -12,10 +12,10 @@ class MentorsController < ApplicationController
     end
 
     if params[:rating].present?
-      @mentors = @mentors.where("rating >= ?", 4)
+      @mentors = @mentors.where("rating >= ?", params[:rating])
     end
 
-    if params[:missions].present?
+    if params[:missions].present? && params[:missions] == "1"
       @mentors = @mentors.select do |mentor|
         mentor.missions_as_mentor.where(padawan_id: nil).any?
       end
