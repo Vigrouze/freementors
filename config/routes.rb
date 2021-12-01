@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  match "/404", to: "errors#not_found", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
+
   devise_for :users
   root to: 'pages#home'
 
@@ -7,14 +11,24 @@ Rails.application.routes.draw do
             path: 'mentors', # url of routes will be /mentors instead of /users
             controller: 'mentors', # controller called will be MentorsController instead of UsersController
             only: [:index, :show] do
+              resources :chatrooms, only: :create
               resources :relationships, only: [:create, :update]
             end
 
   # no need to nest the mission show as we access by the mission_id
   resources :missions, only: [:show] do
+    resources :reviews, only: [:create, :update]
     resources :applies, only: [:new, :create]
+    member do
+      get :finished
+    end
     # => mission_applies POST /missions/:mission_id/applies(.:format)
   end
+
+  resources :chatrooms, only: [:index, :show] do
+    resources :messages, only: :create
+  end
+
   get '/tagged', to: "mentors#tagged", as: :tagged
   get "/dashboard", to: "pages#dashboard"
 end

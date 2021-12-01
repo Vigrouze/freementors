@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_29_142956) do
+ActiveRecord::Schema.define(version: 2021_11_30_144943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,12 +39,31 @@ ActiveRecord::Schema.define(version: 2021_11_29_142956) do
   create_table "applies", force: :cascade do |t|
     t.bigint "mission_id", null: false
     t.bigint "padawan_id", null: false
-    t.integer "status"
+    t.integer "status", default: 0
     t.text "motivation"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["mission_id"], name: "index_applies_on_mission_id"
     t.index ["padawan_id"], name: "index_applies_on_padawan_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "padawan_id", null: false
+    t.bigint "mentor_id", null: false
+    t.index ["mentor_id"], name: "index_chatrooms_on_mentor_id"
+    t.index ["padawan_id"], name: "index_chatrooms_on_padawan_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "missions", force: :cascade do |t|
@@ -97,6 +116,19 @@ ActiveRecord::Schema.define(version: 2021_11_29_142956) do
     t.index ["padawan_id"], name: "index_relationships_on_padawan_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.integer "rating"
+    t.bigint "mission_id", null: false
+    t.bigint "reviewer_id", null: false
+    t.bigint "reviewee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mission_id"], name: "index_reviews_on_mission_id"
+    t.index ["reviewee_id"], name: "index_reviews_on_reviewee_id"
+    t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -145,6 +177,7 @@ ActiveRecord::Schema.define(version: 2021_11_29_142956) do
     t.string "link_github"
     t.string "link_malt"
     t.string "link_slack"
+    t.integer "rating"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -152,10 +185,17 @@ ActiveRecord::Schema.define(version: 2021_11_29_142956) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "applies", "missions"
   add_foreign_key "applies", "users", column: "padawan_id"
+  add_foreign_key "chatrooms", "users", column: "mentor_id"
+  add_foreign_key "chatrooms", "users", column: "padawan_id"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "missions", "users", column: "mentor_id"
   add_foreign_key "missions", "users", column: "padawan_id"
   add_foreign_key "notifications", "users"
   add_foreign_key "relationships", "users", column: "mentor_id"
   add_foreign_key "relationships", "users", column: "padawan_id"
+  add_foreign_key "reviews", "missions"
+  add_foreign_key "reviews", "users", column: "reviewee_id"
+  add_foreign_key "reviews", "users", column: "reviewer_id"
   add_foreign_key "taggings", "tags"
 end

@@ -1,0 +1,62 @@
+.body-dashboard {
+  background-color: #f7f7f5;
+}
+
+.card-dashboard {
+  border-radius: 6px;
+  background-color: white
+}
+
+
+.card-profil {
+  border-radius: 6px;
+  background-color: #022147;
+  h4 {
+    color: white;
+  }
+  p {
+    color: white;
+  }
+}
+
+.hr-dashboard{
+   width : 1px;
+   height: 240px !important;
+   color: black;
+}
+
+
+.card-level {
+  background-color: #ebf3fd;
+}
+
+.card-next-level {
+  background-color: #ebf3fd;
+  text-align: center;
+  width: 100%;
+}
+
+.bubbles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  text-align: center;
+}
+
+.mentor_bubbles {
+  position: relative;
+}
+
+.avatar-status {
+  position: absolute;
+  right: 26px;
+  width: 23px;
+  top: -4px;
+}
+
+.avatar-status2 {
+  position: absolute;
+  right: 25px;
+  width: 26px;
+  top: -5px;
+}

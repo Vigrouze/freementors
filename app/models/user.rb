@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :mentors, class_name: "User", foreign_key: :padawan_id, through: :accepted_relationships
   has_many :padawans, class_name: "User", foreign_key: :mentor_id
   has_many :applied_mentors, class_name: "User", foreign_key: :padawan_id, through: :not_connected_relationships_as_padawan, source: :mentor
+
   acts_as_taggable_on :tags
 
   devise :database_authenticatable, :registerable,
@@ -24,17 +25,25 @@ class User < ApplicationRecord
   has_many :missions_as_mentor, class_name: "Mission", foreign_key: :mentor_id
   has_many :missions_as_padawan, class_name: "Mission", foreign_key: :padawan_id
 
+  has_many :reviews_as_reviewer, class_name: "Review", foreign_key: :reviewer_id
+  has_many :reviews_as_reviewer, class_name: "Review", foreign_key: :reviewee_id
+
   after_validation :set_tags # see private function
   scope :mentor, -> { where(mentor: true) }
+  has_many :finished_missions_as_padawan, -> { where status: :finished }, class_name: "Mission", foreign_key: :padawan_id
 
   # Constant for filter and forms if we need
-  SKILLS = { frontend: ["HTML", "CSS", "JavaScript", "React", "Angular", "Vue", "JQuery", "Swift", "SASS", "Elm"],
+  SKILLS = { frontend: ["HTML", "CSS", "Javascript", "React", "Angular", "Vue", "JQuery", "Swift", "SASS", "Elm"],
              backend: ["PHP", "Ruby", "Java", "C#", "C++", "Python", "Julia", "Scala", "Perl", "Kotlin"] }
 
   has_many :application_requests, -> { where.not status: :accepted }, class_name: "Apply", foreign_key: :padawan_id
   # will return a collection of all the applies of a user
   has_many :applied_missions, class_name: "Mission", through: :application_requests, source: :mission
   # will return a collection of all the missions where the user applied
+
+  has_many :messages
+  has_many :padawan_chatrooms, class_name: "Chatroom", foreign_key: :padawan_id
+  has_many :mentor_chatrooms, class_name: "Chatroom", foreign_key: :mentor_id
 
   # pgsearch
   include PgSearch::Model
@@ -46,6 +55,16 @@ class User < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  def find_chatroom(another_user)
+    chatrooms.find_by(mentor_id: another_user.id)
+  end
+
+
+  def name
+    "#{first_name} #{last_name}"
+  end
+
 
   def not_yet_applied?(mission)
     applied_missions.where(id: mission.id).empty?
@@ -60,6 +79,14 @@ class User < ApplicationRecord
 
   def connected?(mentor)
     relationships_as_padawan.connected.where(mentor_id: mentor.id).any?
+  end
+
+  def mentor?
+    mentor
+  end
+
+  def chatrooms
+    mentor? ? mentor_chatrooms : padawan_chatrooms
   end
 
   private

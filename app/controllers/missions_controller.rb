@@ -26,6 +26,22 @@ class MissionsController < ApplicationController
     end
   end
 
+  def finished
+    @mission = Mission.find(params[:id])
+    authorize @mission
+    @mission.status = 2
+    @mission.padawan = current_user
+    current_user.xp_level += 5
+    if current_user.xp_level >= 25
+      current_user.xp_status = "Padawan Confirmé"
+    else
+      current_user.xp_status = "Padawan"
+    end
+    current_user.save
+    @mission.save
+    redirect_to dashboard_path
+  end
+
   def update
   end
 
