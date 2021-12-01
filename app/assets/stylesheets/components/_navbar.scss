@@ -13,3 +13,12 @@
 .navbar-lewagon.home {
   position: fixed;
 }
+
+.container-fluid {
+  position: absolute;
+  h3 {
+    position: relative;
+    right: 440px;
+    top: 5px;
+  }
+}

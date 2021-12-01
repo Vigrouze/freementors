@@ -10,6 +10,6 @@ class Apply < ApplicationRecord
   before_save :update_mission_padawan
 
   def update_mission_padawan
-    mission.update!(padawan_id: padawan.id) if status == "accepted"
+    mission.update!(padawan_id: padawan.id, status: 0) if status == "accepted"
   end
 end
