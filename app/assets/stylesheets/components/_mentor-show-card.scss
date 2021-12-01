@@ -1,8 +1,16 @@
-
-
 .mentor-show-card-infos {
-  max-width: 30rem;
-  & li {
+  flex-grow: 1;
+  p {
+    max-width: 450px;
+  }
+  li {
+    font-size: 24px;
+  }
+}
+
+.mentor-show-card-actions {
+  width: 250px;
+  p, button {
     font-size: 24px;
   }
 }
