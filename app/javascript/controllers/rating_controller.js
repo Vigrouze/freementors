@@ -11,7 +11,10 @@ export default class extends Controller {
     this.selectTargets.forEach((select) => {
       // console.log(select)
       $(select).barrating({
-        theme: 'css-stars'
+        theme: 'css-stars',
+        onSelect: function(event) {
+          select.value = event;
+        }
       });
     })
   }

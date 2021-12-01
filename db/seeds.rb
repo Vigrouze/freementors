@@ -327,7 +327,7 @@ martial = User.new(
 file = URI.open('https://avatars.githubusercontent.com/u/10807969?v=4')
 martial.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 martial.save
-mentors << martial
+# mentors << martial
 
 puts(mentors.count + 2)
 

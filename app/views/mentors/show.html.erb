@@ -8,166 +8,110 @@
 
 <!-- end of configuration -->
 
-    <div class="mentor-show-card d-flex justify-content-center align-items-center px-2 mt-3">
-     <% if @mentor.avatar.attached? %>
-        <%= cl_image_tag @mentor.avatar.key, class: "avatar-xl" %>
-      <% else %>
-        <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-xl" %>
-      <% end %>
-      <div class="mentor-show-card-infos">
-        <h1><%= @mentor.first_name%> <%= @mentor.last_name%></h1>
-        <p><%= @mentor.description %></p>
-        <ul class="list-inline img_attributes-mentor">
-          <li class="list-inline-item"><a href=<%= @mentor.link_github %>><i class="fab fa-github"></i></a></li>
-          <li class="list-inline-item"><a href=<%= @mentor.link_malt %>><i class="fab fa-linkedin-in"></i></a></li>
-          <li class="list-inline-item"><a href=<%= @mentor.link_slack %>><i class="fab fa-slack"></i></a></li>
-        </ul>
+    <div class="mentor-show-card mt-3 d-flex justify-content-center align-items-center">
+     <div class="container">
+      <div class="mentor-show-card-container d-flex justify-content-center align-items-center">
+        <% if @mentor.avatar.attached? %>
+            <%= cl_image_tag @mentor.avatar.key, class: "avatar-xl" %>
+          <% else %>
+            <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-xl" %>
+          <% end %>
+          <div class="mentor-show-card-infos">
+            <h1><%= @mentor.first_name%> <%= @mentor.last_name%></h1>
+            <p><%= @mentor.description %></p>
+            <ul class="list-inline img_attributes-mentor">
+              <li class="list-inline-item"><a href=<%= @mentor.link_github %>><i class="fab fa-github"></i></a></li>
+              <li class="list-inline-item"><a href=<%= @mentor.link_malt %>><i class="fab fa-linkedin-in"></i></a></li>
+              <li class="list-inline-item"><a href=<%= @mentor.link_slack %>><i class="fab fa-slack"></i></a></li>
+            </ul>
+          </div>
+
+          <div class="mentor-show-card-actions d-flex flex-column">
+            <% case current_user.relationship_request_status(@mentor) %>
+            <% when "pending" %>
+              <%= link_to mentor_relationships_path(@mentor), method: :post do %>
+                <%= button_tag "Connect",
+                              type: "button",
+                              class: "btn btn-yellow-mentor disabled my-2"
+                %>
+              <% end %>
+            <% when "accepted" %>
+              <p class="text-success text-center"> <span class="fw-bolder">Connected</span> <i class="fas fa-check-circle"></i></p>
+            <% when "denied" %>
+              <p class="text-warning text-center"> <span class="fw-bolder">Not connected</span> <i class="fas fa-times"></i></p>
+            <% else %>
+              <%= link_to mentor_relationships_path(@mentor), method: :post do %>
+                <%= button_tag "Connect",
+                              type: "button",
+                              class: "btn btn-yellow-mentor my-2"
+                %>
+              <% end %>
+            <% end %>
+            <% if current_user.find_chatroom(@mentor).nil? %>
+              <%= link_to mentor_chatrooms_path(@mentor), method: :post do %>
+                <%= button_tag "Send a message",
+                                type: "button",
+                                class: "btn btn-blue-mentor my-2"
+                  %>
+              <% end %>
+            <% else %>
+              <%= link_to chatroom_path(current_user.find_chatroom(@mentor)) do %>
+                <%= button_tag "Send a message",
+                                type: "button",
+                                class: "btn btn-blue-mentor my-2"
+                  %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       </div>
-
-
-      <div class="mentor-show-card-actions d-flex flex-column">
-
-        <% case current_user.relationship_request_status(@mentor) %>
-        <% when "pending" %>
-          <%= link_to mentor_relationships_path(@mentor), method: :post do %>
-            <%= button_tag "Connect",
-                          type: "button",
-                          class: "btn btn-yellow-mentor disabled my-2"
-            %>
-          <% end %>
-        <% when "accepted" %>
-          <p class="text-success text-center"> <span class="fw-bolder">Connected</span> <i class="fas fa-check-circle"></i></p>
-        <% when "denied" %>
-          <p class="text-warning text-center"> <span class="fw-bolder">Not connected</span> <i class="fas fa-times"></i></p>
-        <% else %>
-          <%= link_to mentor_relationships_path(@mentor), method: :post do %>
-            <%= button_tag "Connect",
-                          type: "button",
-                          class: "btn btn-yellow-mentor my-2"
-            %>
-          <% end %>
-        <% end %>
-        <% if current_user.find_chatroom(@mentor).nil? %>
-          <%= link_to mentor_chatrooms_path(@mentor), method: :post do %>
-            <%= button_tag "Send a message",
-                            type: "button",
-                            class: "btn btn-blue-mentor my-2"
-              %>
-          <% end %>
-        <% else %>
-          <%= link_to chatroom_path(current_user.find_chatroom(@mentor)) do %>
-            <%= button_tag "Send a message",
-                            type: "button",
-                            class: "btn btn-blue-mentor my-2"
-              %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+     </div>
 
 
 <div class="container">
   <!-- CARDS LEFT -->
   <div class="row lower-container mt-3">
-    <div class="col-4">
+    <div class="col-3">
       <div class="mentor-show-cards-left d-flex flex-column">
-        <div class="mentor-show-card-skills p-3 mt-3">
-          <div class="title d-flex justify-content-center align-items-center mb-2"><h4>Skills</h4></div>
-          <% front_end_skills = @mentor.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
-          <% if front_end_skills.any? %>
-            <strong class="mt-3">Front-end</strong>
-            <ul>
-              <% front_end_skills.each do |front_end_skill| %>
-                <li><%= front_end_skill %></li>
+        <div class="mentor-show-card-skills mt-3">
+          <div class="title"><h4>Skills</h4></div>
+            <div class="mentor-tag d-flex flex-wrap p-3">
+              <% front_end_skills = @mentor.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
+              <% if front_end_skills.any? %>
+                  <% front_end_skills.each do |front_end_skill| %>
+                    <span class="tag tag-teal"><%= front_end_skill %></span>
+                  <% end %>
               <% end %>
-            </ul>
-          <% end %>
-          <% back_end_skills = @mentor.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
-          <% if back_end_skills.any? %>
-            <strong class="mt-3"><h5>Back-end</h5></strong>
-            <ul>
-              <% back_end_skills.each do |back_end_skill| %>
-                <li><%= back_end_skill %></li>
+              <% back_end_skills = @mentor.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
+              <% if back_end_skills.any? %>
+                  <% back_end_skills.each do |back_end_skill| %>
+                    <span class="tag tag-purple"><%= back_end_skill %></span>
+                  <% end %>
               <% end %>
-            </ul>
-          <% end %>
+          </div>
         </div>
 
-        <div class="mentor-show-card-experiences p-3 mt-3">
-          <div class="title d-flex justify-content-center align-items-center mb-2"><h4>Experiences</h4></div>
-          <h5 class="mt-3"><strong>Digital Project Manager</strong></h5>
-          <p class="m-0"><strong>Key People SA Freelance</strong></p>
-          <p><small>2 ans et 8 mois</small></p>
-          <hr>
-          <h5><strong>Teacher</strong></h5>
-          <p class="m-0"><strong>Le Wagon Freelance</strong></p>
-          <p><small>3 ans 10 mois</small></p>
-          <hr>
-          <h5><strong>Random job</strong></h5>
-          <p class="m-0"><strong>Random company</strong></p>
-          <p><small>Random duration</small></p>
+        <div class="mentor-show-card-experiences mt-3">
+          <div class="title"><h4>Experiences</h4></div>
+          <div class="experiences p-3">
+            <%= render 'experiences', mentor: @mentor %>
+          </div>
         </div>
 
       </div>
     </div>
 
-    <div class="col-8">
+    <div class="col-9">
       <div class="mentor-show-cards-missions">
-        <h4 class="text-center mission-text"><%= "#{@missions.count} #{('mission').pluralize(@missions.count)}" %> proposed</h4>
+        <h4 class="title-blank mt-3"><%= "#{@missions.where.not(status: 2).count} #{('mission').pluralize(@missions.where.not(status: 2).count)}" %> available</h4>
         <% @missions.each do |mission| %>
           <% if current_user.connected?(@mentor) %>
-            <div class="mentor-show-card-mission shadow p-3 mt-3">
-              <div class="mentor-show-card-mission-infos">
-                <ul class="list-inline d-flex justify-content-between">
-                  <li class="list-inline-item">
-                    <i class="fas fa-building"></i><%= mission.company %>
-                  </li>
-                  <li class="list-inline-item">
-                    <i class="fas fa-clock"></i></i> <%= mission.duration %> days
-                  </li>
-                  <li class="list-inline-item">
-                    <i class="fas fa-euro-sign"></i> <%= mission.fee %>
-                  </li>
-                </ul>
-                <p><%= mission.description %></p>
-              </div>
-              <div class="mentor-show-card-mission-actions d-flex justify-content-around align-items-center">
-                <p>Skills required: Ruby</p>
-                <p><%=mission.status if mission.status != "not_started" %></p>
-              <% if current_user.not_yet_applied?(mission) && mission.status == "not_started" %>
-                <%= link_to new_mission_apply_path(mission) do %>
-                  <button type="button" class="btn btn-outline-primary">Apply</button>
-                <% end %>
-              <% end %>
-              </div>
-            </div>
+            <%= render 'mentors-missions', mission: mission, connected: true %>
           <% else %>
-            <div class="mentor-show-card-mission shadow p-3 mt-3">
-              <div class="mentor-show-card-mission-infos">
-                <ul class="list-inline d-flex justify-content-between">
-                  <li class="list-inline-item">
-                    <i class="fas fa-building"></i> <%= mission.company %>
-                  </li>
-                  <li class="list-inline-item">
-                    <i class="fas fa-clock"></i> <%= mission.duration %> days
-                  </li>
-                </ul>
-                <p><%= mission.description %></p>
-              </div>
-              <div class="mentor-show-card-mission-actions d-flex justify-content-around align-items-center">
-                <p>Skills required: Ruby</p>
-              </div>
-            </div>
+            <%= render 'mentors-missions', mission: mission, connected: false %>
           <% end %>
         <% end %>
       </div>
     </div>
   </div>
-<!--
-  <div class="navigation d-flex justify-content-center">
-    <%= link_to mentors_path do %>
-      <%= button_tag "Back to all mentors", type: "button", class: "btn btn-yellow-mentor my-3" %>
-    <% end %>
-  </div>
-  -->
 </div>
