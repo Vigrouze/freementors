@@ -188,7 +188,7 @@ thibaud = User.new(
   tag_list: "Ruby, Python, C",
   rating: 5,
 )
-file = URI.open('https://avatars.githubusercontent.com/u/30435844?v=4')
+file = URI.open('https://media-exp1.licdn.com/dms/image/C4D03AQHrnRgo3R0TqA/profile-displayphoto-shrink_800_800/0/1602858443559?e=1643846400&v=beta&t=6su5SUQBjQeah24qw-RcJ5dLZni1qfPxwUQsyeKZYJ8')
 thibaud.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 thibaud.save
 
