@@ -10,6 +10,7 @@ Relationship.destroy_all
 Mission.destroy_all
 Chatroom.destroy_all
 User.destroy_all
+Message.destroy_all
 
 puts 'Cleaning done'
 
@@ -191,6 +192,27 @@ thibaud = User.new(
 file = URI.open('https://media-exp1.licdn.com/dms/image/C4D03AQHrnRgo3R0TqA/profile-displayphoto-shrink_800_800/0/1602858443559?e=1643846400&v=beta&t=6su5SUQBjQeah24qw-RcJ5dLZni1qfPxwUQsyeKZYJ8')
 thibaud.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
 thibaud.save
+
+victor2 = User.new(
+  first_name: "Victor",
+  last_name: "Holl",
+  email: "holl@test.com",
+  password: "password",
+  password_confirmation: "password",
+  address: "Paris",
+  description: "I travelled the world to find the best surf spots, after save baby seals and swin with white shark I decided to learn code to make website to share my experience.",
+  mentor: true,
+  xp_level: 100,
+  xp_status: "Senior",
+  link_github: "https://github.com/v-h-z",
+  link_malt: "",
+  link_slack: "",
+  tag_list: "Ruby, Python, CSS, HTML",
+  rating: 5,
+)
+file = URI.open('https://avatars.githubusercontent.com/u/62886862?v=4')
+victor2.avatar.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+victor2.save
 
 puts 'Creating matthieu'
 matthieu = User.new(
