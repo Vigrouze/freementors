@@ -5,9 +5,20 @@ class MentorsController < ApplicationController
     @mentors = policy_scope(User).mentor
     if params[:search] && params[:search][:query].present?
       @mentors = @mentors.search_by_last_name_and_skills(params[:search][:query])
+    end
 
-    elsif params[:tags].present?
+    if params[:tags].present?
       @mentors = @mentors.tagged_with(params[:tags])
+    end
+
+    if params[:rating].present?
+      @mentors = @mentors.where("rating >= ?", params[:rating])
+    end
+
+    if params[:missions].present? && params[:missions] == "1"
+      @mentors = @mentors.select do |mentor|
+        mentor.missions_as_mentor.where(padawan_id: nil).any?
+      end
     end
 
     respond_to do |format|

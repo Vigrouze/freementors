@@ -6,20 +6,20 @@
     <hr>
   </div>
 </div>
-
+<%# data-controller="filter" %>
 <div class="mentors" data-controller="filter" data-filter-url-value=<%= mentors_path %>>
   <div class="filter">
     <%= form_tag mentors_path, method: 'get' do %>
-      <h3>Frontend</h3>
+      <h5>Frontend</h5>
       <div style="text-align: center">
         <% User::SKILLS[:frontend].each do |skill| %>
 
             <%= check_box_tag "tags[]", skill, !params[:tags].nil? && params[:tags].include?(skill), id: "#{skill}", class:"form-check-input check_boxes optional tag-selector", data: {action: 'change->filter#refresh', filter_target: 'checkbox'} %>
-            <%= label_tag skill, nil, class:'form-check-label collection_check_boxes' %>
+            <%= label_tag skill, nil, class:'form-check-label collection_check_boxes', id:'frontend' %>
         <% end %>
       </div>
       <hr class="hr-mentor">
-      <h3>Backend</h3>
+      <h5>Backend</h5>
       <div style="text-align: center">
         <% User::SKILLS[:backend].each do |skill| %>
           <% if !params[:tags].nil? && params[:tags].include?(skill) %>
@@ -28,12 +28,21 @@
             <% value = nil %>
           <% end %>
             <%= check_box_tag "tags[]", skill, value, id: "#{skill}", class:"form-check-input check_boxes optional tag-selector", data: {action: 'change->filter#refresh', filter_target: 'checkbox'} %>
-            <%= label_tag skill, nil, class:'form-check-label collection_check_boxes' %>
+            <%= label_tag skill, nil, class:'form-check-label collection_check_boxes', id:'backend' %>
         <% end %>
       </div>
+        <div class="rating-missions">
+          <div class="ratingfilter">
+          <%= select_tag "rating", options_for_select((1..5).to_a), data: { action:'change->filter#refresh', filter_target: 'select'} %>
+          <h6>Minimum rating</h6>
+          </div>
+          <div class="missionsfilter">
+          <%= check_box_tag 'missions', nil, nil, data: {action: 'change->filter#refresh', filter_target: 'tickbox'} %>
+          <h6>Availables missions</h6>
+          </div>
+        </div>
     <% end %>
+    <%= image_tag asset_url("Saly-8.png") %>
   </div>
-
   <%= render "shared/mentors", mentors: @mentors  %>
-
 </div>

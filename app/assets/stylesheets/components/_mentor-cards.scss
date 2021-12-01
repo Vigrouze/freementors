@@ -1,8 +1,8 @@
 .container-mentors {
   display: flex;
-  width: 1040px;
-  // justify-content: space-evenly;
+  justify-content: space-evenly;
   flex-wrap: wrap;
+  flex-grow: 1;
   a {
     text-decoration: none;
   }
