@@ -34,15 +34,13 @@
           <li class="nav-item dropdown menu">
 
               <div class="icon dropdown-toggle"
-                data-controller="user-subscription"
-                data-user-subscription-user-id-value="<%= current_user.id %>"
                 role="button"
                 data-bs-toggle="<%= "dropdown" unless @notifications.count.zero? %>"
                 id="bell"
               >
                 <%= image_tag "notif.png" %>
                 <% counter = @notifications.where(read: false).length %>
-                <span class="notif-pastille<%= " d-none" if counter.zero? %>"><%= counter %></span>
+                <span class="notif-pastille animate__animated animate__headShake <%= " d-none" if counter.zero? %>"><%= counter %></span>
               </div>
               <div class="dropdown-menu dropdown-menu-end dropdown" id="box" style="border-radius: 15px; width: 300px; text-align: center;) ">
                 <%= render 'notifications/notifications' %>

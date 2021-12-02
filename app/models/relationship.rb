@@ -26,15 +26,6 @@ class Relationship < ApplicationRecord
       }
 
       Notification.create(@notification)
-
-      # UserChannel.broadcast_to(
-      #   receiver,
-      #   {
-      #     method: 'POST',
-      #     headers: { 'Accept': "application/json", 'X-CSRF-Token': csrfToken() },
-      #     body: render_to_string(partial: "notification", locals: { notification: @notification }
-      #   })
-      # )
     end
   end
 end

@@ -1,9 +1,9 @@
 <!-- BANNER -->
 
 <div class="banner">
-  <div class="container">
-    <h1>Get <strong>prepared</strong> for<br>
-    your <strong>freelance journey</strong></h1>
+  <div class="container" data-controller="highlight">
+    <h1><strong>Get prepared</strong> for<br>
+    your <strong><span data-highlight-target="text">freelance journey</span></strong></h1>
     <p>Change your life and learn from freelance mentors. </p>
     <%= simple_form_for :search, url: mentors_path, method: :get do |f| %>
       <div class="search-form-control form-group">
