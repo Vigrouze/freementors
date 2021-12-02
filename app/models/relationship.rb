@@ -20,7 +20,7 @@ class Relationship < ApplicationRecord
       receiver = User.find(self.padawan_id)
 
       @notification = {
-        title: "You're connected with #{mentor.first_name}",
+        title: "Connected with #{mentor.first_name}",
         on_click_url: Rails.application.routes.url_helpers.mentor_path(mentor),
         user_id: receiver.id
       }

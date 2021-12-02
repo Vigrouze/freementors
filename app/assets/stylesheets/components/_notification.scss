@@ -1,5 +1,20 @@
-.notification_design {
+.notification-design {
   padding: 2px 2px;
+  a {
+    text-decoration: none;
+    color: #FEA93C;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.grey-text {
+  color: grey;
+  a {
+    color: grey;
+  }
 }
 
 .notification_list {
