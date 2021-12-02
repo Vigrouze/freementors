@@ -4,10 +4,16 @@
   transition: 0.8s background-color ease;
 }
 
+.text-deco-orange {
+  text-decoration: underline;
+  text-decoration-color: #FEA93C;
+  text-decoration-thickness: 3px;
+}
+
 .white-bg {
     background-color: white !important;
     transition: 0.8s background-color ease;
-  }
+}
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
