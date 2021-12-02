@@ -12,8 +12,8 @@
                 <% end %>
                 <div class="mt-3">
                   <h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
-                  <p class="text-secondary mb-1">Full Stack Developer</p>
-                  <p class="text-muted font-size-sm"><%= @user.address %></p>
+                  <p class="text-secondary mb-1 padawan-info">Full Stack Developer</p>
+                  <p class="text-muted font-size-sm padawan-info"><%= @user.address %></p>
                   <p class="fake-button-dashboard">Update my profile</p>
                 </div>
               </div>
@@ -23,7 +23,7 @@
           <div class="d-flex card-dashboard mb-3 mt-3 shadow-sm">
             <div class="card-body" style="width: 495px;">
               <h5 class="d-flex align-items-center mb-3">My experience level</h5>
-              <div class="progress card-level" style="height: 20px; border-radius: 10px;">
+              <div class="progress card-level" style="height: 28px; border-radius: 10px;">
                   <div class="progress-bar bg-info rounded progress-bar" role="progressbar" aria-valuenow="<%= @user.xp_level %>"  aria-valuemin="0" aria-valuemax="100" style="width: <%= @user.xp_level %>%"><%= @user.xp_level %>%</div>
               </div>
               <p class="next-mission text-center fs-6", style="margin-top: 27px"><%= 10 - @missions.count%> missions left to get to the next level</p>
@@ -34,11 +34,11 @@
                 </div>
                 <div class="small-card-level">
                   <span class="small-card-level-title">YOUR MISSIONS</span>
-                  <h6><span class="mx-1">🚀 </span> <%= current_user.finished_missions_as_padawan.count %> missions</h6>
+                  <h6><span class="mx-1">🚀 </span> <%= current_user.finished_missions_as_padawan.count %> finished</h6>
                 </div>
                 <div class="small-card-level">
-                  <span class="small-card-level-title">YOUR NOTE</span>
-                  <h6 class="fs-3">4.75</h6><span class="small-rating">/5</span>
+                  <span class="small-card-level-title">YOUR RATING</span>
+                  <h6 class="fs-3">4.75</h6><span class="small-rating">/5 ⭐</span>
                 </div>
               </div>
             </div>
@@ -69,7 +69,7 @@
               <% end %>
               <% @applied_mentors.each do |applied_mentor| %>
                 <%= link_to mentor_path(applied_mentor) do %>
-                  <div>
+                  <div class="div-avatar">
                     <% if applied_mentor.avatar.attached? %>
                       <%= cl_image_tag applied_mentor.avatar.key, class: "avatar-medium", data: { tippy_target: "avatar", content: applied_mentor.name } %>
                       <% case current_user.relationship_request_status(applied_mentor) %>
@@ -78,8 +78,6 @@
                       <% else %>
                         <%= image_tag("minuteur.png", class:"avatar-status2") %></p>
                       <% end %>
-                  </div>
-                  <div>
                     <% else %>
                       <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-medium", data: { tippy_target: "avatar", content: applied_mentor.name } %>
                       <% case current_user.relationship_request_status(applied_mentor) %>
