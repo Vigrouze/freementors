@@ -10,6 +10,15 @@
               <% else %>
                   <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar" %>
               <% end %>
+              <div class="rating-img">
+            <!--  <% mentor.rating.times do %>
+                <i class="fas fa-star"></i>
+              <% end %>
+              <% (5 - mentor.rating).times do %>
+                <i class="far fa-star"></i>
+              <% end %> -->
+              <%= mentor.rating %>/5 <i class="fas fa-star img-attributes"></i>
+              </div>
             </div>
           <% end %>
           <div class="card-body-mentors">
@@ -38,7 +47,7 @@
           <div class="list-inline d-flex justify-content-between">
             <ul id="list-ratings">
               <li class="list-inline-item">
-                <%= mentor.rating %> <i class="fas fa-star img-attributes"></i>
+                <%= mentor.rating %>/5 <i class="fas fa-star img-attributes"></i>
               </li>
               <li class="list-inline-item">
                 <%= mentor.missions_as_mentor.count %> <i class="fas fa-briefcase img-attributes"></i>
