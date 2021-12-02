@@ -4,7 +4,6 @@
   margin: 30px;
   h1 {
     color: #022147;
-    text-shadow: rgb(164, 164, 164) 1px 1px 3px;
     font-size: 40px;
     font-weight: bold;
     margin: 0px;
@@ -18,20 +17,20 @@
 
 .mentor-show-card {
   background-color: #ebf3fd;
-  box-shadow: 0 1.5em 2.5em -.5em rgba(#000000, .2);
+  box-shadow: 0px 4px 14px 0px #00000014 !important;
   color: #022147;
   height: 400px;
 }
 
 .mentor-show-card-skills {
   background-color: white;
-  box-shadow: 0 1.5em 2.5em -.5em rgba(#000000, .2);
+  box-shadow: 0px 4px 14px 0px #00000014 !important;
   border-radius: 15px;
 }
 
 .mentor-show-card-mission {
   background-color: white;
-  box-shadow: 0 1.5em 2.5em -.5em rgba(#000000, .2);
+  box-shadow: 0px 4px 14px 0px #00000014 !important;
   border-radius: 15px;
   position: relative;
 }
@@ -59,7 +58,7 @@ border-radius: 15px;
 
 .mentor-show-card-experiences {
   background-color: white;
-  box-shadow: 0 1.5em 2.5em -.5em rgba(#000000, .2);
+  box-shadow: 0px 4px 14px 0px #00000014 !important;
   border-radius: 15px;
 }
 
@@ -87,9 +86,9 @@ border-radius: 15px;
   background-color: #fea93a;
   padding: 8px 24px;
   height: 100%;
-  width: 100%;
+  width: 135px;
   border-radius: 8px;
-  font-weight: lighter;
+  font-weight: bold;
   transition: opacity 0.3s ease;
   &:hover {
     background-color: #ffd8a5;
@@ -120,11 +119,21 @@ border-radius: 15px;
 .mission-text {
   background-color: #022147;
   color: white;
-  box-shadow: 0 1.5em 2.5em -.5em rgba(#000000, .1);
+  box-shadow: 0px 4px 14px 0px #00000014 !important;
   width: 50%;
   height: 50px;
   border-radius: 8px;
   position: relative;
   top: 18px;
   padding-top: 8px;
+}
+
+.mentor-links a {
+  color: #fea93a;
+  opacity: 1;
+  text-decoration: none;
+  font-size: 24px;
+}
+.mentor-links a:hover {
+  opacity: 0.5;
 }

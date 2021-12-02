@@ -5,3 +5,26 @@
     justify-content: center;
   }
 }
+
+.btn-yellow-form {
+  color: #022147;
+  background-color: #fea93a;
+  margin-top: 5px;
+  padding: 8px 24px;
+  height: 100%;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
+  &:hover {
+    background-color: #ffd8a5;
+  }
+}
+
+.form-label {
+  margin-right: 20px !important;
+}
+
+.br-widget {
+  margin-right: 20px !important;;
+  margin-top: -12px !important;;
+}

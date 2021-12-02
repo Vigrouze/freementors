@@ -1,9 +1,9 @@
 <div class="form-container" data-controller='rating'>
   <%= simple_form_for([mission, review], html: { class: "collapse"}) do |f| %>
-    <%= f.input :content, label: 'Enter your review', placeholder: 'describe your impression about the mission, your mentor supports etc' %>
+    <%= f.input :content, label: false, placeholder: 'Describe your impression about the mission, your mentor supports, etc..' %>
     <div class="form-rating">
-      <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: { rating_target: 'select'}}%>
-      <%= f.submit 'Submit', class: "btn btn-yellow" %>
+      <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience :", required: false, input_html: {data: { rating_target: 'select'}}%>
+      <%= f.submit 'Submit', class: "btn btn-yellow-form" %>
     </div>
   <% end %>
 </div>

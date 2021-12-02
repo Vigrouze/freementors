@@ -18,25 +18,6 @@
                 </div>
               </div>
           </div>
-          <!-- SOCIAL MEDIA LINKS -->
-          <%# <div class="card-dashboard mb-3 shadow-sm">
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                  <h6 class="mb-0"><i class="fab fa-github"></i> Github</h6>
-                  <span class="text-secondary"><%= @user.link_github %></span>
-                <%# </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                  <h6 class="mb-0"><i class="fas fa-laptop-code"></i> Malt</h6>
-                  <%# <span class="text-secondary"><%= @user.link_malt %></span>
-                <%# </li> %>
-                <%# <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                  <h6 class="mb-0"><i class="fab fa-slack"></i> Slack</h6>
-                  <span class="text-secondary"><%= @user.link_slack %></span>
-                <%# </li>
-              </ul> %>
-            <%# </div>
-          </div> %>
         </div>
         <div class="col-lg-9">
           <div class="d-flex card-dashboard mb-3 mt-3 shadow-sm">
@@ -48,7 +29,7 @@
               <p class="next-mission text-center fs-6", style="margin-top: 27px"><%= 10 - @missions.count%> missions left to get to the next level</p>
               <div class="d-flex justify-content-around" style="margin-top: 65px; width: 90%">
                 <div class="small-card-level">
-                  <h6><span class="mx-1">✅ </span> Complited profile</h6>
+                  <h6 class="full-text"><span class="mx-1">✅ </span> Complited profile</h6>
                 </div>
                 <div class="small-card-level">
                   <h6><span class="mx-1">🚀 </span> <%= current_user.finished_missions_as_padawan.count %> missions</h6>
@@ -139,7 +120,7 @@
                             <%= image_tag("Time.png", style:"width: 20px;") %> <%= mission.duration %> days
                           </li>
                           <li class="list-inline-item li-dashboard">
-                            <%= image_tag("money.png", style:"width: 20px;") %> <%= mission.fee %>€/jours
+                            <%= image_tag("money.png", style:"width: 20px;") %> <%= mission.fee %>€/day
                           </li>
                           <li class="li-status">
                             <% case mission.status %>
@@ -188,7 +169,7 @@
                             <%= image_tag("Time.png", style:"width: 20px;") %> <%= mission.duration %> days
                           </li>
                           <li class="list-inline-item li-dashboard">
-                            <%= image_tag("money.png", style:"width: 20px;") %> <%= mission.fee %>€/jours
+                            <%= image_tag("money.png", style:"width: 20px;") %> <%= mission.fee %>€/day
                           </li>
                         </ul>
                       </small>
@@ -224,7 +205,7 @@
                             <%= image_tag("Time.png", style:"width: 20px;") %> <%= mission.duration %> days
                           </li>
                           <li class="list-inline-item li-dashboard">
-                            <%= image_tag("money.png", style:"width: 20px;") %> <%= mission.fee %>€/jours
+                            <%= image_tag("money.png", style:"width: 20px;") %> <%= mission.fee %>€/day
                           </li>
                           <li class="li-status">
                             <% case mission.status %>
