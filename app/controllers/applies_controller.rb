@@ -13,9 +13,12 @@ class AppliesController < ApplicationController
     @mission = Mission.find(params[:mission_id])
     @apply.mission = @mission
     @apply.padawan = current_user
+
     if @apply.valid?
       @apply.save
-      redirect_to mentor_path(@mission.mentor, icon: 'success'), notice: "Application sent"
+
+      chatroom = Chatroom.find_by(mentor_id: @mission.mentor.id, padawan_id: current_user.id)
+      redirect_to chatroom_path(chatroom, icon: 'success'), notice: "Application sent"
     else
       redirect_to mentor_path(@mission.mentor, icon: 'info'), notice: "There was an issue"
     end
