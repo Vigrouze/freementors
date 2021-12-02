@@ -1,6 +1,6 @@
 <!-- Configure the meta tags for the mentor show -->
 
-<% content_for :meta_title, "#{@mentor.firs_name} #{@mentor.last_name} is on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_title, "#{@mentor.first_name} #{@mentor.last_name} is on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, @mentor.description %>
 <% if @mentor.avatar.attached? %>
   <% content_for :meta_image, cl_image_path(@mentor.avatar.key) %>
