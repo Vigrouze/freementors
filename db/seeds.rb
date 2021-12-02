@@ -420,7 +420,7 @@ puts "#{User.where(mentor: false).count} padawans and #{User.where(mentor: true)
 
 puts 'Sending missions'
 mission1 = Mission.new(
-  name: "Développeur(se) Front-End",
+  name: "Front-end dev",
   company: "Swile",
   start_date: "2022-01-07",
   end_date: "2022-07-04",
@@ -469,7 +469,7 @@ mission3 = Mission.new(
   Create an web application to count the points during the 'Wag-Olympiades'.
   We have different challenge and referees need an application to count the points per team,
   set the timers and assign the different teams to events",
-  fee: 200,
+  fee: 450,
   remote: true,
   mentor_id: py.id,
   padawan_id: alex.id,
