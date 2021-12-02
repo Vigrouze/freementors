@@ -11,7 +11,7 @@ class RelationshipsController < ApplicationController
     if @relationship.save
       redirect_to mentor_path(@mentor, icon: 'success'), notice: 'Relation request sent'
     else
-      redirect_to mentor_path(@mentor, icon: 'warning'), alert: 'You already sent a request, be patient'
+      redirect_to mentor_path(@mentor, icon: 'info'), alert: 'You already sent a request, be patient'
     end
   end
 
