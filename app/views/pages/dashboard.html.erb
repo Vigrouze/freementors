@@ -116,7 +116,7 @@
                   <%= link_to mentors_path do %>
                     <div id="nomissions" class="nav-card-mission">
                       <%= image_tag("nomissions.png", style:"height:100px") %>
-                      <p>You don't have any on-going missions, click here to find a mission</p>
+                      <p>You don't have any on-going mission, click <strong>here</strong> to find a mission</p>
                     </div>
                   <% end %>
                 <% else %>
@@ -252,9 +252,6 @@
                     <div class="review">
                       <% if mission.reviews.exists?(reviewer: current_user) && mission.status == "finished" %>
                         <div class="mission-review">
-                          <div class="review-info">
-                            <p><%= mission.reviews.find_by(reviewer: current_user).content %></p>
-                          </div>
                             <% rating = mission.reviews.find_by(reviewer: current_user).rating %>
                             <% rating.times do %>
                               <i class="fas fa-star"></i>
@@ -262,6 +259,9 @@
                             <% (5 - rating).times do %>
                               <i class="far fa-star"></i>
                             <% end %>
+                          <div class="review-info">
+                            <p><%= mission.reviews.find_by(reviewer: current_user).content %></p>
+                          </div>
                           <i class="fas fa-pencil-alt", data-bs-toggle="collapse" data-bs-target="#edit_review_2"></i>
                           <%= render "shared/new-review", mission: mission, review: mission.reviews.find_by(reviewer: current_user) %>
                         </div>
