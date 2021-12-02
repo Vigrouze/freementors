@@ -251,24 +251,30 @@
                       <!-- CREATE REVIEW IF NOT EXIST, UPDATE OTHERWISE-->
                     <div class="review">
                       <% if mission.reviews.exists?(reviewer: current_user) && mission.status == "finished" %>
-                        <div class="mission-review">
-                            <% rating = mission.reviews.find_by(reviewer: current_user).rating %>
-                            <% rating.times do %>
-                              <i class="fas fa-star"></i>
-                            <% end %>
-                            <% (5 - rating).times do %>
-                              <i class="far fa-star"></i>
-                            <% end %>
-                          <div class="review-info">
-                            <p><%= mission.reviews.find_by(reviewer: current_user).content %></p>
+                        <div class="review-container">
+                          <span>YOUR REVIEW</span>
+                          <div class="mission-review">
+                              <% rating = mission.reviews.find_by(reviewer: current_user).rating %>
+                              <% rating.times do %>
+                                <i class="fas fa-star"></i>
+                              <% end %>
+                              <% (5 - rating).times do %>
+                                <i class="far fa-star"></i>
+                              <% end %>
+                            <div class="review-info">
+                              <p><%= mission.reviews.find_by(reviewer: current_user).content %></p>
+                            </div>
+                            <i class="fas fa-pencil-alt", data-bs-toggle="collapse" data-bs-target="#edit_review_2"></i>
+                            <%= render "shared/new-review", mission: mission, review: mission.reviews.find_by(reviewer: current_user) %>
                           </div>
-                          <i class="fas fa-pencil-alt", data-bs-toggle="collapse" data-bs-target="#edit_review_2"></i>
-                          <%= render "shared/new-review", mission: mission, review: mission.reviews.find_by(reviewer: current_user) %>
                         </div>
                       <% elsif mission.status == "finished" %>
-                        <button class='btn btn-yellow', data-bs-toggle="collapse" data-bs-target="#new_review">Create Review</button>
-                        <div class="mission-review">
-                          <%= render "shared/new-review", mission: mission, review: Review.new %>
+                        <div class="review-container">
+                          <span>YOUR REVIEW</span>
+                          <p>Oooh! It seems that you haven't left any review yet! <%= link_to "Leave a review", "#", data: {bs_toggle: "collapse", bs_target: "#new_review"} %></p>
+                          <div class="mission-review">
+                            <%= render "shared/new-review", mission: mission, review: Review.new %>
+                          </div>
                         </div>
                       <% end %>
                     </div>
