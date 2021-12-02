@@ -20,6 +20,7 @@
           <a href="/mentors">
             <button type="button" id="btn-navbar" class="btn btn-homepage-yellow">Mentors</button>
           </a>
+          </li>
           <% if current_user.mentor? %>
             <li class="nav-item active">
               <%= link_to "Your mentor dashboard", dashboard_mentors_path, class: "nav-link" %>
@@ -29,6 +30,25 @@
               <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
             </li>
           <% end %>
+
+          <li class="nav-item dropdown menu">
+
+              <div class="icon dropdown-toggle"
+                data-controller="user-subscription"
+                data-user-subscription-user-id-value="<%= current_user.id %>"
+                role="button"
+                data-bs-toggle="<%= "dropdown" unless @notifications.count.zero? %>"
+                id="bell"
+              >
+                <%= image_tag "notif.png" %>
+                <% counter = @notifications.where(read: false).length %>
+                <span class="notif-pastille<%= " d-none" if counter.zero? %>"><%= counter %></span>
+              </div>
+              <div class="dropdown-menu dropdown-menu-end dropdown" id="box" style="border-radius: 15px; width: 300px; text-align: center;) ">
+                <%= render 'notifications/notifications' %>
+              </div>
+
+
           <% if current_user.chatrooms.any? %>
             <li>
               <%= link_to "Messages", chatrooms_path, class: "nav-link" %>

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
             controller: 'mentors', # controller called will be MentorsController instead of UsersController
             only: [:index, :show] do
               resources :chatrooms, only: :create
-              resources :relationships, only: :create
+              resources :relationships, only: [:create, :update]
             end
 
   resources :relationships do
@@ -34,6 +34,12 @@ Rails.application.routes.draw do
     member do
       patch :approve
       patch :decline
+    end
+  end
+
+  resources :notifications, only: [] do
+    member do
+      patch :mark_as_seen
     end
   end
 

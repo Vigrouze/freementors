@@ -1,0 +1,7 @@
+<ol class="notifications-list lu" style="list-style-type: none; padding: initial; margin-left: 10px">
+  <% @notifications.each do |notification| %>
+    <li class="notification_design" style="text-decoration: none">
+    <%= link_to notification.title, "#{notification.on_click_url}" %>
+    </li>
+  <% end %>
+</ol>

@@ -17,4 +17,5 @@ class RelationshipPolicy < ApplicationPolicy
       scope.all
     end
   end
+
 end

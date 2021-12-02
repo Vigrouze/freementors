@@ -8,4 +8,33 @@ class Relationship < ApplicationRecord
   scope :connected, -> { where(status: :accepted) }
   scope :pending, -> { where(status: :pending) }
   scope :not_connected, -> { where(status: :denied) }
+
+  after_update :build_notification
+
+  private
+
+  def build_notification
+    # Vérifier le statut de la relation
+    if self.accepted?
+      mentor = User.find(self.mentor_id)
+      receiver = User.find(self.padawan_id)
+
+      @notification = {
+        title: "You're connected with #{mentor.first_name}",
+        on_click_url: Rails.application.routes.url_helpers.mentor_path(mentor),
+        user_id: receiver.id
+      }
+
+      Notification.create(@notification)
+
+      # UserChannel.broadcast_to(
+      #   receiver,
+      #   {
+      #     method: 'POST',
+      #     headers: { 'Accept': "application/json", 'X-CSRF-Token': csrfToken() },
+      #     body: render_to_string(partial: "notification", locals: { notification: @notification }
+      #   })
+      # )
+    end
+  end
 end
