@@ -1,13 +1,6 @@
-<div class="container">
-  <div class="row">
+<div class="container mt-3">
+  <div class="row justify-content-center rounded">
     <!-- SIDEBAR -->
-    <div class="col-4" id="sticky-sidebar">
-      <div class="border">
-        <div class="list-group">
-          <%= render @chatrooms %>
-        </div>
-      </div>
-    </div>
     <div class="col-8" id="main">
         <div class="chatroom mt-0 border rounded">
           <div class="messages"
@@ -18,10 +11,10 @@
                 <% sender = message.user == current_user %>
                 <%= render 'messages/message', message: message, sender: sender %>
               <% end %>
-            </div>
+          </div>
             <%= simple_form_for [@chatroom, @message], remote: true do |f| %>
               <%= f.input :content, label: false, class: "rounded", placeholder: "Message" %>
-              <%= button_tag type: "submit", class: "btn btn-flat text-primary" do %>
+              <%= button_tag type: "submit", class: "btn btn-flat text-info" do %>
                 <i class="fas fa-paper-plane"></i>
               <% end %>
             <% end %>

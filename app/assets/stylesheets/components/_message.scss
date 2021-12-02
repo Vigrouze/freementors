@@ -1,6 +1,15 @@
 .messages {
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+}
+
+.message-holder {
+  position: relative;
+}
+.avatar-message {
+  width: 40px;
+  border-radius: 50%;
 }
 
 .msg-left {
