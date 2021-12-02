@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   # no need to nest the mission show as we access by the mission_id
   resources :missions, only: [:show] do
     resources :reviews, only: [:create, :update]
-    resources :applies, only: [:new, :create]
+    resources :applies, only: [:create]
     member do
       get :finished
     end
