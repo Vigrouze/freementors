@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top <%= "home" if params[:action] == "home" %>"
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top <%= "home" if params[:action] == "home" %><%= " white-bg" if current_page?('/dashboard') %>"
   data-controller="navbar"
   data-action="scroll@window->navbar#updateNavbar"
   id="navbar"
