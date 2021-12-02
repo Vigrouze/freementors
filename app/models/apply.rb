@@ -4,7 +4,6 @@ class Apply < ApplicationRecord
 
   enum status: { pending: 0, accepted: 1, denied: 2 }
 
-  validates :motivation, length: { in: 10..200 }
   validates :padawan, uniqueness: { scope: :mission }
 
   before_save :update_mission_padawan

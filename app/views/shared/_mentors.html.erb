@@ -1,5 +1,5 @@
 <div class="mentors-cards" data-filter-target="mentors">
-  <h3 class= 'results'><%= @mentors.count %> results </h3>
+  <h3 class= 'results'><%= @mentors.count %> <%= "result".pluralize(@mentors.count) %> </h3>
   <div class="container-mentors" >
     <% mentors.each do |mentor| %>
         <div class="card-mentors">
