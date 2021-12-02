@@ -31,6 +31,12 @@
             </li>
           <% end %>
 
+          <% if current_user.chatrooms.any? %>
+            <li>
+              <%= link_to "Messages", chatrooms_path, class: "nav-link" %>
+            </li>
+          <% end %>
+
           <li class="nav-item dropdown menu">
 
               <div class="icon dropdown-toggle"
@@ -45,16 +51,11 @@
               <div class="dropdown-menu dropdown-menu-end dropdown" id="box" style="border-radius: 15px; width: 300px; text-align: center;) ">
                 <%= render 'notifications/notifications' %>
               </div>
+          </li>
 
-
-          <% if current_user.chatrooms.any? %>
-            <li>
-              <%= link_to "Messages", chatrooms_path, class: "nav-link" %>
-            </li>
-          <% end %>
           <li class="nav-item dropdown">
             <% if current_user.avatar.attached? %>
-              <%= cl_image_tag current_user.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <%= cl_image_tag current_user.avatar.key, class: "avatar dropdown-toggle main-button", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% else %>
               <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% end %>
