@@ -37,12 +37,33 @@
   </div>
   <% if connected && mission.status != "finished" %>
     <div class="mentor-show-card-mission-application-button">
-      <%= button_to current_user.not_yet_applied?(mission) ? "Apply" : "Application sent",
-        new_mission_apply_path(mission),
-        method: :get,
+      <%= button_tag current_user.not_yet_applied?(mission) ? "Apply" : "Application sent",
         class: "btn btn-yellow-mentor my-2",
-        disabled: !current_user.not_yet_applied?(mission)
+        disabled: !current_user.not_yet_applied?(mission),
+        data: {
+          bs_toggle: "modal",
+          bs_target: "#applyFormModal"
+        }
       %>
     </div>
   <% end %>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="applyFormModal" tabindex="-1" aria-labelledby="applyFormModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="applyFormModalLabel">Application form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render 'applies/form', mission: mission, application: @application %>
+      </div>
+      <div class="modal-footer d-flex justify-content-end flex-row">
+        <button type="button" class="btn btn-outline-secondary w-25" data-bs-dismiss="modal">Close</button>
+        <%= button_tag "Send", type: :submit, form: :new_apply ,class: "btn btn-yellow-mentor w-25" %>
+      </div>
+    </div>
+  </div>
 </div>

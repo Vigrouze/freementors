@@ -10,6 +10,7 @@ class PagesController < ApplicationController
     @applied_missions = @user.applied_missions
     @application_requests = @user.application_requests
     @mentors = @user.mentors
+    @padawans = @user.relationships_as_mentor.map{|relationship| User.find(relationship.padawan_id)}
     @applied_mentors = @user.applied_mentors
   end
 

@@ -84,6 +84,19 @@ ActiveRecord::Schema.define(version: 2021_11_30_144943) do
     t.index ["padawan_id"], name: "index_missions_on_padawan_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.text "content"
+    t.string "on_click_url"
+    t.datetime "read_at"
+    t.datetime "seen_at"
+    t.boolean "read", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
     t.string "searchable_type"
@@ -178,6 +191,7 @@ ActiveRecord::Schema.define(version: 2021_11_30_144943) do
   add_foreign_key "messages", "users"
   add_foreign_key "missions", "users", column: "mentor_id"
   add_foreign_key "missions", "users", column: "padawan_id"
+  add_foreign_key "notifications", "users"
   add_foreign_key "relationships", "users", column: "mentor_id"
   add_foreign_key "relationships", "users", column: "padawan_id"
   add_foreign_key "reviews", "missions"

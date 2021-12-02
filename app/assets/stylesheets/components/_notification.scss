@@ -1,0 +1,51 @@
+.notification_design {
+  padding: 2px 2px;
+}
+
+.notification_list {
+  border-radius: 20px;
+}
+
+.hr-notification {
+  height: 1px;
+  color: black;
+}
+
+.ul {
+list-style-type: none;
+}
+
+#bell.dropdown-toggle::after {
+  display: none;
+}
+
+.menubell {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  width: 150px;
+}
+
+
+.menubell ul {
+  background: #ddd;
+  height: 0;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  transition: all 1s ease;
+  top: 35px;
+  width: 100%;
+}
+
+.menubell li:hover ul {
+  height: 100px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menubell ul a {
+  color: #000;
+  display: block;
+  padding: 5px 20px;
+}
