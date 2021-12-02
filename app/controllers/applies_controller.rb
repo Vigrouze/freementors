@@ -14,10 +14,13 @@ class AppliesController < ApplicationController
     @apply.mission = @mission
     @apply.padawan = current_user
 
-    if @apply.save
-      redirect_to mentor_path(@mission.mentor, icon: 'success'), notice: "Application sent"
+    if @apply.valid?
+      @apply.save
+
+      chatroom = Chatroom.find_by(mentor_id: @mission.mentor.id, padawan_id: current_user.id)
+      redirect_to chatroom_path(chatroom, icon: 'success'), notice: "Application sent"
     else
-      render :new
+      redirect_to mentor_path(@mission.mentor, icon: 'info'), notice: "There was an issue"
     end
   end
 
@@ -35,30 +38,9 @@ class AppliesController < ApplicationController
     redirect_to dashboard_mentors_path
   end
 
-  def update
-  end
-
-  # def approve
-  #   @mission = Mission.find(params[:id])
-  #   @mission.status = "accepted"
-  #   @mission.save!
-
-  #   authorize @mission
-  #   redirect_to mentor_profil_path
-  # end
-
-  # def deny
-  #   @mission = Mission.find(params[:id])
-  #   @mission.status = "denied"
-  #   @mission.save!
-
-  #   authorize @mission
-  #   redirect_to mentor_profil_path
-  # end
-
   private
 
   def apply_params
-    params.require(:apply).permit(:motivation)
+    params.require(:apply).permit(:motivation, :mission_id)
   end
 end
