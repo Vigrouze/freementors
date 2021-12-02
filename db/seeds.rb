@@ -11,6 +11,7 @@ Mission.destroy_all
 Chatroom.destroy_all
 User.destroy_all
 Message.destroy_all
+Notification.destroy_all
 
 puts 'Cleaning done'
 
@@ -424,17 +425,18 @@ mission1 = Mission.new(
   start_date: "2022-01-07",
   end_date: "2022-07-04",
   description: "
-   Concevoir et développer sur des techniques de Front,
-   Réalisation de tests unitaires et fonctionnels,
-   Déployer l’environnement recette,
-   Rédaction de la documentation,
-   Participer aux revues de code,
-    Vous avez des compétences techniques clefs : HTML 5, Java Script, CSS3, Ruby on Rails",
+   Designing and developing on front-end techniques,
+   Performing unit and functional tests,
+   Deploying the acceptance environment,
+   Writing documentation,
+   Participating in code reviews,
+  You have key technical skills: HTML 5, CSS3",
   fee: 500,
   remote: true,
   mentor_id: py.id,
   padawan_id: alex.id,
-  status: 2
+  status: 2,
+  tag_list: "CSS, HTML"
 )
 mission1.save
 
@@ -453,30 +455,13 @@ mission2 = Mission.new(
   fee: 600,
   remote: true,
   mentor_id: thibaud.id,
-  status: 0
-)
-mission2.save
-
-mission2 = Mission.new(
-  name: "Back-End developer",
-  company: "Lydia",
-  start_date: "2022-01-02",
-  end_date: "2022-06-06",
-  description: "
-  Manage the deployment of V3 of our solution on the backend
-  Manage the architecture and data migrations if necessary
-  Open new routes on our API + integrate third party APIs (e.g. DataTourism)
-  Implementation of a continuous deployment process (E2E tests)
-  Optimisation of existing code (refactoring, bugfixing etc.)",
-  fee: 600,
-  remote: true,
-  mentor_id: thibaud.id,
-  status: 0
+  status: 0,
+  tag_list: "Ruby"
 )
 mission2.save
 
 mission3 = Mission.new(
-  name: "Back-End dev",
+  name: "Fullstack dev",
   company: "Le Wagon Paris",
   start_date: "2022-01-02",
   end_date: "2022-06-06",
@@ -488,7 +473,8 @@ mission3 = Mission.new(
   remote: true,
   mentor_id: py.id,
   padawan_id: alex.id,
-  status: 2
+  status: 2,
+  tag_list: "Ruby, CSS, HTML"
 )
 mission3.save!
 
@@ -527,8 +513,8 @@ relation = Relationship.new(
 relation.save
 
 Relationship.create(
-    padawan_id: jeremy.id,
-    mentor_id: py.id
+  padawan_id: jeremy.id,
+  mentor_id: py.id
 )
 
 mission4 = Mission.new(
@@ -544,7 +530,8 @@ mission4 = Mission.new(
   fee: 500,
   remote: true,
   mentor_id: thibaud.id,
-  status: 0
+  status: 0,
+  tag_list: "Ruby, Python"
 )
 mission4.save
 
