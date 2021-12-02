@@ -440,16 +440,34 @@ mission1.save
 
 puts 'Sending missions'
 mission2 = Mission.new(
-  name: "Développeur(se) Back-End",
+  name: "Back-End developer",
   company: "Lydia",
   start_date: "2022-01-02",
   end_date: "2022-06-06",
   description: "
-  Gérer le déploiement de la V3 de notre solution côté backend
-  Gérer l'architecture et les migrations de data si nécessaire
-  Ouvrir de nouvelles routes sur notre API + intégrations d'APIs tierces (DataTourisme par ex.)
-  Mise en place d’un process de déploiement continu (tests E2E)
-  Optimisation du code existant (refacto, bugfixing etc.)",
+  Manage the deployment of V3 of our solution on the backend
+  Manage the architecture and data migrations if necessary
+  Open new routes on our API + integrate third party APIs (e.g. DataTourism)
+  Implementation of a continuous deployment process (E2E tests)
+  Optimisation of existing code (refactoring, bugfixing etc.)",
+  fee: 600,
+  remote: true,
+  mentor_id: thibaud.id,
+  status: 0
+)
+mission2.save
+
+mission2 = Mission.new(
+  name: "Back-End developer",
+  company: "Lydia",
+  start_date: "2022-01-02",
+  end_date: "2022-06-06",
+  description: "
+  Manage the deployment of V3 of our solution on the backend
+  Manage the architecture and data migrations if necessary
+  Open new routes on our API + integrate third party APIs (e.g. DataTourism)
+  Implementation of a continuous deployment process (E2E tests)
+  Optimisation of existing code (refactoring, bugfixing etc.)",
   fee: 600,
   remote: true,
   mentor_id: thibaud.id,
@@ -462,7 +480,10 @@ mission3 = Mission.new(
   company: "Le Wagon Paris",
   start_date: "2022-01-02",
   end_date: "2022-06-06",
-  description: "Create an web application to count the points during the 'Wag-Olympiades'. We have different challenge and referees need an application to count the points per team, set the timers and assign the different teams to events",
+  description: "
+  Create an web application to count the points during the 'Wag-Olympiades'.
+  We have different challenge and referees need an application to count the points per team,
+  set the timers and assign the different teams to events",
   fee: 200,
   remote: true,
   mentor_id: py.id,
@@ -472,7 +493,8 @@ mission3 = Mission.new(
 mission3.save!
 
 review = Review.new(
-  content: "Pierre-Yves was a great mentors with lot of support and advices to improve my code. The mission was good for a beginner and enjoy to apply what I learned",
+  content: "Pierre-Yves was a great mentors with lot of support and advices to improve my code.
+  The mission was good for a beginner and enjoy to apply what I learned",
   reviewer_id: alex.id,
   reviewee_id: py.id,
   mission_id: mission1.id,
@@ -508,6 +530,23 @@ Relationship.create(
     padawan_id: jeremy.id,
     mentor_id: py.id
 )
+
+mission4 = Mission.new(
+  name: "Back-End developer",
+  company: "BNP",
+  start_date: "2022-03-12",
+  end_date: "2022-04-06",
+  description: "
+    Package and operationalize algorithms and internal tools.
+    Create demonstrators for AI functional testing purposes
+    Contribute to and/or ensure the support of operational entities on the operational implementation of Data
+    and AI use cases on Big Data and Cloud platforms",
+  fee: 500,
+  remote: true,
+  mentor_id: thibaud.id,
+  status: 0
+)
+mission4.save
 
 puts 'Seeding done:'
 puts "#{User.all.count} users created"

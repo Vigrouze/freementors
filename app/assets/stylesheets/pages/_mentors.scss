@@ -129,7 +129,8 @@
   cursor: pointer;
   width: 36px;
   height: 20px;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   left: 0;
   background-color: #EAEAEA;
   border-radius: 50rem;
@@ -146,7 +147,8 @@
   cursor: pointer;
   width: 16px;
   height: 16px;
-  top: 2px;
+  top: calc(50% + 2px);
+  transform: translateY(calc(-50% - 2px));
   left: 2px;
   background-color: white;
   border-radius: 50%;
