@@ -200,7 +200,7 @@ victor2 = User.new(
   password: "password",
   password_confirmation: "password",
   address: "Paris",
-  description: "I travelled the world to find the best surf spots, after save baby seals and swin with white shark I decided to learn code to make website to share my experience.",
+  description: "I travelled the world to find the best surf spots, after saving babies seals and swin with white shark I decided to learn code to make website to share my experience.",
   mentor: true,
   xp_level: 100,
   xp_status: "Senior",

@@ -1,7 +1,7 @@
 <div class="mentors" data-controller="filter" data-filter-url-value=<%= mentors_path %>>
   <div class="filter">
     <%= form_tag mentors_path, method: 'get' do %>
-      <h5>Frontend</h5>
+    <p class="text-filter">Frontend</p>
       <div style="text-align: center">
         <% User::SKILLS[:frontend].each do |skill| %>
             <%= check_box_tag "tags[]", skill, !params[:tags].nil? && params[:tags].include?(skill), id: "#{skill}", class:"form-check-input check_boxes optional tag-selector", data: {action: 'change->filter#refresh', filter_target: 'checkbox'} %>
@@ -9,7 +9,7 @@
         <% end %>
       </div>
       <div class="backend">
-        <h5>Backend</h5>
+        <p class="text-filter">Backend</p>
         <div style="text-align: center">
           <% User::SKILLS[:backend].each do |skill| %>
             <% if !params[:tags].nil? && params[:tags].include?(skill) %>
@@ -24,12 +24,12 @@
       </div>
         <div class="rating-missions">
           <div class="ratingfilter">
-          <h5>Minimum rating</h5>
+          <p class="text-filter">Minimum Rating</p>
           <%= select_tag "rating", options_for_select((1..5).to_a), data: { action:'change->filter#refresh', filter_target: 'select'} %>
           </div>
           <div class="missionsfilter">
-          <%= check_box_tag 'missions', nil, nil, data: {action: 'change->filter#refresh', filter_target: 'tickbox'} %>
-          <h5>Availables missions</h5>
+          <%= check_box_tag 'missions', nil, nil, class:"toggle", data: {action: 'change->filter#refresh', filter_target: 'tickbox'} %>
+          <%= label_tag 'missions', "Availables missions", class:"text-filter" %>
           </div>
         </div>
     <% end %>
