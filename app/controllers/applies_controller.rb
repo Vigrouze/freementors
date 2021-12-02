@@ -13,11 +13,11 @@ class AppliesController < ApplicationController
     @mission = Mission.find(params[:mission_id])
     @apply.mission = @mission
     @apply.padawan = current_user
-
-    if @apply.save
+    if @apply.valid?
+      @apply.save
       redirect_to mentor_path(@mission.mentor, icon: 'success'), notice: "Application sent"
     else
-      render :new
+      redirect_to mentor_path(@mission.mentor, icon: 'info'), notice: "There was an issue"
     end
   end
 
@@ -35,30 +35,9 @@ class AppliesController < ApplicationController
     redirect_to dashboard_mentors_path
   end
 
-  def update
-  end
-
-  # def approve
-  #   @mission = Mission.find(params[:id])
-  #   @mission.status = "accepted"
-  #   @mission.save!
-
-  #   authorize @mission
-  #   redirect_to mentor_profil_path
-  # end
-
-  # def deny
-  #   @mission = Mission.find(params[:id])
-  #   @mission.status = "denied"
-  #   @mission.save!
-
-  #   authorize @mission
-  #   redirect_to mentor_profil_path
-  # end
-
   private
 
   def apply_params
-    params.require(:apply).permit(:motivation)
+    params.require(:apply).permit(:motivation, :mission_id)
   end
 end
