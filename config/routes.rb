@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  match "/404", to: "errors#not_found", via: :all
-  match "/500", to: "errors#internal_server_error", via: :all
+  get "/404", to: "errors#not_found", :via => :all
+  get "/422", to: "errors#unacceptable", :via => :all
+  get "/500", to: "errors#internal_error", :via => :all
 
   devise_for :users
   root to: 'pages#home'
