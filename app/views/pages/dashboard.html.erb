@@ -112,51 +112,60 @@
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
               <!-- MISSIONS ON-GOING -->
-                <% @missions.where.not(status: 2).each do |mission| %>
-                  <div class="nav-card-mission">
-                      <small>
-                        <ul class="list-inline d-flex">
-                          <li class="list-inline-item li-dashboard">
-                            <%= image_tag("company.png", style:"width: 20px;") %> <%= mission.company %>
-                          </li>
-                          <li class="list-inline-item li-dashboard">
-                            <%= image_tag("Time.png", style:"width: 20px;") %> <%= mission.duration %> days
-                          </li>
-                          <li class="list-inline-item li-dashboard">
-                            <%= image_tag("money.png", style:"width: 20px;") %> <%= mission.fee %>€/day
-                          </li>
-                          <li class="li-status">
-                            <% case mission.status %>
-                            <% when "on_going" %>
-                              <div class="d-flex">
-                                <%# <%= link_to "Finish", finished_mission_path(mission), class:"btn-yellow" %>
-                                <p class="text-center fs-6 m-0 on-going-tag">On-going</p>
-                              </div>
-                            <% when "finished" %>
-                              <p class="text-center fs-6 m-0 finish-tag">Finished</p>
-                            <% else %>
-                              <p class="text-center fs-6 m-0 start-tag">Start in <%= "#{(mission.start_date - Date.today).to_i} days" %></p>
-                            <% end %>
-                          </li>
-                        </ul>
-                      </small>
-                      <h5 class="mb-1"><%= mission.name %></h5>
-                      <p class="mb-1"><%= mission.description %></p>
-                      <div class="mission-tag d-flex flex-wrap p-3">
-                        <% front_end_skills = mission.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
-                        <% if front_end_skills.any? %>
-                          <% front_end_skills.each do |front_end_skill| %>
-                            <span class="tag tag-teal"><%= front_end_skill %></span>
-                          <% end %>
-                        <% end %>
-                        <% back_end_skills = mission.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
-                        <% if back_end_skills.any? %>
-                          <% back_end_skills.each do |back_end_skill| %>
-                            <span class="tag tag-purple"><%= back_end_skill %></span>
-                          <% end %>
-                        <% end %>
-                      </div>
+                <% if @missions.where.not(status: 2).count == 0 %>
+                  <%= link_to mentors_path do %>
+                    <div id="nomissions" class="nav-card-mission">
+                      <%= image_tag("nomissions.png", style:"height:100px") %>
+                      <p>You don't have any on-going missions, click here to find a mission</p>
                     </div>
+                  <% end %>
+                <% else %>
+                  <% @missions.where.not(status: 2).each do |mission| %>
+                    <div class="nav-card-mission">
+                        <small>
+                          <ul class="list-inline d-flex">
+                            <li class="list-inline-item li-dashboard">
+                              <%= image_tag("company.png", style:"width: 20px;") %> <%= mission.company %>
+                            </li>
+                            <li class="list-inline-item li-dashboard">
+                              <%= image_tag("Time.png", style:"width: 20px;") %> <%= mission.duration %> days
+                            </li>
+                            <li class="list-inline-item li-dashboard">
+                              <%= image_tag("money.png", style:"width: 20px;") %> <%= mission.fee %>€/day
+                            </li>
+                            <li class="li-status">
+                              <% case mission.status %>
+                              <% when "on_going" %>
+                                <div class="d-flex">
+                                  <%# <%= link_to "Finish", finished_mission_path(mission), class:"btn-yellow" %>
+                                  <p class="text-center fs-6 m-0 on-going-tag">On-going</p>
+                                </div>
+                              <% when "finished" %>
+                                <p class="text-center fs-6 m-0 finish-tag">Finished</p>
+                              <% else %>
+                                <p class="text-center fs-6 m-0 start-tag">Start in <%= "#{(mission.start_date - Date.today).to_i} days" %></p>
+                              <% end %>
+                            </li>
+                          </ul>
+                        </small>
+                        <h5 class="mb-1"><%= mission.name %></h5>
+                        <p class="mb-1"><%= mission.description %></p>
+                        <div class="mission-tag d-flex flex-wrap p-3">
+                          <% front_end_skills = mission.tag_list.select { |tag| User::SKILLS[:frontend].include?(tag) } %>
+                          <% if front_end_skills.any? %>
+                            <% front_end_skills.each do |front_end_skill| %>
+                              <span class="tag tag-teal"><%= front_end_skill %></span>
+                            <% end %>
+                          <% end %>
+                          <% back_end_skills = mission.tag_list.select { |tag| User::SKILLS[:backend].include?(tag) } %>
+                          <% if back_end_skills.any? %>
+                            <% back_end_skills.each do |back_end_skill| %>
+                              <span class="tag tag-purple"><%= back_end_skill %></span>
+                            <% end %>
+                          <% end %>
+                        </div>
+                      </div>
+                  <% end %>
                 <% end %>
               </div>
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
