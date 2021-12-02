@@ -32,7 +32,7 @@
               <%= link_to mentor_relationships_path(@mentor), method: :post do %>
                 <%= button_tag "Connect",
                               type: "button",
-                              class: "btn btn-yellow-mentor disabled my-2"
+                              class: "btn btn-yellow-mentor disabled my-2 w-100"
                 %>
               <% end %>
             <% when "accepted" %>
@@ -105,11 +105,7 @@
       <div class="mentor-show-cards-missions">
         <h4 class="title-blank mt-3"><%= "#{@missions.where.not(status: 2).count} #{('mission').pluralize(@missions.where.not(status: 2).count)}" %> available</h4>
         <% @missions.each do |mission| %>
-          <% if current_user.connected?(@mentor) %>
-            <%= render 'mentors-missions', mission: mission, connected: true %>
-          <% else %>
-            <%= render 'mentors-missions', mission: mission, connected: false %>
-          <% end %>
+          <%= render 'mentors-missions', mission: mission, connected: current_user.connected?(@mentor) %>
         <% end %>
       </div>
     </div>
