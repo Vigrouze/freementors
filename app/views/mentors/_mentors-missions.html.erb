@@ -36,7 +36,7 @@
     <% end %>
   </div>
   <% if connected && mission.status != "finished" %>
-    <div class="mentor-show-card-mission-application-button">
+    <div class="mentor-show-card-mission-application-button" style="display: flex; flex-direction: row-reverse">
       <%= button_tag current_user.not_yet_applied?(mission) ? "Apply" : "Application sent",
         class: "btn btn-yellow-mentor my-2",
         disabled: !current_user.not_yet_applied?(mission),
