@@ -92,7 +92,7 @@ alex = User.new(
   address: "246 rue du Faubourg Saint-Martin, 75010 Paris",
   description: "Young freelance developper, several experiences in frontend, alumni @LeWagonParis",
   mentor: false,
-  xp_level: 25,
+  xp_level: 20,
   xp_status: "Padawan",
   link_github: "https://github.com/Vigrouze",
   link_malt: "xxx",

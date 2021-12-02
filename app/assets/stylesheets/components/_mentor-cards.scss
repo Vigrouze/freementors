@@ -5,6 +5,7 @@
   flex-grow: 1;
   a {
     text-decoration: none;
+    color: black;
   }
 }
 .card-mentors {
@@ -36,6 +37,9 @@
   }
   ol, ul {
     padding-left: 20px
+  }
+  span {
+    word-break: break-all;
   }
 }
 
