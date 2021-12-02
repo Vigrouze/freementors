@@ -8,10 +8,10 @@ puts 'Cleaning DB...'
 
 Relationship.destroy_all
 Mission.destroy_all
-Chatroom.destroy_all
-User.destroy_all
-Message.destroy_all
 Notification.destroy_all
+Chatroom.destroy_all
+Message.destroy_all
+User.destroy_all
 
 puts 'Cleaning done'
 
