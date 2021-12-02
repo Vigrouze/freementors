@@ -19,6 +19,10 @@ list-style-type: none;
   display: none;
 }
 
+#bell img {
+  opacity: 0.7;
+}
+
 .menubell {
   display: block;
   margin: 0 auto;
@@ -48,4 +52,17 @@ list-style-type: none;
   color: #000;
   display: block;
   padding: 5px 20px;
+}
+
+.notif-pastille {
+  position: absolute;
+  top: -4px;
+  left: 20px;
+  width: 7px;
+  height: 22px;
+  padding: 0px 7px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  box-sizing: initial;
 }
