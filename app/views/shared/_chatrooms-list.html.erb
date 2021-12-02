@@ -1,0 +1,25 @@
+
+<div class="chatrooms-list-container"
+  data-controller="chatrooms-list"
+>
+
+  <div class="chatrooms-list-body d-flex flex-column-reverse gap-1 mb-3"
+    data-chatrooms-list-target="body">
+    <div class="chatrooms-list-body-avatars">
+      <% chatrooms = current_user.chatrooms %>
+      <% chatrooms.each do |chatroom| %>
+        <% if chatroom.mentor.avatar.attached? || chatroom.padawan.avatar.attached? %>
+            <%= cl_image_tag chatroom.mentor.avatar.key, class: "avatar-chatroom" %>
+        <% else %>
+          <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-chatroom" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <button class="chatrooms-list-button"
+    data-chatrooms-list-target="button"
+    data-action="click->chatrooms-list#toggle">
+    <i class="fas fa-comments"></i>
+  </button>
+</div>

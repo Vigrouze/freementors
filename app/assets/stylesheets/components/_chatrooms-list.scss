@@ -1,0 +1,27 @@
+.chatrooms-list-container {
+  position: fixed;
+  bottom: 120px;
+  right: 25px;
+  transition: 1s all ease;
+}
+
+.chatrooms-list-button {
+  border: none;
+  background-color: #FEA93C;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  .fas {
+    font-size: 30px;
+    color: white;
+  }
+}
+
+.chatrooms-list-body {
+  position: relative;
+}
+
+.chatrooms-list-body-avatars {
+  position: absolute;
+  right: 30px;
+}
