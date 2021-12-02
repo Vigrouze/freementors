@@ -23,19 +23,22 @@
           <div class="d-flex card-dashboard mb-3 mt-3 shadow-sm">
             <div class="card-body" style="width: 495px;">
               <h5 class="d-flex align-items-center mb-3">My experience level</h5>
-              <div class="progress card-level" style="width: 90%; height: 20px; border-radius: 10px;">
+              <div class="progress card-level" style="height: 20px; border-radius: 10px;">
                   <div class="progress-bar bg-info rounded progress-bar" role="progressbar" aria-valuenow="<%= @user.xp_level %>"  aria-valuemin="0" aria-valuemax="100" style="width: <%= @user.xp_level %>%"><%= @user.xp_level %>%</div>
               </div>
               <p class="next-mission text-center fs-6", style="margin-top: 27px"><%= 10 - @missions.count%> missions left to get to the next level</p>
-              <div class="d-flex justify-content-around" style="margin-top: 65px; width: 90%">
+              <div class="stats">
                 <div class="small-card-level">
-                  <h6 class="full-text"><span class="mx-1">✅ </span> Complited profile</h6>
+                <span class="small-card-level-title">YOUR PROFILE</span>
+                  <h6 class="full-text"><span class="mx-1">✅ </span> Complete</h6>
                 </div>
                 <div class="small-card-level">
+                  <span class="small-card-level-title">YOUR MISSIONS</span>
                   <h6><span class="mx-1">🚀 </span> <%= current_user.finished_missions_as_padawan.count %> missions</h6>
                 </div>
                 <div class="small-card-level">
-                    <h6><span class="mx-1">⭐ </span> 4,75</h6>
+                  <span class="small-card-level-title">YOUR NOTE</span>
+                  <h6 class="fs-3">4.75</h6><span class="small-rating">/5</span>
                 </div>
               </div>
             </div>
