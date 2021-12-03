@@ -2,7 +2,6 @@
   position: fixed;
   bottom: 120px;
   right: 25px;
-  transition: 1s all ease;
 }
 
 .chatrooms-list-button {
@@ -11,6 +10,7 @@
   height: 60px;
   width: 60px;
   border-radius: 50%;
+  transition: background-color 0.5s ease;
   i {
     font-size: 30px;
     color: white;
@@ -19,6 +19,8 @@
 }
 .grey {
   background-color: #042147;
+  border: solid 0.5px #FEA93C;
+  box-shadow: inset 0px 0px 10px #fea93c;
 }
 
 .chatrooms-list-body {
@@ -32,5 +34,4 @@
 
 .hidden {
   display: none;
-
 }
