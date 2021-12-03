@@ -1,0 +1,31 @@
+
+<div class="chatrooms-list-container"
+  data-controller="chatrooms-list"
+>
+
+  <div class="chatrooms-list-body d-flex flex-column-reverse gap-3 mb-3"
+    data-chatrooms-list-target="body">
+    <div class="chatrooms-list-body-avatars hidden"
+      data-chatrooms-list-target="avatars">
+      <% if user_signed_in? && current_user.chatrooms.any? %>
+        <% chatrooms = current_user.chatrooms %>
+        <% chatrooms.each do |chatroom| %>
+          <%= link_to chatroom_path(chatroom) do %>
+            <% if chatroom.mentor.avatar.attached? || chatroom.padawan.avatar.attached? %>
+                <%= cl_image_tag chatroom.mentor.avatar.key, class: "avatar-chatroom mb-3" %>
+            <% else %>
+              <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-chatroom mb-3" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <% if user_signed_in? %>
+    <button class="chatrooms-list-button"
+      data-chatrooms-list-target="button"
+      data-action="click->chatrooms-list#toggle">
+      <i class="fas fa-comments"></i>
+    </button>
+  <% end %>
+</div>

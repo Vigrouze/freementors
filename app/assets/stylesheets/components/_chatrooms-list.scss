@@ -1,0 +1,43 @@
+.chatrooms-list-container {
+  position: fixed;
+  bottom: 120px;
+  right: 25px;
+}
+
+.chatrooms-list-button {
+  border: none;
+  background-color: #FEA93C;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  transition: background-color 0.5s ease;
+  color: white;
+  i {
+    font-size: 30px;
+    color: white;
+  }
+  &:hover {
+    background-color: lightgrey;
+    box-shadow: inset 0px 0px 30px #fea93c;
+    transform: scale(1.2);
+    transition: all 1s ease;
+  }
+}
+.grey {
+  background-color: lightgrey;
+  border: solid 0.5px #FEA93C;
+  box-shadow: inset 0px 0px 10px #fea93c;
+}
+
+.chatrooms-list-body {
+  position: relative;
+}
+
+.chatrooms-list-body-avatars {
+  position: absolute;
+  right: 30px;
+}
+
+.hidden {
+  display: none;
+}
