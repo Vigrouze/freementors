@@ -29,12 +29,7 @@
           <div class="mentor-show-card-actions d-flex flex-column">
             <% case current_user.relationship_request_status(@mentor) %>
             <% when "pending" %>
-              <%= link_to mentor_relationships_path(@mentor), method: :post do %>
-                <%= button_tag "Connect",
-                              type: "button",
-                              class: "btn btn-yellow-mentor disabled my-2 w-100"
-                %>
-              <% end %>
+              <p class="text-primary text-center"> <span class="fw-bolder">Pending request</span> <i class="fas fa-spinner fa-spin"></i></p>
             <% when "accepted" %>
               <p class="text-success text-center"> <span class="fw-bolder">Connected</span> <i class="fas fa-check-circle"></i></p>
             <% when "denied" %>
