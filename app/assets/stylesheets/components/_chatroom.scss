@@ -42,3 +42,16 @@
     }
   }
 }
+
+.side-chatroom {
+  height: calc(100vh - 205px);
+  overflow: hidden;
+  background-image: url('Saly-14.png');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 70% ;
+  .focus {
+    font-size: 20px;
+    color: #FEA93A;
+  }
+}
