@@ -5,7 +5,8 @@
 
   <div class="chatrooms-list-body d-flex flex-column-reverse gap-1 mb-3"
     data-chatrooms-list-target="body">
-    <div class="chatrooms-list-body-avatars">
+    <div class="chatrooms-list-body-avatars hidden"
+      data-chatrooms-list-target="avatars">
       <% chatrooms = current_user.chatrooms %>
       <% chatrooms.each do |chatroom| %>
         <% if chatroom.mentor.avatar.attached? || chatroom.padawan.avatar.attached? %>

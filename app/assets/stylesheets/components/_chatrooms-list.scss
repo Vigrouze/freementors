@@ -11,10 +11,14 @@
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  .fas {
+  i {
     font-size: 30px;
     color: white;
   }
+
+}
+.grey {
+  background-color: #042147;
 }
 
 .chatrooms-list-body {
@@ -24,4 +28,9 @@
 .chatrooms-list-body-avatars {
   position: absolute;
   right: 30px;
+}
+
+.hidden {
+  display: none;
+
 }

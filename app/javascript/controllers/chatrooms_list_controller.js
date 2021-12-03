@@ -2,12 +2,13 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
 
-  static targets = ["button", "body"]
+  static targets = ["button", "body", "avatars"]
 
   connect() {
-    console.log(this.buttonTarget)
+    // console.log(this.avatarsTarget)
   }
   toggle() {
-    this.bodyTarget.classList.toggle("d-none")
+    this.buttonTarget.classList.toggle("grey")
+    this.avatarsTarget.classList.toggle("hidden")
   }
 }
