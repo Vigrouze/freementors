@@ -15,10 +15,18 @@
     font-size: 30px;
     color: white;
   }
-
+  &:hover {
+    background-color: lightgrey;
+    box-shadow: inset 0px 0px 30px #fea93c;
+    transform: scale(1.2);
+    transition: all 1s ease;
+  }
+  &:onclick {
+    border: none;
+  }
 }
 .grey {
-  background-color: #042147;
+  background-color: lightgrey;
   border: solid 0.5px #FEA93C;
   box-shadow: inset 0px 0px 10px #fea93c;
 }

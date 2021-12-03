@@ -31,12 +31,6 @@
             </li>
           <% end %>
 
-          <% if current_user.chatrooms.any? %>
-            <li>
-              <%= link_to "Messages", chatrooms_path, class: "nav-link" %>
-            </li>
-          <% end %>
-
           <li class="nav-item dropdown menu">
 
               <div class="icon dropdown-toggle"
