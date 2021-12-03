@@ -1,7 +1,24 @@
 <div class="container mt-3">
   <div class="row justify-content-center rounded">
-    <!-- SIDEBAR -->
-    <div class="col-8" id="main">
+    <!-- CHATROOM -->
+    <div class="col-4">
+      <div class="side-chatroom">
+        <div class="side-chatroom-mentor">
+          <div class="side-chatroom-mentor-infos d-flex justify-content-center gap-3 align-items-center mt-3">
+            <%= link_to mentor_path(@chatroom.mentor) do %>
+              <% if @chatroom.mentor.avatar.attached? %>
+                  <%= cl_image_tag @chatroom.mentor.avatar.key, class: "avatar-chatroom" %>
+              <% else %>
+                <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-chatroom" %>
+              <% end %>
+            <% end %>
+            <p class="m-0"><strong class="focus"><%= @chatroom.mentor.name.upcase %></strong> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6" id="main">
         <div class="chatroom mt-0 border rounded">
           <div class="messages"
               data-controller="chatroom-subscription"
@@ -21,5 +38,6 @@
           </div>
         </div>
       </div>
+    </div>
   </div>
 </div>
