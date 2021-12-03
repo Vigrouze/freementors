@@ -456,7 +456,7 @@ mission2 = Mission.new(
   remote: true,
   mentor_id: thibaud.id,
   status: 0,
-  tag_list: "Ruby"
+  tag_list: "Ruby, Python"
 )
 mission2.save
 
@@ -531,7 +531,7 @@ mission4 = Mission.new(
   remote: true,
   mentor_id: thibaud.id,
   status: 0,
-  tag_list: "Ruby, Python"
+  tag_list: "Ruby"
 )
 mission4.save
 
