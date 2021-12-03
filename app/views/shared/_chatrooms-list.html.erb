@@ -21,7 +21,7 @@
       <% end %>
     </div>
   </div>
-  <% if user_signed_in? %>
+  <% if user_signed_in? && current_user.chatrooms.any? %>
     <button class="chatrooms-list-button"
       data-chatrooms-list-target="button"
       data-action="click->chatrooms-list#toggle">
