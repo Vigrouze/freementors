@@ -1,11 +1,12 @@
 .chatroom {
   background: white;
   margin-top: 9px;
-  height: calc(100vh - 75px);
+  height: calc(100vh - 205px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
+  border-radius: 8px !important;
     &.empty {
       background: rgba(177, 177, 177, 0.050);
     }
@@ -26,6 +27,10 @@
     border-top: 1px solid $gray-200;
     padding: 1rem;
     position: relative;
+
+    .message_content{
+      margin: 0 !important;
+    }
 
     .btn {
       position: absolute;

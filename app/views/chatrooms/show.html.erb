@@ -13,7 +13,7 @@
               <% end %>
           </div>
             <%= simple_form_for [@chatroom, @message], remote: true do |f| %>
-              <%= f.input :content, label: false, class: "rounded", placeholder: "Message" %>
+              <%= f.input :content, label: false, placeholder: "Message" %>
               <%= button_tag type: "submit", class: "btn btn-flat text-info" do %>
                 <i class="fas fa-paper-plane"></i>
               <% end %>

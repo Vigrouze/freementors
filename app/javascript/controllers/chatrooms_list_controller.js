@@ -10,5 +10,7 @@ export default class extends Controller {
   toggle() {
     this.buttonTarget.classList.toggle("grey")
     this.avatarsTarget.classList.toggle("hidden")
+    this.avatarsTarget.classList.add("animate__animated")
+    this.avatarsTarget.classList.add("animate__fadeInUp")
   }
 }
