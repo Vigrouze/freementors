@@ -9,10 +9,12 @@
       data-chatrooms-list-target="avatars">
       <% chatrooms = current_user.chatrooms %>
       <% chatrooms.each do |chatroom| %>
-        <% if chatroom.mentor.avatar.attached? || chatroom.padawan.avatar.attached? %>
-            <%= cl_image_tag chatroom.mentor.avatar.key, class: "avatar-chatroom" %>
-        <% else %>
-          <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-chatroom" %>
+        <%= link_to chatroom_path(chatroom) do %>
+          <% if chatroom.mentor.avatar.attached? || chatroom.padawan.avatar.attached? %>
+              <%= cl_image_tag chatroom.mentor.avatar.key, class: "avatar-chatroom" %>
+          <% else %>
+            <%= image_tag asset_url("placeholder-avatar.png"), class: "avatar-chatroom" %>
+          <% end %>
         <% end %>
       <% end %>
     </div>
