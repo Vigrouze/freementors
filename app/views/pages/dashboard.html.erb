@@ -259,11 +259,12 @@
                               <% (5 - rating).times do %>
                                 <i class="far fa-star"></i>
                               <% end %>
+                              <i class="fas fa-pencil-alt", data-bs-toggle="collapse" data-bs-target="#edit_review_2"></i>
+                            <%= render "shared/new-review", mission: mission, review: mission.reviews.find_by(reviewer: current_user) %>
                             <div class="review-info">
                               <p><%= mission.reviews.find_by(reviewer: current_user).content %></p>
                             </div>
-                            <i class="fas fa-pencil-alt", data-bs-toggle="collapse" data-bs-target="#edit_review_2"></i>
-                            <%= render "shared/new-review", mission: mission, review: mission.reviews.find_by(reviewer: current_user) %>
+
                           </div>
                         </div>
                       <% elsif mission.status == "finished" %>
